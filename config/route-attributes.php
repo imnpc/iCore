@@ -13,7 +13,10 @@ return [
      * Optionally, you can specify group configuration by using key/values
      */
     'directories' => [
-        app_path('Http/Controllers'),
+//        app_path('Http/Controllers'),
+        app_path('Http/Controllers/Api') => [
+            'prefix' => 'api/v1',
+        ],
         /*
         app_path('Http/Controllers/Api') => [
            'prefix' => 'api',
