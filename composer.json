@@ -9,6 +9,7 @@
         "php": "^8.2",
         "bezhansalleh/filament-language-switch": "^4.0@beta",
         "bezhansalleh/filament-shield": "^4.0@beta",
+        "dedoc/scramble": "^0.12.26",
         "filament/filament": "^4.0",
         "imnpc/laravel-flysystem-oss": "^2.0",
         "laravel/framework": "^12.0",
