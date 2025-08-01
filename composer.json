@@ -16,7 +16,9 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
         "leonis/easysms-notification-channel": "^3.0",
+        "overtrue/laravel-wechat": "^7.2",
         "pxlrbt/filament-environment-indicator": "^3.1",
+        "spatie/laravel-query-builder": "^6.3",
         "stijnvanouplines/blade-country-flags": "^1.0",
         "yansongda/laravel-pay": "~3.7.0"
     },
