@@ -4,3 +4,4 @@
 @source '../../../../resources/views/filament/**/*';
 
 @source '../../../../vendor/bezhansalleh/filament-language-switch/resources/views/**/*.blade.php';
+@source '../../../../vendor/devonab/filament-easy-footer/resources/views/**/*';
