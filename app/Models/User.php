@@ -4,6 +4,11 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Traits\DateTrait;
+use Bavix\Wallet\Interfaces\Wallet;
+use Bavix\Wallet\Interfaces\WalletFloat;
+use Bavix\Wallet\Traits\HasWallet;
+use Bavix\Wallet\Traits\HasWalletFloat;
+use Bavix\Wallet\Traits\HasWallets;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -13,13 +18,15 @@ use Plank\Mediable\Mediable;
 use Plank\Mediable\MediableInterface;
 use Spatie\Tags\HasTags;
 
-class User extends Authenticatable implements MediableInterface
+class User extends Authenticatable implements MediableInterface, Wallet, WalletFloat
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
     use HasApiTokens;
     use DateTrait; // 日期重写
-    use Mediable;  // 媒体库
+    use Mediable; // 媒体库
+    use HasWallet, HasWallets; // 钱包
+    use HasWalletFloat; // 钱包
     use HasTags; // 标签
 
     // 标签
