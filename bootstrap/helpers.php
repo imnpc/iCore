@@ -1,7 +1,5 @@
 <?php
 
-use App\Gateways\QxtGateway;
-use App\Settings\GeneralSettings;
 use GuzzleHttp\Client;
 use Overtrue\EasySms\EasySms;
 use Plank\Mediable\Exceptions\MediaUploadException;
