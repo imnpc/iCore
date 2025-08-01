@@ -17,7 +17,8 @@
         "laravel/tinker": "^2.10.1",
         "leonis/easysms-notification-channel": "^3.0",
         "pxlrbt/filament-environment-indicator": "^3.1",
-        "stijnvanouplines/blade-country-flags": "^1.0"
+        "stijnvanouplines/blade-country-flags": "^1.0",
+        "yansongda/laravel-pay": "~3.7.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.6",
