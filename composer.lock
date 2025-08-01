@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "27d62f356c5d4b28b57b03805d7a8304",
+    "content-hash": "3d14c6425d959eb648738274f8b3cac2",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -71,6 +71,77 @@
                 "source": "https://github.com/AnourValar/eloquent-serialize/tree/1.3.4"
             },
             "time": "2025-07-30T15:45:57+00:00"
+        },
+        {
+            "name": "bezhansalleh/filament-language-switch",
+            "version": "4.0.0-beta2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bezhanSalleh/filament-language-switch.git",
+                "reference": "79c57969829df027cee1d45189e2d2dafc79defb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bezhanSalleh/filament-language-switch/zipball/79c57969829df027cee1d45189e2d2dafc79defb",
+                "reference": "79c57969829df027cee1d45189e2d2dafc79defb",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^4.0",
+                "php": "^8.2",
+                "spatie/laravel-package-tools": "^1.9"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "BezhanSalleh\\FilamentLanguageSwitch\\FilamentLanguageSwitchServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BezhanSalleh\\FilamentLanguageSwitch\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bezhan Salleh",
+                    "email": "bezhan_salleh@yahoo.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Zero config Language Switch(Changer/Localizer) plugin for filamentphp admin",
+            "homepage": "https://github.com/bezhansalleh/filament-language-switch",
+            "keywords": [
+                "bezhanSalleh",
+                "filament-language-changer",
+                "filament-language-switch",
+                "filament-locale-changer",
+                "filament-localizer",
+                "filament-plugin",
+                "filamentphp",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/bezhanSalleh/filament-language-switch/issues",
+                "source": "https://github.com/bezhanSalleh/filament-language-switch/tree/4.0.0-beta2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/bezhanSalleh",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-06-11T19:48:05+00:00"
         },
         {
             "name": "bezhansalleh/filament-shield",
@@ -5648,6 +5719,60 @@
             "time": "2025-02-21T14:16:57+00:00"
         },
         {
+            "name": "stijnvanouplines/blade-country-flags",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stijnvanouplines/blade-country-flags.git",
+                "reference": "a1503171f666408398824b4dce0eea0e587ed6bc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stijnvanouplines/blade-country-flags/zipball/a1503171f666408398824b4dce0eea0e587ed6bc",
+                "reference": "a1503171f666408398824b4dce0eea0e587ed6bc",
+                "shasum": ""
+            },
+            "require": {
+                "blade-ui-kit/blade-icons": "^1.0",
+                "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.18|^8.0|^9.0|^10.0",
+                "pestphp/pest": "^1.4|^2.34|^3.0",
+                "spatie/pest-plugin-snapshots": "^1.0|^2.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "StijnVanouplines\\BladeCountryFlags\\BladeCountryFlagsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "StijnVanouplines\\BladeCountryFlags\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A package to easily make use of country flags in your Laravel Blade views.",
+            "homepage": "https://github.com/stijnvanouplines/blade-country-flags",
+            "keywords": [
+                "blade",
+                "country flags",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/stijnvanouplines/blade-country-flags/issues",
+                "source": "https://github.com/stijnvanouplines/blade-country-flags/tree/1.0.6"
+            },
+            "time": "2025-04-22T06:40:23+00:00"
+        },
+        {
             "name": "symfony/clock",
             "version": "v7.3.0",
             "source": {
@@ -10660,6 +10785,7 @@
     "aliases": [],
     "minimum-stability": "beta",
     "stability-flags": {
+        "bezhansalleh/filament-language-switch": 10,
         "bezhansalleh/filament-shield": 10
     },
     "prefer-stable": true,
