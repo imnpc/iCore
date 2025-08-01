@@ -21,6 +21,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -75,6 +76,13 @@ class AdminPanelProvider extends PanelProvider
                         'default' => 1,
                         'sm'      => 2,
                     ]), // 权限
+                EnvironmentIndicatorPlugin::make()
+                    ->color(fn() => match (app()->environment()) {
+                        'production' => Color::Green,
+                        'staging' => Color::Orange,
+                        'local' => Color::Red,
+                        default => Color::Blue,
+                    }), // 环境
             ])
             ->authMiddleware([
                 Authenticate::class,
