@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a27761959e40e25f6d17455873ccde6f",
+    "content-hash": "de37474d8092645fea8bc5dc7c70c01c",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -3655,6 +3655,58 @@
             "time": "2024-12-08T08:18:47+00:00"
         },
         {
+            "name": "leonis/easysms-notification-channel",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yl/easysms-notification-channel.git",
+                "reference": "bea2414adff0fe16530e86911a7c8371dc04a7d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yl/easysms-notification-channel/zipball/bea2414adff0fe16530e86911a7c8371dc04a7d5",
+                "reference": "bea2414adff0fe16530e86911a7c8371dc04a7d5",
+                "shasum": ""
+            },
+            "require": {
+                "overtrue/easy-sms": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Leonis\\Notifications\\EasySms\\EasySmsChannelServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Leonis\\Notifications\\EasySms\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "yangliu",
+                    "email": "yangliulnn@163.com"
+                }
+            ],
+            "description": "EasySms Notification Channel for Laravel.",
+            "keywords": [
+                "easysms",
+                "laravel",
+                "notifications"
+            ],
+            "support": {
+                "issues": "https://github.com/yl/easysms-notification-channel/issues",
+                "source": "https://github.com/yl/easysms-notification-channel/tree/3.0.0"
+            },
+            "time": "2025-05-14T03:51:31+00:00"
+        },
+        {
             "name": "livewire/livewire",
             "version": "v3.6.4",
             "source": {
@@ -4459,6 +4511,60 @@
                 }
             ],
             "time": "2025-07-07T06:15:55+00:00"
+        },
+        {
+            "name": "overtrue/easy-sms",
+            "version": "3.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/easy-sms.git",
+                "reference": "110d3a5fe43af7d3fe80c06b1a0cbf955648a922"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overtrue/easy-sms/zipball/110d3a5fe43af7d3fe80c06b1a0cbf955648a922",
+                "reference": "110d3a5fe43af7d3fe80c06b1a0cbf955648a922",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^6.2 || ^7.0",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.54",
+                "jetbrains/phpstorm-attributes": "^1.0",
+                "mockery/mockery": "^1.4.2",
+                "phpunit/phpunit": "^9.5.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\EasySms\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "i@overtrue.me"
+                }
+            ],
+            "description": "The easiest way to send short message.",
+            "support": {
+                "issues": "https://github.com/overtrue/easy-sms/issues",
+                "source": "https://github.com/overtrue/easy-sms/tree/3.2.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/overtrue",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-07-17T07:07:58+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
