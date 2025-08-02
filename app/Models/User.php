@@ -17,6 +17,8 @@ use Laravel\Sanctum\HasApiTokens;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModel;
 use Plank\Mediable\Mediable;
 use Plank\Mediable\MediableInterface;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Tags\HasTags;
 
 class User extends Authenticatable implements MediableInterface, Wallet, WalletFloat
@@ -29,9 +31,18 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
     use HasWallet, HasWallets; // 钱包
     use HasWalletFloat; // 钱包
     use HasTranslateableModel; // 翻译
+    use LogsActivity; // 记录日志
     use HasTags; // 标签
 
     protected static ?string $translateablePackageKey = '';
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logAll()
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
+    }
 
     /**
      * The attributes that are mass assignable.

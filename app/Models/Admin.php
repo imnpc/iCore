@@ -14,18 +14,32 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModel;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable implements FilamentUser, HasAvatar, HasAppAuthentication, HasAppAuthenticationRecovery
 {
     use HasFactory, Notifiable;
     use SoftDeletes;
-    use DateTrait;
-    use HasRoles;
-    use HasTranslateableModel;
+    use DateTrait; // 日期重写
+    use HasRoles; // 权限
+    use HasTranslateableModel; // 翻译
+    use LogsActivity; // 记录日志
 
-    protected static ?string $translateablePackageKey = '';
+    protected static ?string $translateablePackageKey = ''; // 翻译
 
+    /**
+     * 日志
+     * @return LogOptions
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logAll()
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs();
+    }
     /**
      * The attributes that are mass assignable.
      *

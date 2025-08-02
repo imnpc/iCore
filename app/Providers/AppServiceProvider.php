@@ -4,8 +4,16 @@ namespace App\Providers;
 
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
 use BezhanSalleh\FilamentShield\Facades\FilamentShield;
+use Dedoc\Scramble\Scramble;
+use Dedoc\Scramble\Support\Generator\OpenApi;
+use Dedoc\Scramble\Support\Generator\Operation;
+use Dedoc\Scramble\Support\Generator\SecurityScheme;
+use Dedoc\Scramble\Support\RouteInfo;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
+use Spatie\Activitylog\Models\Activity;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,10 +30,39 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // 自动配置 swagger 文档
+        Scramble::configure()
+            ->withDocumentTransformers(function (OpenApi $openApi) {
+                $openApi->secure(
+                    SecurityScheme::http('bearer')
+                );
+            })
+            ->withOperationTransformers(function (Operation $operation, RouteInfo $routeInfo) {
+                $routeMiddleware = $routeInfo->route->gatherMiddleware();
+
+                $hasAuthMiddleware = collect($routeMiddleware)->contains(
+                    fn ($m) => Str::startsWith($m, 'auth:')
+                );
+
+                if (! $hasAuthMiddleware) {
+                    $operation->security = [];
+                }
+            });
+
         // 自动发现策略文件
         Gate::guessPolicyNamesUsing(function (string $modelClass) {
             return str_replace('Models', 'Policies', $modelClass) . 'Policy';
         });
+        // 插件需要手动注册策略，后台角色才能管理
+        Gate::policy(Activity::class, ActivityPolicy::class); // 操作日志单独的策略文件
+
+        // 循环处理监听事件
+        foreach ($this->listen as $event => $listeners) {
+            foreach ($listeners as $listener) {
+                Event::listen($event, $listener);
+            }
+        }
+
         // 权限管理 使用模型名 不使用 :: 间隔区分
         FilamentShield::configurePermissionIdentifierUsing(
             fn($resource) => str($resource::getModel())
@@ -50,4 +87,17 @@ class AppServiceProvider extends ServiceProvider
                 ->circular();
         });
     }
+
+    // 事件列表
+    private $listen = [
+        // access_token 生成以后清除旧的 token ，然后记录登录时间和日期
+//        'Laravel\Passport\Events\AccessTokenCreated' => [
+//            'App\Listeners\RevokeOldTokens',
+//            'App\Listeners\LogSuccessfulLogin',
+//        ],
+        // refresh_token 生成以后删除已吊销的 token
+//        'Laravel\Passport\Events\RefreshTokenCreated' => [
+//            'App\Listeners\PruneOldTokens',
+//        ],
+    ];
 }

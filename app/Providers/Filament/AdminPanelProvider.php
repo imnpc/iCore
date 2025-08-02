@@ -80,6 +80,7 @@ class AdminPanelProvider extends PanelProvider
                         'sm'      => 2,
                     ]), // 权限
                 FilamentModelTranslatorServicePlugin::make(), //  模型翻译
+//                ActivitylogPlugin::make(), // 记录日志
                 EnvironmentIndicatorPlugin::make()
                     ->color(fn() => match (app()->environment()) {
                         'production' => Color::Green,
