@@ -34,8 +34,12 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
     use LogsActivity; // 记录日志
     use HasTags; // 标签
 
-    protected static ?string $translateablePackageKey = '';
+    protected static ?string $translateablePackageKey = ''; // 翻译
 
+    /**
+     * 日志
+     * @return LogOptions
+     */
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()

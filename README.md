@@ -68,16 +68,21 @@ php artisan make:enum PayType
 ### 🛠️ 开发者体验
 
 - ⚡ 使用定制化 [Filament](https://filamentphp.com/) 快速生成 CRUD
-- 定制了 stubs/model.stub 和 stubs/filament/Resource.stub 和 stubs/filament/ResourcePage.stub 和 stubs/filament/ResourceEditPage.stub
+- 定制了一键生成资源文件
+- stubs/model.stub
+- stubs/controller.model.stub
+- stubs/request.stub
+- stubs/resource.stub
+- stubs/enum.stub
+- stubs/enum.backed.stub
+- stubs/job.queued.stub
 - 📚 使用 [Scramble](https://scramble.dedoc.co/) 轻松生成 API 文档  访问路径 /docs/api
 
 ### 🔐 认证与授权
 
 - 🛡️ 基于角色的访问控制（RBAC）使用 [Filament Shield](https://filamentphp.com/plugins/bezhansalleh-shield)
-- 👤 使用 [Filament Breezy](https://filamentphp.com/plugins/jeffgreco-breezy) 管理用户资料
 - 🔒 集成双因素认证功能
 - 👥 简化的用户角色分配机制
-- 🎭 通过 [Filament Impersonate](https://filamentphp.com/plugins/joseph-szobody-impersonate) 实现用户模拟
 
 ### 📡 集成
 

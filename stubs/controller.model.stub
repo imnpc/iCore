@@ -1,0 +1,102 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use {{ rootNamespace }}Http\Controllers\Controller;
+use App\Http\Requests\Api\{{ model }}Request;
+use {{ namespacedRequests }}
+use Dedoc\Scramble\Attributes\Group;
+use Dedoc\Scramble\Attributes\PathParameter;
+use Dedoc\Scramble\Attributes\QueryParameter;
+use Illuminate\Http\JsonResponse;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\RouteAttributes\Attributes\Middleware;
+use Spatie\RouteAttributes\Attributes\Resource;
+
+#[Group('{{ model }}', description: '{{ model }}管理',weight: 11)]
+#[Resource('{{ modelVariable }}')]
+#[Middleware(['auth:sanctum'])]
+class {{ class }} extends Controller
+{
+    /**
+     * {{ model }}列表
+     */
+    #[QueryParameter('page', description: '页码', type: 'int', default: 1, example: 1)]
+    public function index()
+    {
+        $data = QueryBuilder::for({{ model }}::class)
+            ->where('user_id', '=', auth()->id())
+            ->defaultSort('-created_at')
+            ->paginate();
+
+        // 返回 记录列表
+        return ({{ model }}Resource::collection($data))->additional([
+            'status'  => 'success',
+            'code'    => 200,
+            'message' => 'ok',
+        ]);
+    }
+
+    /**
+     * 添加{{ model }}
+     *
+     * @param {{ model }}Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store({{ model }}Request $request)
+    {
+        $data = {{ model }}::create($request->validated());
+
+        // 获取创建后的数据
+        return $this->success(new {{ model }}Resource($data), '添加成功', 201);
+    }
+
+    /**
+     * 显示某个{{ model }}详情
+     *
+     * @param {{ model }} {{ modelVariable }}
+     * @return \Illuminate\Http\JsonResponse
+     */
+    #[PathParameter('{{ modelVariable }}', description: '{{ model }}ID', type: 'int', example: 1)]
+    public function show({{ model }} ${{ modelVariable }})
+    {
+        $this->authorize('own', ${{ modelVariable }});
+
+        // 返回详情
+        return $this->success(new {{ model }}Resource($department), '获取成功');
+    }
+
+    /**
+     * 修改某个{{ model }}
+     *
+     * @param {{ model }}Request $request
+     * @param {{ model }} ${{ modelVariable }}
+     */
+    #[PathParameter('{{ modelVariable }}', description: '{{ model }}ID', type: 'int', example: 1)]
+    public function update({{ model }}Request $request, {{ model }} ${{ modelVariable }})
+    {
+        $this->authorize('own', ${{ modelVariable }});
+        ${{ modelVariable }}->update($request->validated());
+
+        // 获取更新后的数据
+        return $this->success(new {{ model }}Resource(${{ modelVariable }}), '更新成功');
+    }
+
+    /**
+     * 删除某个{{ model }}
+     *
+     * @param {{ model }} ${{ modelVariable }}
+     * @return \Illuminate\Http\JsonResponse
+     */
+    #[PathParameter('department', description: '部门ID', type: 'int', example: 1)]
+    public function destroy({{ model }} ${{ modelVariable }})
+    {
+        $this->authorize('own', ${{ modelVariable }});
+        ${{ modelVariable }}->delete();
+
+        // 返回删除信息
+        return $this->success([], '删除成功', 200);
+    }
+
+}

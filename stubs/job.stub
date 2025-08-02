@@ -1,0 +1,58 @@
+<?php
+
+namespace {{ namespace }};
+
+use Carbon\Carbon;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
+class {{ class }}
+{
+    use Dispatchable;
+
+    /**
+     * 任务运行的超时时间。
+     *
+     * @var int
+     */
+    public int $timeout = 300;
+
+    /**
+     * 任务描述
+     *
+     * @var string
+     */
+    public string $description = "执行某任务";
+
+    /**
+     * Create a new job instance.
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Execute the job.
+     */
+    public function handle(): void
+    {
+        $day = Carbon::now()->toDateString();// 获得日期
+        $now = Carbon::now();
+
+        try {
+            DB::beginTransaction(); // 开启事务
+            try {
+                // 在这里添加代码执行任务 TODO
+                DB::commit(); // 提交事务
+            } catch (\Exception $e) {
+                DB::rollBack(); // 回滚事务
+                // 异常处理
+                Log::error(__METHOD__ . '|' . __METHOD__ . '-执行失败', ['error' => $e]);
+            }
+        } catch (\Exception $e) {
+            Log::error(__METHOD__ . '|' . __METHOD__ . '执行失败', ['day' => $day, 'error' => $e]);
+        }
+    }
+}

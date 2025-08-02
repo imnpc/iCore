@@ -1,0 +1,18 @@
+<?php
+
+namespace {{ namespace }};
+
+use Filament\Support\Contracts\HasLabel;
+
+enum {{ class }} implements hasLabel
+{
+    // 环境:1-测试
+    case Demo = 1;
+
+    public function getlabel(): ?string
+    {
+        return match ($this) {
+            self::Demo => '测试',
+        };
+    }
+}
