@@ -43,6 +43,30 @@ return [
 
     ],
 
+    'multi_factor' => [
+
+        'heading' => 'Verify your identity',
+
+        'subheading' => 'To continue signing in, you need to verify your identity.',
+
+        'form' => [
+
+            'provider' => [
+                'label' => 'How would you like to verify?',
+            ],
+
+            'actions' => [
+
+                'authenticate' => [
+                    'label' => 'Confirm sign in',
+                ],
+
+            ],
+
+        ],
+
+    ],
+
     'messages' => [
 
         'failed' => '登录信息有误。',

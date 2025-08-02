@@ -22,6 +22,12 @@ return [
             'label' => '确认新密码',
         ],
 
+        'current_password' => [
+            'label' => 'Current password',
+            'below_content' => 'For security, please confirm your password to continue.',
+            'validation_attribute' => 'current password',
+        ],
+
         'actions' => [
 
             'save' => [
@@ -32,7 +38,16 @@ return [
 
     ],
 
+    'multi_factor_authentication' => [
+        'label' => 'Two-factor authentication (2FA)',
+    ],
+
     'notifications' => [
+
+        'email_change_verification_sent' => [
+            'title' => 'Email address change request sent',
+            'body' => 'A request to change your email address has been sent to :email. Please check your email to verify the change.',
+        ],
 
         'saved' => [
             'title' => '已保存',

@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
+use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModel;
 use Plank\Mediable\Mediable;
 use Plank\Mediable\MediableInterface;
 use Spatie\Tags\HasTags;
@@ -27,9 +28,10 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
     use Mediable; // 媒体库
     use HasWallet, HasWallets; // 钱包
     use HasWalletFloat; // 钱包
+    use HasTranslateableModel; // 翻译
     use HasTags; // 标签
 
-    // 标签
+    protected static ?string $translateablePackageKey = '';
 
     /**
      * The attributes that are mass assignable.

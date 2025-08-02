@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModel;
 use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable implements FilamentUser, HasAvatar, HasAppAuthentication, HasAppAuthenticationRecovery
@@ -21,6 +22,9 @@ class Admin extends Authenticatable implements FilamentUser, HasAvatar, HasAppAu
     use SoftDeletes;
     use DateTrait;
     use HasRoles;
+    use HasTranslateableModel;
+
+    protected static ?string $translateablePackageKey = '';
 
     /**
      * The attributes that are mass assignable.

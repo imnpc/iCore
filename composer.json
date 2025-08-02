@@ -20,6 +20,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
         "leonis/easysms-notification-channel": "^3.0",
+        "maggomann/filament-model-translator": "^1.1",
         "overtrue/laravel-wechat": "^7.2",
         "plank/laravel-mediable": "^6.3",
         "pxlrbt/filament-environment-indicator": "^3.1",
