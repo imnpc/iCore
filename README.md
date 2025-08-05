@@ -181,6 +181,7 @@ php artisan make:enum PayType
 
      ```bash
     php artisan shield:super-admin --user=1
+    php artisan shield:install admin
      ```
 
 13. 运行程序，请执行以下命令 或者  composer run dev

@@ -15,7 +15,7 @@ class RolePolicy
      */
     public function viewAny(Admin $admin): bool
     {
-        return $admin->can('view_any_role');
+        return $admin->can('view_any_Role');
     }
 
     /**
@@ -23,7 +23,7 @@ class RolePolicy
      */
     public function view(Admin $admin, Role $role): bool
     {
-        return $admin->can('view_role');
+        return $admin->can('view_Role');
     }
 
     /**
@@ -31,7 +31,7 @@ class RolePolicy
      */
     public function create(Admin $admin): bool
     {
-        return $admin->can('create_role');
+        return $admin->can('create_Role');
     }
 
     /**
@@ -39,7 +39,7 @@ class RolePolicy
      */
     public function update(Admin $admin, Role $role): bool
     {
-        return $admin->can('update_role');
+        return $admin->can('update_Role');
     }
 
     /**
@@ -47,7 +47,7 @@ class RolePolicy
      */
     public function delete(Admin $admin, Role $role): bool
     {
-        return $admin->can('delete_role');
+        return $admin->can('delete_Role');
     }
 
     /**
@@ -55,7 +55,7 @@ class RolePolicy
      */
     public function deleteAny(Admin $admin): bool
     {
-        return $admin->can('delete_any_role');
+        return $admin->can('delete_any_Role');
     }
 
     /**

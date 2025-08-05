@@ -170,6 +170,9 @@ return [
         'tags_help' => '输入标签字符以后回车即可',
         'pay_type' => '支付类型',
         'trade_no' => '交易编号',
+        'all' => '所有',
+        'active' => '启用',
+        'inactive' => '禁止',
     ],
     'settings' =>[
         'name' => '设置',

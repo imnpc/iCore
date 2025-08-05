@@ -2,10 +2,10 @@
 
 namespace App\Providers\Filament;
 
-
 use App\Filament\Auth\Login;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Devonab\FilamentEasyFooter\EasyFooterPlugin;
+use Filament\Actions\CreateAction;
 use Filament\Auth\MultiFactor\App\AppAuthentication;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -14,7 +14,11 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
+use Filament\Resources\Pages\CreateRecord;
 use Filament\Support\Colors\Color;
+use Filament\Support\Facades\FilamentTimezone;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -28,6 +32,20 @@ use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
+    public function boot(): void
+    {
+        // 设置默认时区
+        FilamentTimezone::set('Asia/Shanghai');
+        // 设置表格默认时间格式
+        Table::configureUsing(function (Table $table) {
+            $table->defaultDateDisplayFormat('Y-m-d');
+            $table->defaultDateTimeDisplayFormat('Y-m-d H:i:s');
+        });
+        // 默认关闭 创建另一个按钮
+        CreateRecord::disableCreateAnother();
+        CreateAction::configureUsing(fn(CreateAction $action) => $action->createAnother(false));
+    }
+
     public function panel(Panel $panel): Panel
     {
         return $panel
@@ -97,6 +115,8 @@ class AdminPanelProvider extends PanelProvider
                     ->recoverable()
                     ->regenerableRecoveryCodes(false),
             ])
+            ->resourceEditPageRedirect('index') // 修改编辑页面重定向
+            ->resourceCreatePageRedirect('index') // 创建页面重定向
             ->authMiddleware([
                 Authenticate::class,
             ]);

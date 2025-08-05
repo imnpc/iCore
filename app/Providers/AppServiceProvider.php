@@ -9,11 +9,12 @@ use Dedoc\Scramble\Support\Generator\OpenApi;
 use Dedoc\Scramble\Support\Generator\Operation;
 use Dedoc\Scramble\Support\Generator\SecurityScheme;
 use Dedoc\Scramble\Support\RouteInfo;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Spatie\Activitylog\Models\Activity;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,44 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // filament 表格默认附加时间列(有 bug 未生效)
+        Table::configureUsing(function (Table $table) {
+            $table
+                ->pushColumns([
+                    TextColumn::make('created_at')
+                        ->label(trans('filament-model.general.created_at'))
+                        ->dateTime()
+                        ->sortable(),
+                    TextColumn::make('updated_at')
+                        ->label(trans('filament-model.general.updated_at'))
+                        ->dateTime()
+                        ->sortable()
+                        ->toggleable(isToggledHiddenByDefault: true),
+                ]);
+        });
+
+        // 循环处理监听事件
+        foreach ($this->listen as $event => $listeners) {
+            foreach ($listeners as $listener) {
+                Event::listen($event, $listener);
+            }
+        }
+
+        // 自动发现策略文件
+        Gate::guessPolicyNamesUsing(function (string $modelClass) {
+            return str_replace('Models', 'Policies', $modelClass) . 'Policy';
+        });
+
+        // 插件需要手动注册策略，后台角色才能管理
+//        Gate::policy(Activity::class, ActivityPolicy::class); // 操作日志单独的策略文件
+
+        // filament 权限管理 使用模型名 不使用 :: 间隔区分
+        FilamentShield::configurePermissionIdentifierUsing(
+            fn($resource) => str($resource::getModel())
+                ->afterLast('\\')
+                ->toString()
+        );
+
         // 自动配置 swagger 文档
         Scramble::configure()
             ->withDocumentTransformers(function (OpenApi $openApi) {
@@ -49,28 +88,7 @@ class AppServiceProvider extends ServiceProvider
                 }
             });
 
-        // 自动发现策略文件
-        Gate::guessPolicyNamesUsing(function (string $modelClass) {
-            return str_replace('Models', 'Policies', $modelClass) . 'Policy';
-        });
-        // 插件需要手动注册策略，后台角色才能管理
-        Gate::policy(Activity::class, ActivityPolicy::class); // 操作日志单独的策略文件
-
-        // 循环处理监听事件
-        foreach ($this->listen as $event => $listeners) {
-            foreach ($listeners as $listener) {
-                Event::listen($event, $listener);
-            }
-        }
-
-        // 权限管理 使用模型名 不使用 :: 间隔区分
-        FilamentShield::configurePermissionIdentifierUsing(
-            fn($resource) => str($resource::getModel())
-                ->afterLast('\\')
-                ->toString()
-        );
-
-        // 多语言切换
+        // filament 多语言切换
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
             $switch
                 ->locales(['en','zh_CN','zh_TW'])
