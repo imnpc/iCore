@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Admins\Pages;
 
 use App\Filament\Resources\Admins\AdminResource;
-use App\Models\Admin;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Schemas\Components\Tabs\Tab;
