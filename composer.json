@@ -15,6 +15,7 @@
         "devonab/filament-easy-footer": "^2.0",
         "filament/filament": "^4.0",
         "filament/spatie-laravel-tags-plugin": "^3.2",
+        "imnpc/filament-settings": "^2.0",
         "imnpc/laravel-flysystem-oss": "^2.0",
         "laravel/framework": "^12.0",
         "laravel/horizon": "^5.33",
@@ -36,7 +37,6 @@
         "ysfkaya/filament-phone-input": "^4.0@beta"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.16",
         "barryvdh/laravel-ide-helper": "^3.6",
         "fakerphp/faker": "^1.23",
         "laravel-lang/lang": "^15.22",

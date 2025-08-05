@@ -17,7 +17,6 @@ use Filament\PanelProvider;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Support\Colors\Color;
 use Filament\Support\Facades\FilamentTimezone;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
@@ -28,6 +27,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Maggomann\FilamentModelTranslator\FilamentModelTranslatorServicePlugin;
+use Outerweb\FilamentSettings\Filament\Plugins\FilamentSettingsPlugin;
 use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
 
 class AdminPanelProvider extends PanelProvider
@@ -97,6 +97,10 @@ class AdminPanelProvider extends PanelProvider
                         'default' => 1,
                         'sm'      => 2,
                     ]), // 权限
+                FilamentSettingsPlugin::make()
+                    ->pages([
+                        \App\Filament\Pages\Settings\Settings::class,
+                    ]), // 系统设置
                 FilamentModelTranslatorServicePlugin::make(), //  模型翻译
 //                ActivitylogPlugin::make(), // 记录日志
                 EnvironmentIndicatorPlugin::make()
