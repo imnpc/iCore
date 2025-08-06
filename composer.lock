@@ -3265,16 +3265,16 @@
         },
         {
             "name": "kirschbaum-development/eloquent-power-joins",
-            "version": "4.2.6",
+            "version": "4.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kirschbaum-development/eloquent-power-joins.git",
-                "reference": "72cff1e838bb3f826dc09a5566219ad7fa56237f"
+                "reference": "f2f8d3575a54d91b3e5058d65ac1fccb3ea7dd94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kirschbaum-development/eloquent-power-joins/zipball/72cff1e838bb3f826dc09a5566219ad7fa56237f",
-                "reference": "72cff1e838bb3f826dc09a5566219ad7fa56237f",
+                "url": "https://api.github.com/repos/kirschbaum-development/eloquent-power-joins/zipball/f2f8d3575a54d91b3e5058d65ac1fccb3ea7dd94",
+                "reference": "f2f8d3575a54d91b3e5058d65ac1fccb3ea7dd94",
                 "shasum": ""
             },
             "require": {
@@ -3322,9 +3322,9 @@
             ],
             "support": {
                 "issues": "https://github.com/kirschbaum-development/eloquent-power-joins/issues",
-                "source": "https://github.com/kirschbaum-development/eloquent-power-joins/tree/4.2.6"
+                "source": "https://github.com/kirschbaum-development/eloquent-power-joins/tree/4.2.7"
             },
-            "time": "2025-07-10T16:55:34+00:00"
+            "time": "2025-08-06T10:46:13+00:00"
         },
         {
             "name": "laravel/framework",
@@ -13958,16 +13958,16 @@
         },
         {
             "name": "laravel-lang/lang",
-            "version": "15.22.5",
+            "version": "15.22.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/lang.git",
-                "reference": "48526c88e90d2bb592bcbb47de96ca5e486c41cc"
+                "reference": "ae837229304b25eb19c0fbfc0aa9b772b8110a97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/48526c88e90d2bb592bcbb47de96ca5e486c41cc",
-                "reference": "48526c88e90d2bb592bcbb47de96ca5e486c41cc",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/ae837229304b25eb19c0fbfc0aa9b772b8110a97",
+                "reference": "ae837229304b25eb19c0fbfc0aa9b772b8110a97",
                 "shasum": ""
             },
             "require": {
@@ -14017,7 +14017,7 @@
                 "issues": "https://github.com/Laravel-Lang/lang/issues",
                 "source": "https://github.com/Laravel-Lang/lang"
             },
-            "time": "2025-07-03T13:22:31+00:00"
+            "time": "2025-08-06T11:03:57+00:00"
         },
         {
             "name": "laravel-lang/locale-list",
