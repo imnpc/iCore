@@ -69,6 +69,7 @@ class AdminResource extends Resource  implements Translateable, HasShieldPermiss
     {
         return [
             \App\Filament\RelationManagers\AuthenticationLogsRelationManager::class,
+//            ActivitylogRelationManager::class,
         ];
     }
 

@@ -59,6 +59,7 @@ class AdminsTable
                 ActionGroup::make([
                     DeleteAction::make(),
                 ])->visible(fn ($record): bool => $record->id > 1),
+//                ActivityLogTimelineTableAction::make('Activities'),
             ])
             ->toolbarActions([
 //                BulkActionGroup::make([
