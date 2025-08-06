@@ -13,7 +13,6 @@ use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use BezhanSalleh\FilamentShield\Traits\HasShieldFormComponents;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -55,8 +54,7 @@ class AdminResource extends Resource  implements Translateable, HasShieldPermiss
 
     protected static ?string $model = Admin::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserCircle;
-
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-user-circle';
     public static function form(Schema $schema): Schema
     {
         return AdminForm::configure($schema);
@@ -70,7 +68,7 @@ class AdminResource extends Resource  implements Translateable, HasShieldPermiss
     public static function getRelations(): array
     {
         return [
-            //
+            \App\Filament\RelationManagers\AuthenticationLogsRelationManager::class,
         ];
     }
 

@@ -10,11 +10,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Tabs;
-use Filament\Schemas\Components\Utilities\Get;
-use Filament\Support\Icons\Heroicon;
-use Illuminate\Support\Facades\Http;
 use Outerweb\FilamentSettings\Filament\Pages\Settings as BaseSettings;
-use Yansongda\Pay\Pay;
 use Ysfkaya\FilamentPhoneInput\Forms\PhoneInput;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
 use BackedEnum;
@@ -23,8 +19,7 @@ class Settings extends BaseSettings
 {
     use HasPageShield;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::Cog6Tooth;
-
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-cog-6-tooth';
     public function schema(): array|Closure
     {
         return [

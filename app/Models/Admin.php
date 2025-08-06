@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModel;
+use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
@@ -26,6 +27,7 @@ class Admin extends Authenticatable implements FilamentUser, HasAvatar, HasAppAu
     use HasRoles; // 权限
     use HasTranslateableModel; // 翻译
     use LogsActivity; // 记录日志
+    use Notifiable, AuthenticationLoggable; // 登录日志
 
     protected static ?string $translateablePackageKey = ''; // 翻译
 

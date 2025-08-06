@@ -17,6 +17,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModel;
 use Plank\Mediable\Mediable;
 use Plank\Mediable\MediableInterface;
+use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Tags\HasTags;
@@ -33,6 +34,7 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
     use HasTranslateableModel; // 翻译
     use LogsActivity; // 记录日志
     use HasTags; // 标签
+    use Notifiable, AuthenticationLoggable; // 登录日志
 
     protected static ?string $translateablePackageKey = ''; // 翻译
 
@@ -58,8 +60,6 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
         'email',
         'password',
         'mobile',
-        'last_login_at',
-        'last_login_ip',
         'status',
     ];
 
