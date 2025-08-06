@@ -4,7 +4,7 @@ namespace App\Filament\Resources\AuthenticationLogs;
 
 use App\Filament\Resources\AuthenticationLogs\Pages\ListAuthenticationLogs;
 use App\Models\User;
-use BackedEnum;
+use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use BezhanSalleh\FilamentShield\Traits\HasShieldFormComponents;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
@@ -14,7 +14,6 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
@@ -26,7 +25,7 @@ use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Tapp\FilamentAuthenticationLog\FilamentAuthenticationLogPlugin;
 
-class AuthenticationLogResource extends Resource
+class AuthenticationLogResource extends Resource implements HasShieldPermissions
 {
     use HasShieldFormComponents; // 添加表单组件权限
 
@@ -158,7 +157,7 @@ class AuthenticationLogResource extends Resource
                     ->label(trans('filament-authentication-log::filament-authentication-log.column.cleared_by_user'))
                     ->boolean()
                     ->sortable(),
-                // Tables\Columns\TextColumn::make('location'),
+//                TextColumn::make('location'),
             ])
             ->recordActions([
                 //
@@ -232,7 +231,15 @@ class AuthenticationLogResource extends Resource
     {
         return config('filament-authentication-log.authenticable-resources', [
             User::class,
-            'App\Models\Admin',
         ]);
+    }
+
+    /**
+     * 导航徽章
+     * @return string|null
+     */
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
     }
 }

@@ -247,4 +247,13 @@ class Settings extends BaseSettings
     {
         return __('filament-model.settings.general.name');
     }
+
+    /**
+     * 排序
+     * @return int|null
+     */
+    public static function getNavigationSort(): ?int
+    {
+        return 100;
+    }
 }
