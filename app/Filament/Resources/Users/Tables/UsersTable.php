@@ -3,6 +3,8 @@
 namespace App\Filament\Resources\Users\Tables;
 
 use App\Filament\Actions\WalletAction;
+use App\Filament\Resources\Users\RelationManagers\UserWalletLogRelationManager;
+use App\Filament\Resources\Users\RelationManagers\WalletRelationManager;
 use App\Models\User;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;

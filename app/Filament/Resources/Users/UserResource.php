@@ -5,12 +5,15 @@ namespace App\Filament\Resources\Users;
 use App\Filament\Resources\Users\Pages\CreateUser;
 use App\Filament\Resources\Users\Pages\EditUser;
 use App\Filament\Resources\Users\Pages\ListUsers;
+use App\Filament\Resources\Users\RelationManagers\UserWalletLogRelationManager;
+use App\Filament\Resources\Users\RelationManagers\WalletRelationManager;
 use App\Filament\Resources\Users\Schemas\UserForm;
 use App\Filament\Resources\Users\Tables\UsersTable;
 use App\Models\User;
 use BackedEnum;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use BezhanSalleh\FilamentShield\Traits\HasShieldFormComponents;
+use Filament\Resources\RelationManagers\RelationGroup;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
@@ -56,6 +59,10 @@ class UserResource extends Resource implements Translateable, HasShieldPermissio
     {
         return [
             //
+            RelationGroup::make(trans('filament-model.label.wallet.label'), [
+                UserWalletLogRelationManager::class, // 钱包日志
+                WalletRelationManager::class, // 钱包
+            ])->icon('heroicon-o-wallet'),
         ];
     }
 
