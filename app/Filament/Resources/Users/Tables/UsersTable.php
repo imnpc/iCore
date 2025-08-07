@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Users\Tables;
 
+use App\Filament\Actions\WalletAction;
 use App\Models\User;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -74,6 +75,7 @@ class UsersTable
             ])
             ->recordActions([
                 EditAction::make(),
+                WalletAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

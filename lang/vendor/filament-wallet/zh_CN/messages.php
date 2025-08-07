@@ -39,7 +39,7 @@ return [
             "current_balance" => "当前余额",
             "credit" => "增加",
             "debit" => "扣除",
-            "type" => "类型",
+            "type" => "操作类型",
             "amount" => "金额",
         ],
         "filters" => [

@@ -77,6 +77,7 @@ class UserWalletLogsTable
 //                    ForceDeleteBulkAction::make(),
 //                    RestoreBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('id', 'desc'); // 默认排序
     }
 }

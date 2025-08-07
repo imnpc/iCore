@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\UserWalletLogs\Pages;
 
 use App\Filament\Resources\UserWalletLogs\UserWalletLogResource;
-use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListUserWalletLogs extends ListRecords
@@ -13,7 +12,7 @@ class ListUserWalletLogs extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+//            CreateAction::make(),
         ];
     }
 }

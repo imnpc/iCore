@@ -42,6 +42,7 @@ return [
             'activities' => '操作日志',
             'recharge' => '充值',
             'type' => '类型',
+            'wallet_type' => '钱包类型',
             'money' => '金额',
             'tooltip' => '钱包充值',
             'remark' => '备注',
