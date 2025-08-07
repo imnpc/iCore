@@ -90,4 +90,13 @@ class UserWalletLogResource extends Resource implements Translateable, HasShield
     {
         return 1;
     }
+
+    /**
+     * 导航父级
+     * @return string|null
+     */
+//    public static function getNavigationParentItem(): ?string
+//    {
+//        return __('filament-model.label.wallet_type.label');
+//    }
 }
