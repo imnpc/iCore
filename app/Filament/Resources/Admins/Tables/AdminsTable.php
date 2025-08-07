@@ -3,18 +3,14 @@
 namespace App\Filament\Resources\Admins\Tables;
 
 use Filament\Actions\ActionGroup;
-use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\ForceDeleteBulkAction;
-use Filament\Actions\RestoreBulkAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
-use TomatoPHP\FilamentWallet\Filament\Actions\WalletAction;
+use Widiu7omo\FilamentBandel\Actions\BanAction;
+use Widiu7omo\FilamentBandel\Actions\UnbanAction;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
 use Ysfkaya\FilamentPhoneInput\Tables\PhoneColumn;
 
@@ -50,6 +46,10 @@ class AdminsTable
                     ->label(trans('filament-model.general.updated_at'))
                     ->dateTime()
                     ->sortable(),
+                TextColumn::make('banned_at')
+                    ->label(trans('filament-model.general.banned_at'))
+                    ->dateTime()
+                    ->sortable(),
             ])
             ->striped() // 斑马纹
             ->filters([
@@ -58,6 +58,8 @@ class AdminsTable
             ->recordActions([
                 EditAction::make(),
                 ActionGroup::make([
+                    BanAction::make(__('filament-bandel::translations.ban_model'))->color('warning'),
+                    UnbanAction::make(__('filament-bandel::translations.unban_model'))->color('success'),
                     DeleteAction::make(),
                 ])->visible(fn ($record): bool => $record->id > 1),
 //                ActivityLogTimelineTableAction::make('Activities'),

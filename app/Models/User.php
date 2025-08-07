@@ -9,6 +9,8 @@ use Bavix\Wallet\Interfaces\WalletFloat;
 use Bavix\Wallet\Traits\HasWallet;
 use Bavix\Wallet\Traits\HasWalletFloat;
 use Bavix\Wallet\Traits\HasWallets;
+use Cog\Contracts\Ban\Bannable as BannableContract;
+use Cog\Laravel\Ban\Traits\Bannable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -22,7 +24,7 @@ use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Tags\HasTags;
 
-class User extends Authenticatable implements MediableInterface, Wallet, WalletFloat
+class User extends Authenticatable implements MediableInterface, Wallet, WalletFloat,BannableContract
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -35,6 +37,7 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
     use LogsActivity; // 记录日志
     use HasTags; // 标签
     use Notifiable, AuthenticationLoggable; // 登录日志
+    use Bannable; // 封禁
 
     protected static ?string $translateablePackageKey = ''; // 翻译
 

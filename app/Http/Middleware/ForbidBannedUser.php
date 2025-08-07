@@ -42,7 +42,7 @@ class ForbidBannedUser
 
         // 判断用户是否被禁用
         if ($user && $user instanceof BannableContract && $user->isBanned()) {
-            abort_if($user->isBanned(), 403);
+            abort_if($user->isBanned(), 403, '您的账号已被禁用，请联系管理员!');
         }
 
         return $next($request);

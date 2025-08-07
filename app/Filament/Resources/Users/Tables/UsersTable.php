@@ -4,8 +4,9 @@ namespace App\Filament\Resources\Users\Tables;
 
 use App\Filament\Actions\WalletAction;
 use App\Models\User;
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
@@ -13,6 +14,8 @@ use Filament\Tables\Columns\SpatieTagsColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Widiu7omo\FilamentBandel\Actions\BanAction;
+use Widiu7omo\FilamentBandel\Actions\UnbanAction;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
 use Ysfkaya\FilamentPhoneInput\Tables\PhoneColumn;
 
@@ -76,6 +79,11 @@ class UsersTable
             ->recordActions([
                 EditAction::make(),
                 WalletAction::make(),
+                ActionGroup::make([
+                    BanAction::make(__('filament-bandel::translations.ban_model'))->color('warning'),
+                    UnbanAction::make(__('filament-bandel::translations.unban_model'))->color('success'),
+                    DeleteAction::make()->color('danger'),
+                ]),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

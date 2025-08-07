@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cbbd3452657274b8ad500adf0c9b5a6c",
+    "content-hash": "8324e198fab21d8612ed320b26839016",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -1115,6 +1115,89 @@
                 }
             ],
             "time": "2024-09-19T14:15:21+00:00"
+        },
+        {
+            "name": "cybercog/laravel-ban",
+            "version": "4.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cybercog/laravel-ban.git",
+                "reference": "d569469a947671c0316a7ea1bbd471223dff23e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cybercog/laravel-ban/zipball/d569469a947671c0316a7ea1bbd471223dff23e7",
+                "reference": "d569469a947671c0316a7ea1bbd471223dff23e7",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^9.0|^10.0|^11.0|^12.0",
+                "illuminate/events": "^9.0|^10.0|^11.0|^12.0",
+                "illuminate/support": "^9.0|^10.0|^11.0|^12.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^7.0|^8.0|^9.0|^10.0",
+                "phpunit/phpunit": "^9.6|^10.5|^11.5.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Cog\\Laravel\\Ban\\Providers\\BanServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Cog\\Laravel\\Ban\\": "src/",
+                    "Cog\\Contracts\\Ban\\": "contracts/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Komarev",
+                    "email": "anton@komarev.com",
+                    "homepage": "https://komarev.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Ban simplify blocking and banning Eloquent models.",
+            "homepage": "https://komarev.com/sources/laravel-ban",
+            "keywords": [
+                "Justice",
+                "arrest",
+                "ban",
+                "block",
+                "cog",
+                "cybercog",
+                "eloquent",
+                "forbid",
+                "jail",
+                "laravel",
+                "restrict",
+                "trait",
+                "user"
+            ],
+            "support": {
+                "docs": "https://github.com/cybercog/laravel-ban/wiki",
+                "email": "open@cybercog.su",
+                "issues": "https://github.com/cybercog/laravel-ban/issues",
+                "source": "https://github.com/cybercog/laravel-ban",
+                "wiki": "https://github.com/cybercog/laravel-ban/wiki"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/antonkomarev",
+                    "type": "custom"
+                }
+            ],
+            "time": "2025-02-22T11:00:47+00:00"
         },
         {
             "name": "danharrin/date-format-converter",
@@ -3011,6 +3094,68 @@
             "time": "2025-02-03T10:55:03+00:00"
         },
         {
+            "name": "imnpc/filament-bandel",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/imnpc/filament-bandel.git",
+                "reference": "ea8ba5b850ec1d07f434ac51b753c0e1dd631767"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/imnpc/filament-bandel/zipball/ea8ba5b850ec1d07f434ac51b753c0e1dd631767",
+                "reference": "ea8ba5b850ec1d07f434ac51b753c0e1dd631767",
+                "shasum": ""
+            },
+            "require": {
+                "cybercog/laravel-ban": "^4.8",
+                "filament/filament": "^4.0",
+                "illuminate/contracts": "^11.8|^12.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.14"
+            },
+            "require-dev": {
+                "nunomaduro/collision": "^8.1",
+                "pestphp/pest": "^2.4|^3.7",
+                "pestphp/pest-plugin-laravel": "^2.0|^3.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Widiu7omo\\FilamentBandel\\FilamentBandelServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Widiu7omo\\FilamentBandel\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Danar Widi",
+                    "email": "widiu7omo@gmail.com",
+                    "role": "Creator"
+                }
+            ],
+            "description": "Banned Model with Filament Bandel",
+            "homepage": "https://github.com/widiu7omo/filament-bandel",
+            "keywords": [
+                "filament-bandel",
+                "laravel",
+                "widiu7omo"
+            ],
+            "support": {
+                "source": "https://github.com/imnpc/filament-bandel/tree/3.0.1"
+            },
+            "time": "2025-08-07T06:57:51+00:00"
+        },
+        {
             "name": "imnpc/filament-settings",
             "version": "2.0.2",
             "source": {
@@ -3066,16 +3211,16 @@
         },
         {
             "name": "imnpc/filament-wallet",
-            "version": "2.0.1",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imnpc/filament-wallet.git",
-                "reference": "ef81cbf631c16d24d0babd47227e2e8b82c0beb6"
+                "reference": "154059ac41c944bcf2aaf159d63b0616c771af8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imnpc/filament-wallet/zipball/ef81cbf631c16d24d0babd47227e2e8b82c0beb6",
-                "reference": "ef81cbf631c16d24d0babd47227e2e8b82c0beb6",
+                "url": "https://api.github.com/repos/imnpc/filament-wallet/zipball/154059ac41c944bcf2aaf159d63b0616c771af8a",
+                "reference": "154059ac41c944bcf2aaf159d63b0616c771af8a",
                 "shasum": ""
             },
             "require": {
@@ -3114,7 +3259,7 @@
                 "template"
             ],
             "support": {
-                "source": "https://github.com/imnpc/filament-wallet/tree/2.0.1"
+                "source": "https://github.com/imnpc/filament-wallet/tree/2.0.3"
             },
             "funding": [
                 {
@@ -3122,7 +3267,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-08-07T02:06:10+00:00"
+            "time": "2025-08-07T02:42:32+00:00"
         },
         {
             "name": "imnpc/laravel-flysystem-oss",

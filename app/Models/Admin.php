@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Traits\DateTrait;
+use Cog\Contracts\Ban\Bannable as BannableContract;
+use Cog\Laravel\Ban\Traits\Bannable;
 use Filament\Auth\MultiFactor\App\Contracts\HasAppAuthentication;
 use Filament\Auth\MultiFactor\App\Contracts\HasAppAuthenticationRecovery;
 use Filament\Models\Contracts\FilamentUser;
@@ -19,7 +21,7 @@ use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
-class Admin extends Authenticatable implements FilamentUser, HasAvatar, HasAppAuthentication, HasAppAuthenticationRecovery
+class Admin extends Authenticatable implements FilamentUser, HasAvatar, HasAppAuthentication, HasAppAuthenticationRecovery,BannableContract
 {
     use HasFactory, Notifiable;
     use SoftDeletes;
@@ -28,6 +30,7 @@ class Admin extends Authenticatable implements FilamentUser, HasAvatar, HasAppAu
     use HasTranslateableModel; // 翻译
     use LogsActivity; // 记录日志
     use Notifiable, AuthenticationLoggable; // 登录日志
+    use Bannable; // 封禁
 
     protected static ?string $translateablePackageKey = ''; // 翻译
 
