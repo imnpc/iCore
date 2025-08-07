@@ -119,6 +119,11 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
         return '';
     }
 
+    // 关联 用户钱包日志
+    public function userWalletLog()
+    {
+        return $this->hasMany(UserWalletLog::class);
+    }
     public function canBeImpersonated(): true
     {
         return true;
