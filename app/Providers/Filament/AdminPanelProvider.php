@@ -30,6 +30,7 @@ use Maggomann\FilamentModelTranslator\FilamentModelTranslatorServicePlugin;
 use Outerweb\FilamentSettings\Filament\Plugins\FilamentSettingsPlugin;
 use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
 use Tapp\FilamentAuthenticationLog\FilamentAuthenticationLogPlugin;
+use TomatoPHP\FilamentWallet\FilamentWalletPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -114,6 +115,7 @@ class AdminPanelProvider extends PanelProvider
                     }), // 运行环境
                 EasyFooterPlugin::make()
                     ->withLoadTime('Processed in '), // 页脚
+                FilamentWalletPlugin::make(), // 钱包
             ])
             ->profile()
             ->multiFactorAuthentication([
@@ -126,6 +128,19 @@ class AdminPanelProvider extends PanelProvider
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            // 菜单分组排序
+            ->navigationGroups([
+                __('filament-model.navigation_group.user.name'),
+                __('filament-model.navigation_group.wallet.name'),
+                __('filament-model.navigation_group.role.name'),
+                __('filament-model.navigation_group.setting.name'),
+            ])->sidebarCollapsibleOnDesktop();
     }
+
+   function getNavigationGroup(): ?string
+    {
+        return __('filament-shield::filament-shield.nav.group');
+    }
+
 }

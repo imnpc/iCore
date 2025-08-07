@@ -14,6 +14,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use TomatoPHP\FilamentWallet\Filament\Actions\WalletAction;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
 use Ysfkaya\FilamentPhoneInput\Tables\PhoneColumn;
 
@@ -60,6 +61,7 @@ class AdminsTable
                     DeleteAction::make(),
                 ])->visible(fn ($record): bool => $record->id > 1),
 //                ActivityLogTimelineTableAction::make('Activities'),
+//                WalletAction::make('money'),
             ])
             ->toolbarActions([
 //                BulkActionGroup::make([
