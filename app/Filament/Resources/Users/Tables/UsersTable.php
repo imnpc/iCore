@@ -3,8 +3,6 @@
 namespace App\Filament\Resources\Users\Tables;
 
 use App\Filament\Actions\WalletAction;
-use App\Filament\Resources\Users\RelationManagers\UserWalletLogRelationManager;
-use App\Filament\Resources\Users\RelationManagers\WalletRelationManager;
 use App\Models\User;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
@@ -16,6 +14,7 @@ use Filament\Tables\Columns\SpatieTagsColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use pxlrbt\FilamentExcel\Actions\ExportAction;
 use Widiu7omo\FilamentBandel\Actions\BanAction;
 use Widiu7omo\FilamentBandel\Actions\UnbanAction;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
@@ -87,10 +86,14 @@ class UsersTable
                     DeleteAction::make()->color('danger'),
                 ]),
             ])
+            ->headerActions([
+                ExportAction::make(),
+            ])
             ->toolbarActions([
                 BulkActionGroup::make([
 //                    DeleteBulkAction::make(),
                 ]),
+//                ExportBulkAction::make(),
             ]);
     }
 }
