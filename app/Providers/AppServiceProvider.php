@@ -97,11 +97,11 @@ class AppServiceProvider extends ServiceProvider
                     'zh_CN' => '简体中文',
                     'zh_TW' => '繁體中文',
                 ])
-//                ->flags([
-//                    'en' => asset('vendor/blade-country-flags/1x1-us.svg'),
-//                    'zh_CN' => asset('vendor/blade-country-flags/1x1-cn.svg'),
-//                    'zh_TW' => asset('vendor/blade-country-flags/1x1-hk.svg'),
-//                ])
+                ->flags([
+                    'en' => asset('vendor/blade-country-flags/1x1-us.svg'),
+                    'zh_CN' => asset('vendor/blade-country-flags/1x1-cn.svg'),
+                    'zh_TW' => asset('vendor/blade-country-flags/1x1-hk.svg'),
+                ])
                 ->circular();
         });
     }
