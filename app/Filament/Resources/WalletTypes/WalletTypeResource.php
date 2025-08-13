@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\WalletTypes;
 
+use App\Filament\Clusters\Finance\FinanceCluster;
 use App\Filament\Resources\WalletTypes\Pages\CreateWalletType;
 use App\Filament\Resources\WalletTypes\Pages\EditWalletType;
 use App\Filament\Resources\WalletTypes\Pages\ListWalletTypes;
@@ -39,6 +40,9 @@ class WalletTypeResource extends Resource implements Translateable, HasShieldPer
     protected static ?string $model = WalletType::class;
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-wallet';
+
+    // 集群
+    protected static ?string $cluster = FinanceCluster::class;
 
     public static function form(Schema $schema): Schema
     {

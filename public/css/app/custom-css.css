@@ -1,0 +1,8 @@
+/* php artisan filament:assets */
+/*复写cluster导航宽度 */
+.fi-page-sub-navigation-sidebar-ctn {
+/* width: calc(var(--spacing)* 72);*/
+width: auto;
+min-width: calc(var(--spacing)*30);
+max-width: calc(var(--spacing)*72);
+}

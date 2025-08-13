@@ -9,6 +9,8 @@ use Dedoc\Scramble\Support\Generator\OpenApi;
 use Dedoc\Scramble\Support\Generator\Operation;
 use Dedoc\Scramble\Support\Generator\SecurityScheme;
 use Dedoc\Scramble\Support\RouteInfo;
+use Filament\Support\Assets\Css;
+use Filament\Support\Facades\FilamentAsset;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Event;
@@ -46,6 +48,11 @@ class AppServiceProvider extends ServiceProvider
                         ->toggleable(isToggledHiddenByDefault: true),
                 ]);
         });
+
+        // filament 加载自定义 css
+        FilamentAsset::register( [
+            Css::make('custom-css', __DIR__.'/../../resources/css/custom.css'),
+        ]);
 
         // 循环处理监听事件
         foreach ($this->listen as $event => $listeners) {

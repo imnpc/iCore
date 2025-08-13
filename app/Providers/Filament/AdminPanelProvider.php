@@ -138,7 +138,9 @@ class AdminPanelProvider extends PanelProvider
                 __('filament-model.navigation_group.wallet.name'),
                 __('filament-model.navigation_group.role.name'),
                 __('filament-model.navigation_group.setting.name'),
-            ])->sidebarCollapsibleOnDesktop();
+            ])
+            ->sidebarWidth('15rem')
+            ->sidebarCollapsibleOnDesktop();
     }
 
    function getNavigationGroup(): ?string

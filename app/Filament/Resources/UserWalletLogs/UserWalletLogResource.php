@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\UserWalletLogs;
 
+use App\Filament\Clusters\Finance\FinanceCluster;
 use App\Filament\Resources\UserWalletLogs\Pages\ListUserWalletLogs;
 use App\Filament\Resources\UserWalletLogs\Tables\UserWalletLogsTable;
 use App\Models\UserWalletLog;
@@ -31,6 +32,9 @@ class UserWalletLogResource extends Resource implements Translateable, HasShield
     protected static ?string $model = UserWalletLog::class;
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    // 集群
+    protected static ?string $cluster = FinanceCluster::class;
 
     public static function form(Schema $schema): Schema
     {
