@@ -5,6 +5,7 @@ namespace {{ namespace }};
 use {{ namespacedModel }};
 use {{ rootNamespace }}Http\Controllers\Controller;
 use App\Http\Requests\Api\{{ model }}Request;
+use App\Http\Resources\{{ model }}Resource;
 use {{ namespacedRequests }}
 use Dedoc\Scramble\Attributes\Group;
 use Dedoc\Scramble\Attributes\PathParameter;
@@ -64,7 +65,7 @@ class {{ class }} extends Controller
         $this->authorize('own', ${{ modelVariable }});
 
         // 返回详情
-        return $this->success(new {{ model }}Resource($department), '获取成功');
+        return $this->success(new {{ model }}Resource(${{ modelVariable }}), '获取成功');
     }
 
     /**
