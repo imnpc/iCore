@@ -10,7 +10,7 @@
         "bavix/laravel-wallet": "^11.4",
         "bezhansalleh/filament-language-switch": "^4.0@beta",
         "bezhansalleh/filament-shield": "^4.0@beta",
-        "codewithdennis/filament-lucide-icons": "^4.0@beta",
+        "codewithdennis/filament-lucide-icons": "^4.0",
         "dedoc/scramble": "^0.12.26",
         "devonab/filament-easy-footer": "^2.0",
         "filament/filament": "^4.0",

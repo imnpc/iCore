@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8324e198fab21d8612ed320b26839016",
+    "content-hash": "f9f13ad18f7e1fcd3d5d03fb461a325a",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -16996,7 +16996,6 @@
     "stability-flags": {
         "bezhansalleh/filament-language-switch": 10,
         "bezhansalleh/filament-shield": 10,
-        "codewithdennis/filament-lucide-icons": 10,
         "ysfkaya/filament-phone-input": 10
     },
     "prefer-stable": true,
