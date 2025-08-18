@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Users\RelationManagers;
 
-use App\Filament\Resources\UserWalletLogs\Tables\UserWalletLogsTable;
+use App\Filament\Clusters\Finance\Resources\UserWalletLogs\Tables\UserWalletLogsTable;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;

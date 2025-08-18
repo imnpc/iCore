@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Filament\Clusters\Finance;
+namespace App\Filament\Clusters\Settings;
 
 use BackedEnum;
 use Filament\Clusters\Cluster;
 use Filament\Support\Icons\Heroicon;
 
-class FinanceCluster extends Cluster
+class SettingsCluster extends Cluster
 {
     /**
      * 面包屑
@@ -14,7 +14,7 @@ class FinanceCluster extends Cluster
      */
     public static function getClusterBreadcrumb(): string
     {
-        return __('filament-model.navigation_group.finance.name');
+        return __('filament-model.navigation_group.setting.name');
     }
 
     /**
@@ -23,7 +23,7 @@ class FinanceCluster extends Cluster
      */
     public static function getNavigationIcon(): BackedEnum|\Illuminate\Contracts\Support\Htmlable|string|null
     {
-        return Heroicon::BuildingLibrary;
+        return Heroicon::Cog6Tooth;
     }
 
     /**
@@ -32,7 +32,7 @@ class FinanceCluster extends Cluster
      */
     public static function getNavigationLabel(): string
     {
-        return __('filament-model.navigation_group.finance.name');
+        return __('filament-model.navigation_group.setting.name');
     }
 
     /**
@@ -41,15 +41,6 @@ class FinanceCluster extends Cluster
      */
     public static function getNavigationSort(): ?int
     {
-        return 90;
-    }
-
-    /**
-     * 标题
-     * @return string
-     */
-    public function getTitle(): string
-    {
-        return __('filament-model.navigation_group.finance.name');
+        return 100;
     }
 }

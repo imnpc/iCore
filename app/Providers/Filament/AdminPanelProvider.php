@@ -104,7 +104,7 @@ class AdminPanelProvider extends PanelProvider
                     ]), // 权限
                 FilamentSettingsPlugin::make()
                     ->pages([
-                        \App\Filament\Pages\Settings\Settings::class,
+//                        \App\Filament\Clusters\Settings\Pages\SystemConfig::class,
                     ]), // 系统设置
                 FilamentModelTranslatorServicePlugin::make(), //  模型翻译
 //                ActivitylogPlugin::make(), // 记录日志

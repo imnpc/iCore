@@ -91,6 +91,9 @@ return [
         'setting' => [
             'name' => '设置',
         ],
+        'finance' => [
+            'name' => '财务',
+        ],
     ],
 
     /*
@@ -176,11 +179,11 @@ return [
         'inactive' => '禁止',
     ],
     'settings' =>[
-        'name' => '设置',
+        'name' => '系统设置',
         'description' => '系统设置',
         'general'=>[
-            'name' => '设置',
-            'description' => '设置',
+            'name' => '系统设置',
+            'description' => '系统设置',
         ],
         'app' => [
             'title' => 'APP设置',
