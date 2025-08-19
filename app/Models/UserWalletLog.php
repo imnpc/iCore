@@ -58,7 +58,7 @@ class UserWalletLog extends Model
      * @var array
      */
     protected $appends = [
-        'wallet_slug', 'wallet_icon_url', 'from_text', 'wallet_name',
+        'wallet_slug', 'wallet_icon_url', 'from_text', 'wallet_name', 'type_text',
     ];
 
     // 获取钱包类型的名称
@@ -81,6 +81,7 @@ class UserWalletLog extends Model
         }
     }
 
+    // 获取来源
     public function getFromTextAttribute()
     {
         return $this->from->getLabel();
@@ -94,6 +95,13 @@ class UserWalletLog extends Model
         } else {
             return '';
         }
+    }
+
+    // 获取交易类型 增加 / 扣除
+    public function getTypeTextAttribute()
+    {
+        $state = $this->add > 0 ? 'deposit' : 'withdraw';
+        return __("filament-wallet::messages.transactions.columns.{$state}");
     }
 
     // 关联 用户

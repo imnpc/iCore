@@ -30,12 +30,22 @@ class UserWalletLogsTable
                     ->label(trans('filament-model.general.day'))
                     ->date()
                     ->sortable(),
+                TextColumn::make('type_text')
+                    ->label(trans('filament-model.general.type'))
+                    ->badge()
+                    ->color(function (UserWalletLog $record) {
+                        return $record->add > 0 ? 'success' : 'danger';
+                    }),
                 TextColumn::make('old')
                     ->label(UserWalletLog::transAttribute('old'))
                     ->numeric(),
                 TextColumn::make('add')
                     ->label(UserWalletLog::transAttribute('add'))
-                    ->numeric(),
+                    ->numeric()
+                    ->badge()
+                    ->color(function (UserWalletLog $record) {
+                        return $record->add > 0 ? 'success' : 'danger';
+                    }),
                 TextColumn::make('new')
                     ->label(UserWalletLog::transAttribute('new'))
                     ->numeric(),
