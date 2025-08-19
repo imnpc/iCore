@@ -16,7 +16,7 @@ return [
         'recharge' => ' 充值记录|充值记录',
         'pay_log' => ' 支付记录|支付记录',
         'wallet' => '钱包列表|钱包列表',
-        'transaction' => '交易列表|交易列表',
+        'transaction' => '交易记录|交易记录',
     ],
 
     /*
