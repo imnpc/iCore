@@ -118,7 +118,7 @@ class AdminPanelProvider extends PanelProvider
                     }), // 运行环境
                 EasyFooterPlugin::make()
                     ->withLoadTime('Processed in '), // 页脚
-                FilamentWalletPlugin::make(), // 钱包
+                FilamentWalletPlugin::make()->hideResources(), // 钱包
             ])
             ->profile()
             ->multiFactorAuthentication([
@@ -139,6 +139,7 @@ class AdminPanelProvider extends PanelProvider
                 __('filament-model.navigation_group.role.name'),
                 __('filament-model.navigation_group.setting.name'),
             ])
+//            ->topNavigation() // 顶部导航
             ->sidebarWidth('15rem')
             ->sidebarCollapsibleOnDesktop();
     }
