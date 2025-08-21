@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Users\Tables;
+namespace App\Filament\Clusters\User\Resources\Users\Tables;
 
 use App\Filament\Actions\WalletAction;
 use App\Models\User;

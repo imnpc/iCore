@@ -1,13 +1,12 @@
 <?php
 
 use App\Models\User;
-use Tapp\FilamentAuthenticationLog\Resources\AuthenticationLogResource;
 
 return [
     // 'user-resource' => \App\Filament\Resources\UserResource::class,
     'resources' => [
 //        'AutenticationLogResource' => AuthenticationLogResource::class,
-        'AutenticationLogResource' => \App\Filament\Resources\AuthenticationLogs\AuthenticationLogResource::class,
+        'AutenticationLogResource' => \App\Filament\Clusters\User\Resources\AuthenticationLogResource::class,
     ],
 
     'authenticable-resources' => [
@@ -22,7 +21,7 @@ return [
     'navigation' => [
         'authentication-log' => [
             'register' => true,
-            'sort' => 1,
+            'sort' => 10,
             'icon' => 'heroicon-o-shield-check',
             // 'group' => 'Logins',
         ],

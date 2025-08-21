@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\AuthenticationLogs\Pages;
+namespace App\Filament\Clusters\User\Resources\AuthenticationLogs\Pages;
 
 use Filament\Resources\Pages\ListRecords;
 

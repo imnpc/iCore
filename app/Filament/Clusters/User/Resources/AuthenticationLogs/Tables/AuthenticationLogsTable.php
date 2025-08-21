@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\AuthenticationLogs\Tables;
+namespace App\Filament\Clusters\User\Resources\AuthenticationLogs\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Filament\Resources\AuthenticationLogs;
+namespace App\Filament\Clusters\User\Resources;
 
-use App\Filament\Resources\AuthenticationLogs\Pages\ListAuthenticationLogs;
+use App\Filament\Clusters\User\Resources\AuthenticationLogs\Pages\ListAuthenticationLogs;
+use App\Filament\Clusters\User\UserCluster;
 use App\Models\User;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use BezhanSalleh\FilamentShield\Traits\HasShieldFormComponents;
@@ -41,12 +42,14 @@ class AuthenticationLogResource extends Resource implements HasShieldPermissions
         ];
     }
 
+    protected static ?string $cluster = UserCluster::class;
+
     protected static ?string $model = \Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog::class;
 
-    public static function shouldRegisterNavigation(): bool
-    {
-        return config('filament-authentication-log.navigation.authentication-log.register', true);
-    }
+//    public static function shouldRegisterNavigation(): bool
+//    {
+//        return config('filament-authentication-log.navigation.authentication-log.register', true);
+//    }
 
     public static function getNavigationIcon(): string
     {
@@ -112,11 +115,8 @@ class AuthenticationLogResource extends Resource implements HasShieldPermissions
 
                         $authenticableEditRoute = '#';
 
-                        $routeName = 'filament.'.FilamentAuthenticationLogPlugin::get()->getPanelName().'.resources.'.Str::plural((Str::lower(class_basename($record->authenticatable::class)))).'.edit';
 
-                        if (Route::has($routeName)) {
-                            $authenticableEditRoute = route($routeName, ['record' => $record->authenticatable_id]);
-                        } elseif (config('filament-authentication-log.user-resource')) {
+                        if (config('filament-authentication-log.user-resource')) {
                             $authenticableEditRoute = self::getCustomUserRoute($record);
                         }
 

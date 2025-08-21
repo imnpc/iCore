@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Filament\Resources\Users;
+namespace App\Filament\Clusters\User\Resources;
 
-use App\Filament\Resources\Users\Pages\CreateUser;
-use App\Filament\Resources\Users\Pages\EditUser;
-use App\Filament\Resources\Users\Pages\ListUsers;
-use App\Filament\Resources\Users\RelationManagers\UserWalletLogRelationManager;
-use App\Filament\Resources\Users\RelationManagers\WalletRelationManager;
-use App\Filament\Resources\Users\Schemas\UserForm;
-use App\Filament\Resources\Users\Tables\UsersTable;
+use App\Filament\Clusters\Finance\FinanceCluster;
+use App\Filament\Clusters\User\Resources\Users\Pages\CreateUser;
+use App\Filament\Clusters\User\Resources\Users\Pages\EditUser;
+use App\Filament\Clusters\User\Resources\Users\Pages\ListUsers;
+use App\Filament\Clusters\User\Resources\Users\RelationManagers\UserWalletLogRelationManager;
+use App\Filament\Clusters\User\Resources\Users\RelationManagers\WalletRelationManager;
+use App\Filament\Clusters\User\Resources\Users\Schemas\UserForm;
+use App\Filament\Clusters\User\Resources\Users\Tables\UsersTable;
+use App\Filament\Clusters\User\UserCluster;
 use App\Models\User;
 use BackedEnum;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
@@ -41,6 +43,8 @@ class UserResource extends Resource implements Translateable, HasShieldPermissio
         ];
     }
 
+    protected static ?string $cluster = UserCluster::class;
+
     protected static ?string $model = User::class;
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-users';
@@ -63,6 +67,10 @@ class UserResource extends Resource implements Translateable, HasShieldPermissio
                 UserWalletLogRelationManager::class, // 钱包日志
                 WalletRelationManager::class, // 钱包
             ])->icon('heroicon-o-wallet'),
+            RelationGroup::make(trans('filament-authentication-log::filament-authentication-log.navigation.authentication-log.label'), [
+                \App\Filament\RelationManagers\AuthenticationLogsRelationManager::class,
+            ])->icon('heroicon-o-shield-check'),
+
         ];
     }
 

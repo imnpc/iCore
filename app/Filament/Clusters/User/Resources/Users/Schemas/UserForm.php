@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Users\Schemas;
+namespace App\Filament\Clusters\User\Resources\Users\Schemas;
 
 use App\Models\User;
 use Filament\Forms\Components\SpatieTagsInput;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Users\RelationManagers;
+namespace App\Filament\Clusters\User\Resources\Users\RelationManagers;
 
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Table;
