@@ -3,11 +3,14 @@
 namespace App\Filament\Clusters\Settings;
 
 use BackedEnum;
+use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Clusters\Cluster;
 use Filament\Support\Icons\Heroicon;
 
 class SettingsCluster extends Cluster
 {
+    use HasPageShield;
+
     /**
      * 面包屑
      * @return string
@@ -42,5 +45,14 @@ class SettingsCluster extends Cluster
     public static function getNavigationSort(): ?int
     {
         return 100;
+    }
+
+    /**
+     * 标题
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return __('filament-model.navigation_group.setting.name');
     }
 }

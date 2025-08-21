@@ -2,7 +2,6 @@
 
 namespace App\Filament\Clusters\Settings\Pages;
 
-use App\Filament\Clusters\Settings\SettingsCluster;
 use BackedEnum;
 use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Closure;
@@ -30,7 +29,7 @@ class SystemConfig extends BaseSettings
      * 集群
      * @var string|null
      */
-    protected static ?string $cluster = SettingsCluster::class;
+//    protected static ?string $cluster = SettingsCluster::class;
 
     public function schema(): array|Closure
     {

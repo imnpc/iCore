@@ -3,11 +3,14 @@
 namespace App\Filament\Clusters\Finance;
 
 use BackedEnum;
+use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Clusters\Cluster;
 use Filament\Support\Icons\Heroicon;
 
 class FinanceCluster extends Cluster
 {
+    use HasPageShield;
+
     /**
      * 面包屑
      * @return string

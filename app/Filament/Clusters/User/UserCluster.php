@@ -3,11 +3,14 @@
 namespace App\Filament\Clusters\User;
 
 use BackedEnum;
+use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Clusters\Cluster;
 use Filament\Support\Icons\Heroicon;
 
 class UserCluster extends Cluster
 {
+    use HasPageShield;
+
     /**
      * 面包屑
      * @return string
