@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Filament\Clusters\Settings\Pages;
+namespace App\Filament\Pages;
 
+use App\Filament\Clusters\Settings\SettingsCluster;
 use BackedEnum;
 use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Closure;
