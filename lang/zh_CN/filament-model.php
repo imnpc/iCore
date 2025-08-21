@@ -79,7 +79,7 @@ return [
 
     'navigation_group' => [
         'activity_log' => [
-            'name' => '',
+            'name' => '日志',
         ],
         'user' => [
             'name' => '用户',
@@ -88,7 +88,7 @@ return [
             'name' => '钱包',
         ],
         'role' => [
-            'name' => '权限管理',
+            'name' => '角色',
         ],
         'setting' => [
             'name' => '设置',
