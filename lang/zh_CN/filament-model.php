@@ -93,6 +93,9 @@ return [
         'setting' => [
             'name' => '设置',
         ],
+        'permission' => [
+            'name' => '角色权限',
+        ],
         'finance' => [
             'name' => '财务',
         ],

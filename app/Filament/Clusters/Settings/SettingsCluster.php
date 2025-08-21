@@ -17,7 +17,7 @@ class SettingsCluster extends Cluster
      */
     public static function getClusterBreadcrumb(): string
     {
-        return __('filament-model.navigation_group.setting.name');
+        return __('filament-model.navigation_group.permission.name');
     }
 
     /**
@@ -26,7 +26,7 @@ class SettingsCluster extends Cluster
      */
     public static function getNavigationIcon(): BackedEnum|\Illuminate\Contracts\Support\Htmlable|string|null
     {
-        return Heroicon::Cog6Tooth;
+        return Heroicon::ShieldCheck;
     }
 
     /**
@@ -35,7 +35,7 @@ class SettingsCluster extends Cluster
      */
     public static function getNavigationLabel(): string
     {
-        return __('filament-model.navigation_group.setting.name');
+        return __('filament-model.navigation_group.permission.name');
     }
 
     /**
@@ -53,6 +53,6 @@ class SettingsCluster extends Cluster
      */
     public function getTitle(): string
     {
-        return __('filament-model.navigation_group.setting.name');
+        return __('filament-model.navigation_group.permission.name');
     }
 }
