@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Clusters\Settings\Resources\Roles\Pages;
+namespace App\Filament\Clusters\Permission\Resources\Roles\Pages;
 
-use App\Filament\Clusters\Settings\Resources\RoleResource;
+use App\Filament\Clusters\Permission\Resources\RoleResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 

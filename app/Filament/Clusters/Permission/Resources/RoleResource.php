@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Filament\Clusters\Settings\Resources;
+namespace App\Filament\Clusters\Permission\Resources;
 
-use App\Filament\Clusters\Settings\Resources\Roles\Pages\CreateRole;
-use App\Filament\Clusters\Settings\Resources\Roles\Pages\EditRole;
-use App\Filament\Clusters\Settings\Resources\Roles\Pages\ListRoles;
-use App\Filament\Clusters\Settings\SettingsCluster;
+use App\Filament\Clusters\Permission\Resources\Roles\Pages\CreateRole;
+use App\Filament\Clusters\Permission\Resources\Roles\Pages\EditRole;
+use App\Filament\Clusters\Permission\Resources\Roles\Pages\ListRoles;
+use App\Filament\Clusters\Permission\PermissionCluster;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use BezhanSalleh\FilamentShield\Support\Utils;
 use BezhanSalleh\FilamentShield\Traits\HasShieldFormComponents;
@@ -49,7 +49,7 @@ class RoleResource extends Resource implements HasShieldPermissions
      * 集群
      * @var string|null
      */
-    protected static ?string $cluster = SettingsCluster::class;
+    protected static ?string $cluster = PermissionCluster::class;
 
     public static function form(Schema $schema): Schema
     {

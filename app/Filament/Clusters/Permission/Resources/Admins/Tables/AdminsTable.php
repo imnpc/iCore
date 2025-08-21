@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Clusters\Settings\Resources\Admins\Tables;
+namespace App\Filament\Clusters\Permission\Resources\Admins\Tables;
 
 use Filament\Actions\ActionGroup;
 use Filament\Actions\DeleteAction;

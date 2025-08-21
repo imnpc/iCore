@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Clusters\Settings\Resources\Admins\Schemas;
+namespace App\Filament\Clusters\Permission\Resources\Admins\Schemas;
 
 use App\Models\Admin;
 use Filament\Forms\Components\FileUpload;

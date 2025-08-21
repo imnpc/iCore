@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Filament\Clusters\Settings\Resources;
+namespace App\Filament\Clusters\Permission\Resources;
 
-use App\Filament\Clusters\Settings\Resources\Admins\Pages\CreateAdmin;
-use App\Filament\Clusters\Settings\Resources\Admins\Pages\EditAdmin;
-use App\Filament\Clusters\Settings\Resources\Admins\Pages\ListAdmins;
-use App\Filament\Clusters\Settings\Resources\Admins\Schemas\AdminForm;
-use App\Filament\Clusters\Settings\Resources\Admins\Tables\AdminsTable;
-use App\Filament\Clusters\Settings\SettingsCluster;
+use App\Filament\Clusters\Permission\Resources\Admins\Pages\CreateAdmin;
+use App\Filament\Clusters\Permission\Resources\Admins\Pages\EditAdmin;
+use App\Filament\Clusters\Permission\Resources\Admins\Pages\ListAdmins;
+use App\Filament\Clusters\Permission\Resources\Admins\Schemas\AdminForm;
+use App\Filament\Clusters\Permission\Resources\Admins\Tables\AdminsTable;
+use App\Filament\Clusters\Permission\PermissionCluster;
 use App\Models\Admin;
 use BackedEnum;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
@@ -51,7 +51,7 @@ class AdminResource extends Resource  implements Translateable, HasShieldPermiss
      * 集群
      * @var string|null
      */
-    protected static ?string $cluster = SettingsCluster::class;
+    protected static ?string $cluster = PermissionCluster::class;
 
     /**
      * 标题

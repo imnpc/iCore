@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Clusters\Settings\Resources\Admins\Pages;
+namespace App\Filament\Clusters\Permission\Resources\Admins\Pages;
 
-use App\Filament\Clusters\Settings\Resources\AdminResource;
+use App\Filament\Clusters\Permission\Resources\AdminResource;
 use Filament\Resources\Pages\EditRecord;
 
 class EditAdmin extends EditRecord

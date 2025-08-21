@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Clusters\Settings\Resources\Roles\Pages;
+namespace App\Filament\Clusters\Permission\Resources\Roles\Pages;
 
-use App\Filament\Clusters\Settings\Resources\RoleResource;
+use App\Filament\Clusters\Permission\Resources\RoleResource;
 use BezhanSalleh\FilamentShield\Support\Utils;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Filament\Clusters\Settings;
+namespace App\Filament\Clusters\Permission;
 
 use BackedEnum;
 use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Clusters\Cluster;
 use Filament\Support\Icons\Heroicon;
 
-class SettingsCluster extends Cluster
+class PermissionCluster extends Cluster
 {
     use HasPageShield;
 
