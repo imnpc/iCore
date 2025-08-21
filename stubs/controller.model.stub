@@ -90,7 +90,7 @@ class {{ class }} extends Controller
      * @param {{ model }} ${{ modelVariable }}
      * @return \Illuminate\Http\JsonResponse
      */
-    #[PathParameter('department', description: '部门ID', type: 'int', example: 1)]
+    #[PathParameter('{{ modelVariable }}', description: '{{ model }}ID', type: 'int', example: 1)]
     public function destroy({{ model }} ${{ modelVariable }})
     {
         $this->authorize('own', ${{ modelVariable }});
