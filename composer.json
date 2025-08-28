@@ -8,7 +8,7 @@
     "require": {
         "php": "^8.2",
         "bavix/laravel-wallet": "^11.4",
-        "bezhansalleh/filament-language-switch": "^4.0@beta",
+        "bezhansalleh/filament-language-switch": "^4.0",
         "bezhansalleh/filament-shield": "^4.0@beta",
         "codewithdennis/filament-lucide-icons": "^4.0",
         "dedoc/scramble": "^0.12.26",
@@ -41,7 +41,7 @@
         "tapp/filament-authentication-log": "^5.0",
         "torann/geoip": "^3.0",
         "yansongda/laravel-pay": "~3.7.0",
-        "ysfkaya/filament-phone-input": "^4.0@beta"
+        "ysfkaya/filament-phone-input": "^4.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.6",
