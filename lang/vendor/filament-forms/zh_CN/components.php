@@ -11,15 +11,67 @@ return [
             ],
 
             'add' => [
-                'label' => '添加 :label',
+
+                'label' => '添加到 :label',
+
+                'modal' => [
+
+                    'heading' => '添加到 :label',
+
+                    'actions' => [
+
+                        'add' => [
+                            'label' => '添加',
+                        ],
+
+                    ],
+
+                ],
+
             ],
 
             'add_between' => [
+
                 'label' => '在块之间插入',
+
+                'modal' => [
+
+                    'heading' => '添加到 :label',
+
+                    'actions' => [
+
+                        'add' => [
+                            'label' => '添加',
+                        ],
+
+                    ],
+
+                ],
+
             ],
 
             'delete' => [
                 'label' => '删除',
+            ],
+
+            'edit' => [
+
+                'label' => '编辑',
+
+                'modal' => [
+
+                    'heading' => '编辑区块',
+
+                    'actions' => [
+
+                        'save' => [
+                            'label' => '保存更改',
+                        ],
+
+                    ],
+
+                ],
+
             ],
 
             'reorder' => [
@@ -185,6 +237,15 @@ return [
 
             ],
 
+            'svg' => [
+
+                'messages' => [
+                    'confirmation' => '不建议编辑 SVG 文件，因为缩放时可能导致质量损失。\n 您确定要继续吗？',
+                    'disabled' => '已禁用 SVG 文件编辑功能，因为缩放时可能导致质量损失。',
+                ],
+
+            ],
+
         ],
 
     ],
@@ -241,6 +302,28 @@ return [
 
     ],
 
+    'modal_table_select' => [
+
+        'actions' => [
+
+            'select' => [
+
+                'label' => '选择',
+
+                'actions' => [
+
+                    'select' => [
+                        'label' => '选择',
+                    ],
+
+                ],
+
+            ],
+
+        ],
+
+    ],
+
     'radio' => [
 
         'boolean' => [
@@ -256,6 +339,10 @@ return [
 
             'add' => [
                 'label' => '添加 :label',
+            ],
+
+            'add_between' => [
+                'label' => '在中间插入',
             ],
 
             'delete' => [
@@ -300,37 +387,130 @@ return [
 
     'rich_editor' => [
 
-        'dialogs' => [
+        'actions' => [
+
+            'attach_files' => [
+
+                'label' => '上传文件',
+
+                'modal' => [
+
+                    'heading' => '上传文件',
+
+                    'form' => [
+
+                        'file' => [
+
+                            'label' => [
+                                'new' => '文件',
+                                'existing' => '替换文件',
+                            ],
+
+                        ],
+
+                        'alt' => [
+
+                            'label' => [
+                                'new' => '提示文本',
+                                'existing' => '更改提示文本',
+                            ],
+
+                        ],
+
+                    ],
+
+                ],
+
+            ],
+
+            'custom_block' => [
+
+                'modal' => [
+
+                    'actions' => [
+
+                        'insert' => [
+                            'label' => '插入',
+                        ],
+
+                        'save' => [
+                            'label' => '保存',
+                        ],
+
+                    ],
+
+                ],
+
+            ],
 
             'link' => [
 
-                'actions' => [
-                    'link' => '链接',
-                    'unlink' => '取消链接',
+                'label' => '编辑链接',
+
+                'modal' => [
+
+                    'heading' => '链接',
+
+                    'form' => [
+
+                        'url' => [
+                            'label' => 'URL',
+                        ],
+
+                        'should_open_in_new_tab' => [
+                            'label' => '在新窗口打开',
+                        ],
+
+                    ],
+
                 ],
-
-                'label' => 'URL',
-
-                'placeholder' => '输入URL',
 
             ],
 
         ],
 
+        'no_merge_tag_search_results_message' => '没有找到合并标签结果。',
+
         'tools' => [
+            'align_center' => '居中对齐',
+            'align_end' => '右对齐',
+            'align_justify' => '两端对齐',
+            'align_start' => '左对齐',
             'attach_files' => '附件',
             'blockquote' => '引用',
             'bold' => '加粗',
             'bullet_list' => '普通列表',
-            'code_block' => '代码',
+            'clear_formatting' => '清除格式',
+            'code' => '代码',
+            'code_block' => '代码块',
+            'custom_blocks' => '自定义区块',
+            'details' => '详情',
             'h1' => '标题',
             'h2' => '标题',
             'h3' => '副标题',
+            'highlight' => '高亮',
+            'horizontal_rule' => '水平线',
             'italic' => '斜体',
+            'lead' => '引导文本',
             'link' => '链接',
+            'merge_tags' => '合并标签',
             'ordered_list' => '数字列表',
             'redo' => '重做',
+            'small' => '小号文字',
             'strike' => '删除线',
+            'subscript' => '下标',
+            'superscript' => '上标',
+            'table' => '表格',
+            'table_delete' => '删除表格',
+            'table_add_column_before' => '在前面添加列',
+            'table_add_column_after' => '在后面添加列',
+            'table_delete_column' => '删除列',
+            'table_add_row_before' => '在上方添加行',
+            'table_add_row_after' => '在下方添加行',
+            'table_delete_row' => '删除行',
+            'table_merge_cells' => '合并单元格',
+            'table_split_cell' => '拆分单元格',
+            'table_toggle_header_row' => '切换标题行',
             'underline' => '下划线',
             'undo' => '撤销',
         ],
@@ -342,6 +522,8 @@ return [
         'actions' => [
 
             'create_option' => [
+
+                'label' => '创建',
 
                 'modal' => [
 
@@ -364,6 +546,8 @@ return [
             ],
 
             'edit_option' => [
+
+                'label' => '编辑',
 
                 'modal' => [
 
@@ -404,6 +588,31 @@ return [
 
     'tags_input' => [
         'placeholder' => '新标签',
+    ],
+
+    'text_input' => [
+
+        'actions' => [
+
+            'hide_password' => [
+                'label' => '隐藏密码',
+            ],
+
+            'show_password' => [
+                'label' => '显示密码',
+            ],
+
+        ],
+
+    ],
+
+    'toggle_buttons' => [
+
+        'boolean' => [
+            'true' => '是',
+            'false' => '否',
+        ],
+
     ],
 
 ];
