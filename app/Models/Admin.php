@@ -19,9 +19,11 @@ use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModel;
 use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\LaravelPasskeys\Models\Concerns\HasPasskeys;
+use Spatie\LaravelPasskeys\Models\Concerns\InteractsWithPasskeys;
 use Spatie\Permission\Traits\HasRoles;
 
-class Admin extends Authenticatable implements FilamentUser, HasAvatar, HasAppAuthentication, HasAppAuthenticationRecovery,BannableContract
+class Admin extends Authenticatable implements FilamentUser, HasAvatar, HasAppAuthentication, HasAppAuthenticationRecovery,BannableContract,HasPasskeys
 {
     use HasFactory, Notifiable;
     use SoftDeletes;
@@ -31,6 +33,7 @@ class Admin extends Authenticatable implements FilamentUser, HasAvatar, HasAppAu
     use LogsActivity; // 记录日志
     use Notifiable, AuthenticationLoggable; // 登录日志
     use Bannable; // 封禁
+    use InteractsWithPasskeys; // 密钥
 
     protected static ?string $translateablePackageKey = ''; // 翻译
 
