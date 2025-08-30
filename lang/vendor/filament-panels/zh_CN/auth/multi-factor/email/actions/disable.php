@@ -2,32 +2,32 @@
 
 return [
 
-    'label' => 'Turn off',
+    'label' => '关闭',
 
     'modal' => [
 
-        'heading' => 'Disable email verification codes',
+        'heading' => '禁用邮箱验证码',
 
-        'description' => 'Are you sure you want to stop receiving email verification codes? Disabling this will remove an extra layer of security from your account.',
+        'description' => '您确定要停止接收邮箱验证码吗？禁用此功能将从您的账户中移除额外的安全层。',
 
         'form' => [
 
             'code' => [
 
-                'label' => 'Enter the 6-digit code we sent you by email',
+                'label' => '输入我们通过邮箱发送给您的6位代码',
 
-                'validation_attribute' => 'code',
+                'validation_attribute' => '代码',
 
                 'actions' => [
 
                     'resend' => [
 
-                        'label' => 'Send a new code by email',
+                        'label' => '通过邮箱发送新代码',
 
                         'notifications' => [
 
                             'resent' => [
-                                'title' => 'We\'ve sent you a new code by email',
+                                'title' => '我们已通过邮箱向您发送了新代码',
                             ],
 
                         ],
@@ -38,7 +38,7 @@ return [
 
                 'messages' => [
 
-                    'invalid' => 'The code you entered is invalid.',
+                    'invalid' => '您输入的代码无效。',
 
                 ],
 
@@ -49,7 +49,7 @@ return [
         'actions' => [
 
             'submit' => [
-                'label' => 'Disable email verification codes',
+                'label' => '禁用邮箱验证码',
             ],
 
         ],
@@ -59,7 +59,7 @@ return [
     'notifications' => [
 
         'disabled' => [
-            'title' => 'Email verification codes have been disabled',
+            'title' => '邮箱验证码已被禁用',
         ],
 
     ],

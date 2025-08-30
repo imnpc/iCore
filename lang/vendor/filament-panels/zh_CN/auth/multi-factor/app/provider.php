@@ -6,13 +6,13 @@ return [
 
         'actions' => [
 
-            'label' => 'Authenticator app',
+            'label' => '身份验证器应用',
 
-            'below_content' => 'Use a secure app to generate a temporary code for login verification.',
+            'below_content' => '使用安全应用生成临时代码进行登录验证。',
 
             'messages' => [
-                'enabled' => 'Enabled',
-                'disabled' => 'Disabled',
+                'enabled' => '已启用',
+                'disabled' => '已禁用',
             ],
 
         ],
@@ -21,25 +21,25 @@ return [
 
     'login_form' => [
 
-        'label' => 'Use a code from your authenticator app',
+        'label' => '使用身份验证器应用中的代码',
 
         'code' => [
 
-            'label' => 'Enter the 6-digit code from the authenticator app',
+            'label' => '输入身份验证器应用中的6位代码',
 
-            'validation_attribute' => 'code',
+            'validation_attribute' => '代码',
 
             'actions' => [
 
                 'use_recovery_code' => [
-                    'label' => 'Use a recovery code instead',
+                    'label' => '改用恢复代码',
                 ],
 
             ],
 
             'messages' => [
 
-                'invalid' => 'The code you entered is invalid.',
+                'invalid' => '您输入的代码无效。',
 
             ],
 
@@ -47,13 +47,13 @@ return [
 
         'recovery_code' => [
 
-            'label' => 'Or, enter a recovery code',
+            'label' => '或者，输入恢复代码',
 
-            'validation_attribute' => 'recovery code',
+            'validation_attribute' => '恢复代码',
 
             'messages' => [
 
-                'invalid' => 'The recovery code you entered is invalid.',
+                'invalid' => '您输入的恢复代码无效。',
 
             ],
 

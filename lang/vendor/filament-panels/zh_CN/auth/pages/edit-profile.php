@@ -23,9 +23,9 @@ return [
         ],
 
         'current_password' => [
-            'label' => 'Current password',
-            'below_content' => 'For security, please confirm your password to continue.',
-            'validation_attribute' => 'current password',
+            'label' => '当前密码',
+            'below_content' => '为了安全起见，请确认您的密码以继续。',
+            'validation_attribute' => '当前密码',
         ],
 
         'actions' => [
@@ -39,14 +39,14 @@ return [
     ],
 
     'multi_factor_authentication' => [
-        'label' => 'Two-factor authentication (2FA)',
+        'label' => '双重认证 (2FA)',
     ],
 
     'notifications' => [
 
         'email_change_verification_sent' => [
-            'title' => 'Email address change request sent',
-            'body' => 'A request to change your email address has been sent to :email. Please check your email to verify the change.',
+            'title' => '邮箱地址更改请求已发送',
+            'body' => '更改邮箱地址的请求已发送至 :email。请检查您的邮箱以验证更改。',
         ],
 
         'saved' => [

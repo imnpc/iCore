@@ -2,25 +2,25 @@
 
 return [
 
-    'label' => 'Regenerate recovery codes',
+    'label' => '重新生成恢复代码',
 
     'modal' => [
 
-        'heading' => 'Regenerate authenticator app recovery codes',
+        'heading' => '重新生成身份验证器应用恢复代码',
 
-        'description' => 'If you lose your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated immediately.',
+        'description' => '如果您丢失了恢复代码，可以在此重新生成。您的旧恢复代码将立即失效。',
 
         'form' => [
 
             'code' => [
 
-                'label' => 'Enter the 6-digit code from the authenticator app',
+                'label' => '输入身份验证器应用中的6位代码',
 
-                'validation_attribute' => 'code',
+                'validation_attribute' => '代码',
 
                 'messages' => [
 
-                    'invalid' => 'The code you entered is invalid.',
+                    'invalid' => '您输入的代码无效。',
 
                 ],
 
@@ -28,9 +28,9 @@ return [
 
             'password' => [
 
-                'label' => 'Or, enter your current password',
+                'label' => '或者，输入您的当前密码',
 
-                'validation_attribute' => 'password',
+                'validation_attribute' => '密码',
 
             ],
 
@@ -39,7 +39,7 @@ return [
         'actions' => [
 
             'submit' => [
-                'label' => 'Regenerate recovery codes',
+                'label' => '重新生成恢复代码',
             ],
 
         ],
@@ -49,7 +49,7 @@ return [
     'notifications' => [
 
         'regenerated' => [
-            'title' => 'New authenticator app recovery codes have been generated',
+            'title' => '新的身份验证器应用恢复代码已生成',
         ],
 
     ],
@@ -58,14 +58,14 @@ return [
 
         'modal' => [
 
-            'heading' => 'New recovery codes',
+            'heading' => '新恢复代码',
 
-            'description' => 'Please save the following recovery codes in a safe place. They will only be shown once, but you\'ll need them if you lose access to your authenticator app:',
+            'description' => '请将以下恢复代码保存在安全的地方。它们只会显示一次，但如果您的身份验证器应用无法访问，您将需要这些代码：',
 
             'actions' => [
 
                 'submit' => [
-                    'label' => 'Close',
+                    'label' => '关闭',
                 ],
 
             ],

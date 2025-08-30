@@ -6,13 +6,13 @@ return [
 
         'actions' => [
 
-            'label' => 'Email verification codes',
+            'label' => '邮箱验证码',
 
-            'below_content' => 'Receive a temporary code at your email address to verify your identity during login.',
+            'below_content' => '在登录期间接收发送到您邮箱地址的临时代码以验证您的身份。',
 
             'messages' => [
-                'enabled' => 'Enabled',
-                'disabled' => 'Disabled',
+                'enabled' => '已启用',
+                'disabled' => '已禁用',
             ],
 
         ],
@@ -21,24 +21,24 @@ return [
 
     'login_form' => [
 
-        'label' => 'Send a code to your email',
+        'label' => '发送代码到您的邮箱',
 
         'code' => [
 
-            'label' => 'Enter the 6-digit code we sent you by email',
+            'label' => '输入我们通过邮箱发送给您的6位代码',
 
-            'validation_attribute' => 'code',
+            'validation_attribute' => '代码',
 
             'actions' => [
 
                 'resend' => [
 
-                    'label' => 'Send a new code by email',
+                    'label' => '通过邮箱发送新代码',
 
                     'notifications' => [
 
                         'resent' => [
-                            'title' => 'We\'ve sent you a new code by email',
+                            'title' => '我们已通过邮箱向您发送了新代码',
                         ],
 
                     ],
@@ -49,7 +49,7 @@ return [
 
             'messages' => [
 
-                'invalid' => 'The code you entered is invalid.',
+                'invalid' => '您输入的代码无效。',
 
             ],
 

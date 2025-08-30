@@ -5,13 +5,13 @@ return [
     'notifications' => [
 
         'blocked' => [
-            'title' => 'Email address change blocked',
-            'body' => 'You have successfully blocked an email address change attempt to :email. If you did not make the original request, please contact us immediately.',
+            'title' => '邮箱地址更改已阻止',
+            'body' => '您已成功阻止了更改为 :email 的邮箱地址更改尝试。如果您没有发起原始请求，请立即联系我们。',
         ],
 
         'failed' => [
-            'title' => 'Failed to block email address change',
-            'body' => 'Unfortunately, you were unable to prevent the email address from being changed to :email, since it was already verified before you blocked it. If you did not make the original request, please contact us immediately.',
+            'title' => '阻止邮箱地址更改失败',
+            'body' => '很遗憾，由于您阻止之前邮箱地址已经验证，您未能阻止邮箱地址更改为 :email。如果您没有发起原始请求，请立即联系我们。',
         ],
 
     ],

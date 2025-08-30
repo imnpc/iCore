@@ -2,11 +2,11 @@
 
 return [
 
-    'subject' => 'Here\'s your sign-in code',
+    'subject' => '这是您的登录代码',
 
     'lines' => [
-        'Your sign-in code is: :code',
-        'This code will expire in a minute.|This code will expire in :minutes minutes.',
+        '您的登录代码是：:code',
+        '此代码将在一分钟内过期。|此代码将在 :minutes 分钟内过期。',
     ],
 
 ];

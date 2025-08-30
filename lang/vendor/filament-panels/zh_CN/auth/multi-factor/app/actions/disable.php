@@ -2,33 +2,33 @@
 
 return [
 
-    'label' => 'Turn off',
+    'label' => '关闭',
 
     'modal' => [
 
-        'heading' => 'Disable authenticator app',
+        'heading' => '禁用身份验证器应用',
 
-        'description' => 'Are you sure you want to stop using the authenticator app? Disabling this will remove an extra layer of security from your account.',
+        'description' => '您确定要停止使用身份验证器应用吗？禁用此功能将从您的账户中移除额外的安全层。',
 
         'form' => [
 
             'code' => [
 
-                'label' => 'Enter the 6-digit code from the authenticator app',
+                'label' => '输入身份验证器应用中的6位代码',
 
-                'validation_attribute' => 'code',
+                'validation_attribute' => '代码',
 
                 'actions' => [
 
                     'use_recovery_code' => [
-                        'label' => 'Use a recovery code instead',
+                        'label' => '改用恢复代码',
                     ],
 
                 ],
 
                 'messages' => [
 
-                    'invalid' => 'The code you entered is invalid.',
+                    'invalid' => '您输入的代码无效。',
 
                 ],
 
@@ -36,13 +36,13 @@ return [
 
             'recovery_code' => [
 
-                'label' => 'Or, enter a recovery code',
+                'label' => '或者，输入恢复代码',
 
-                'validation_attribute' => 'recovery code',
+                'validation_attribute' => '恢复代码',
 
                 'messages' => [
 
-                    'invalid' => 'The recovery code you entered is invalid.',
+                    'invalid' => '您输入的恢复代码无效。',
 
                 ],
 
@@ -53,7 +53,7 @@ return [
         'actions' => [
 
             'submit' => [
-                'label' => 'Disable authenticator app',
+                'label' => '禁用身份验证器应用',
             ],
 
         ],
@@ -63,7 +63,7 @@ return [
     'notifications' => [
 
         'disabled' => [
-            'title' => 'Authenticator app has been disabled',
+            'title' => '身份验证器应用已被禁用',
         ],
 
     ],

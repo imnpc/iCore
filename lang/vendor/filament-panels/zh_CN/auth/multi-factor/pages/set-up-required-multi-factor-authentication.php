@@ -2,16 +2,16 @@
 
 return [
 
-    'title' => 'Set up two-factor authentication (2FA)',
+    'title' => '设置双重认证 (2FA)',
 
-    'heading' => 'Set up two-factor authentication',
+    'heading' => '设置双重认证',
 
-    'subheading' => '2FA adds an extra layer of security to your account by requiring a second form of verification when signing in.',
+    'subheading' => '2FA通过在登录时要求第二种验证形式为您的账户增加额外的安全层。',
 
     'actions' => [
 
         'continue' => [
-            'label' => 'Continue',
+            'label' => '继续',
         ],
 
     ],

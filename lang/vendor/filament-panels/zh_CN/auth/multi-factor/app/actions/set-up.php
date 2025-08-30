@@ -2,39 +2,39 @@
 
 return [
 
-    'label' => 'Set up',
+    'label' => '设置',
 
     'modal' => [
 
-        'heading' => 'Set up authenticator app',
+        'heading' => '设置身份验证器应用',
 
         'description' => <<<'BLADE'
-            You'll need an app like Google Authenticator (<x-filament::link href="https://itunes.apple.com/us/app/google-authenticator/id388497605" target="_blank">iOS</x-filament::link>, <x-filament::link href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="_blank">Android</x-filament::link>) to complete this process.
+            您需要一个类似Google Authenticator的应用（<x-filament::link href="https://itunes.apple.com/us/app/google-authenticator/id388497605" target="_blank">iOS</x-filament::link>, <x-filament::link href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="_blank">Android</x-filament::link>）来完成此过程。
             BLADE,
 
         'content' => [
 
             'qr_code' => [
 
-                'instruction' => 'Scan this QR code with your authenticator app:',
+                'instruction' => '使用您的身份验证器应用扫描此二维码：',
 
-                'alt' => 'QR code to scan with an authenticator app',
+                'alt' => '使用身份验证器应用扫描的二维码',
 
             ],
 
             'text_code' => [
 
-                'instruction' => 'Or enter this code manually:',
+                'instruction' => '或者手动输入此代码：',
 
                 'messages' => [
-                    'copied' => 'Copied',
+                    'copied' => '已复制',
                 ],
 
             ],
 
             'recovery_codes' => [
 
-                'instruction' => 'Please save the following recovery codes in a safe place. They will only be shown once, but you\'ll need them if you lose access to your authenticator app:',
+                'instruction' => '请将以下恢复代码保存在安全的地方。它们只会显示一次，但如果您的身份验证器应用无法访问，您将需要这些代码：',
 
             ],
 
@@ -44,15 +44,15 @@ return [
 
             'code' => [
 
-                'label' => 'Enter the 6-digit code from the authenticator app',
+                'label' => '输入身份验证器应用中的6位代码',
 
-                'validation_attribute' => 'code',
+                'validation_attribute' => '代码',
 
-                'below_content' => 'You will need to enter the 6-digit code from your authenticator app each time you sign in or perform sensitive actions.',
+                'below_content' => '每次登录或执行敏感操作时，您都需要输入身份验证器应用中的6位代码。',
 
                 'messages' => [
 
-                    'invalid' => 'The code you entered is invalid.',
+                    'invalid' => '您输入的代码无效。',
 
                 ],
 
@@ -63,7 +63,7 @@ return [
         'actions' => [
 
             'submit' => [
-                'label' => 'Enable authenticator app',
+                'label' => '启用身份验证器应用',
             ],
 
         ],
@@ -73,7 +73,7 @@ return [
     'notifications' => [
 
         'enabled' => [
-            'title' => 'Authenticator app has been enabled',
+            'title' => '身份验证器应用已启用',
         ],
 
     ],

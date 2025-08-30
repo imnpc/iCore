@@ -4,24 +4,24 @@ return [
 
     'actions' => [
 
-        'Click to',
+        '点击',
 
         'copy' => [
-            'label' => 'copy',
+            'label' => '复制',
         ],
 
-        'or',
+        '或',
 
         'download' => [
-            'label' => 'download',
+            'label' => '下载',
         ],
 
-        'all the codes at once.',
+        '所有代码。',
 
     ],
 
     'messages' => [
-        'copied' => 'Copied',
+        'copied' => '已复制',
     ],
 
 ];

@@ -45,20 +45,20 @@ return [
 
     'multi_factor' => [
 
-        'heading' => 'Verify your identity',
+        'heading' => '验证您的身份',
 
-        'subheading' => 'To continue signing in, you need to verify your identity.',
+        'subheading' => '要继续登录，您需要验证您的身份。',
 
         'form' => [
 
             'provider' => [
-                'label' => 'How would you like to verify?',
+                'label' => '您希望如何验证？',
             ],
 
             'actions' => [
 
                 'authenticate' => [
-                    'label' => 'Confirm sign in',
+                    'label' => '确认登录',
                 ],
 
             ],

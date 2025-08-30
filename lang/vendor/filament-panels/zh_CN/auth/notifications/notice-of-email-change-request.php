@@ -2,15 +2,15 @@
 
 return [
 
-    'subject' => 'Your email address is being changed',
+    'subject' => '您的邮箱地址正在更改',
 
     'lines' => [
-        'We received a request to change the email address associated with your account. Your password was used to confirm this change.',
-        'Once verified, the new email address on your account will be: :email.',
-        'You can block the change before it is verified by clicking the button below.',
-        'If you did not make this request, please contact us immediately.',
+        '我们收到一个更改与您账户关联的邮箱地址的请求。您的密码已被用于确认此更改。',
+        '一旦验证完成，您账户上的新邮箱地址将是：:email。',
+        '您可以在验证之前通过点击下面的按钮来阻止此更改。',
+        '如果您没有发起此请求，请立即联系我们。',
     ],
 
-    'action' => 'Block Email Change',
+    'action' => '阻止邮箱更改',
 
 ];

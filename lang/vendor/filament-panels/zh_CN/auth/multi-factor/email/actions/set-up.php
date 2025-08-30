@@ -2,32 +2,32 @@
 
 return [
 
-    'label' => 'Set up',
+    'label' => '设置',
 
     'modal' => [
 
-        'heading' => 'Set up email verification codes',
+        'heading' => '设置邮箱验证码',
 
-        'description' => 'You\'ll need to enter the 6-digit code we send you by email each time you sign in or perform sensitive actions. Check your email for a 6-digit code to complete the setup.',
+        'description' => '每次登录或执行敏感操作时，您都需要输入我们通过邮箱发送给您的6位代码。请检查您的邮箱获取6位代码以完成设置。',
 
         'form' => [
 
             'code' => [
 
-                'label' => 'Enter the 6-digit code we sent you by email',
+                'label' => '输入我们通过邮箱发送给您的6位代码',
 
-                'validation_attribute' => 'code',
+                'validation_attribute' => '代码',
 
                 'actions' => [
 
                     'resend' => [
 
-                        'label' => 'Send a new code by email',
+                        'label' => '通过邮箱发送新代码',
 
                         'notifications' => [
 
                             'resent' => [
-                                'title' => 'We\'ve sent you a new code by email',
+                                'title' => '我们已通过邮箱向您发送了新代码',
                             ],
 
                         ],
@@ -38,7 +38,7 @@ return [
 
                 'messages' => [
 
-                    'invalid' => 'The code you entered is invalid.',
+                    'invalid' => '您输入的代码无效。',
 
                 ],
 
@@ -49,7 +49,7 @@ return [
         'actions' => [
 
             'submit' => [
-                'label' => 'Enable email verification codes',
+                'label' => '启用邮箱验证码',
             ],
 
         ],
@@ -59,7 +59,7 @@ return [
     'notifications' => [
 
         'enabled' => [
-            'title' => 'Email verification codes have been enabled',
+            'title' => '邮箱验证码已启用',
         ],
 
     ],
