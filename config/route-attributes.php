@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\AcceptHeaderJson;
+
 return [
     /*
      *  Automatic registration of routes will only happen if this setting is `true`
@@ -16,6 +18,7 @@ return [
 //        app_path('Http/Controllers'),
         app_path('Http/Controllers/Api') => [
             'prefix' => 'api/v1',
+            'middleware' => ['api',AcceptHeaderJson::class]
         ],
         /*
         app_path('Http/Controllers/Api') => [

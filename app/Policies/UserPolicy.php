@@ -105,4 +105,14 @@ class UserPolicy
     {
         return $admin->can('{{ Reorder }}');
     }
+
+    /**
+     * 是否本人
+     * @param User $user
+     * @return bool
+     */
+    public function own(User $user)
+    {
+        return $user->id === auth()->id();
+    }
 }

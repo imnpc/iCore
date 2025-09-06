@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Admin;
+use App\Models\User;
 use App\Models\UserWalletLog;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -104,5 +105,17 @@ class UserWalletLogPolicy
     public function reorder(Admin $admin): bool
     {
         return $admin->can('{{ Reorder }}');
+    }
+
+    /**
+     * 验证是否属于本人
+     *
+     * @param User $user
+     * @param UserWalletLog $userWalletLog
+     * @return bool
+     */
+    public function own(User $user, UserWalletLog $userWalletLog): bool
+    {
+        return $user->id === $userWalletLog->user_id;
     }
 }

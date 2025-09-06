@@ -8,6 +8,7 @@ use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Devonab\FilamentEasyFooter\EasyFooterPlugin;
 use Filament\Actions\CreateAction;
 use Filament\Auth\MultiFactor\App\AppAuthentication;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -16,6 +17,7 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Resources\Pages\CreateRecord;
+use Filament\Schemas\Schema;
 use Filament\Support\Colors\Color;
 use Filament\Support\Facades\FilamentTimezone;
 use Filament\Tables\Table;
@@ -43,7 +45,20 @@ class AdminPanelProvider extends PanelProvider
         Table::configureUsing(function (Table $table) {
             $table->defaultDateDisplayFormat('Y-m-d');
             $table->defaultDateTimeDisplayFormat('Y-m-d H:i:s');
+            $table->defaultSort('id', 'desc');
+            $table->paginated([20, 50, 'all']); // 默认分页
         });
+        // 设置 Schema 默认时间格式
+        Schema::configureUsing(function (Schema $schema) {
+            $schema->defaultDateDisplayFormat('Y-m-d');
+            $schema->defaultDateTimeDisplayFormat('Y-m-d H:i:s');
+        });
+        // 设置 DateTimePicker 默认时间格式
+        DateTimePicker::configureUsing(function (DateTimePicker $component) {
+            $component->defaultDateDisplayFormat('Y-m-d');
+            $component->defaultDateTimeDisplayFormat('Y-m-d H:i:s');
+        });
+
         // 默认关闭 创建另一个按钮
         CreateRecord::disableCreateAnother();
         CreateAction::configureUsing(fn(CreateAction $action) => $action->createAnother(false));
