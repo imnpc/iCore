@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Traits\DateTrait;
 use Bavix\Wallet\Interfaces\Wallet;
 use Bavix\Wallet\Interfaces\WalletFloat;
@@ -26,7 +25,6 @@ use Spatie\Tags\HasTags;
 
 class User extends Authenticatable implements MediableInterface, Wallet, WalletFloat,BannableContract
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
     use HasApiTokens;
     use DateTrait; // 日期重写
@@ -64,6 +62,9 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
         'password',
         'mobile',
         'status',
+        'parent_id',
+        'avatar',
+        'app_authentication_secret',
     ];
 
     /**
@@ -76,6 +77,7 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
         'remember_token',
         'email_verified_at',
         'tags',
+        'app_authentication_secret',
     ];
 
     /**
@@ -89,6 +91,7 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
             'email_verified_at' => 'datetime',
             'password'          => 'hashed',
             'last_login_at'     => 'datetime',
+            'app_authentication_secret' => 'encrypted',
         ];
     }
 
@@ -122,13 +125,25 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
         return '';
     }
 
+    /**
+     * 获取上级
+     */
+    public function parent()
+    {
+        return $this->belongsTo(User::class, 'parent_id');
+    }
+
+    /**
+     * 获取下级
+     */
+    public function children()
+    {
+        return $this->hasMany(User::class, 'parent_id');
+    }
+
     // 关联 用户钱包日志
     public function userWalletLog()
     {
         return $this->hasMany(UserWalletLog::class);
-    }
-    public function canBeImpersonated(): true
-    {
-        return true;
     }
 }

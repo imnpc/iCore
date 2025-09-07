@@ -12,7 +12,7 @@ use Spatie\RouteAttributes\Attributes\Get;
 use Spatie\RouteAttributes\Attributes\Post;
 use Spatie\RouteAttributes\Attributes\Prefix;
 
-#[Group('工具')]
+#[Group('工具', description: '工具管理', weight: 100)]
 #[Prefix('utils')]
 class UtilsController extends Controller
 {
@@ -78,7 +78,7 @@ class UtilsController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    #[Get('utils/getCaptcha')]
+    #[Get('getCaptcha')]
     public function getCaptcha(Request $request)
     {
         // 创建验证码

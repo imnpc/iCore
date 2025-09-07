@@ -19,7 +19,7 @@ class AcceptHeaderJson
     {
         // 强制设置 Accept 请求头为 application/json
         $request->headers->set('Accept', 'application/json');
-        
+
         // 强制设置请求期望 JSON 响应
         $request->headers->set('Content-Type', 'application/json');
 
