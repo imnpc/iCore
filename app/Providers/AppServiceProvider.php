@@ -69,12 +69,10 @@ class AppServiceProvider extends ServiceProvider
         // 插件需要手动注册策略，后台角色才能管理
 //        Gate::policy(Activity::class, ActivityPolicy::class); // 操作日志单独的策略文件
 
-        // filament 权限管理 使用模型名 不使用 :: 间隔区分
-        FilamentShield::configurePermissionIdentifierUsing(
-            fn($resource) => str($resource::getModel())
-                ->afterLast('\\')
-                ->toString()
-        );
+        // 更改权限生成规则 Change permission generation rules
+        FilamentShield::buildPermissionKeyUsing(function (string $entity, string $affix, string $subject, string $case, string $separator) {
+            return str($affix)->camel() . '_' . str($subject)->pascal();
+        });
 
         // 自动配置 swagger 文档
         Scramble::configure()

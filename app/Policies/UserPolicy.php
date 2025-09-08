@@ -2,108 +2,72 @@
 
 namespace App\Policies;
 
-use App\Models\Admin;
 use App\Models\User;
+use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the admin can view any models.
-     */
-    public function viewAny(Admin $admin): bool
+    public function viewAny(AuthUser $authUser): bool
     {
-        return $admin->can('view_any_User');
+        return $authUser->can('viewAny_User');
     }
 
-    /**
-     * Determine whether the admin can view the model.
-     */
-    public function view(Admin $admin, User $user): bool
+    public function view(AuthUser $authUser): bool
     {
-        return $admin->can('view_User');
+        return $authUser->can('view_User');
     }
 
-    /**
-     * Determine whether the admin can create models.
-     */
-    public function create(Admin $admin): bool
+    public function create(AuthUser $authUser): bool
     {
-        return $admin->can('create_User');
+        return $authUser->can('create_User');
     }
 
-    /**
-     * Determine whether the admin can update the model.
-     */
-    public function update(Admin $admin, User $user): bool
+    public function update(AuthUser $authUser): bool
     {
-        return $admin->can('update_User');
+        return $authUser->can('update_User');
     }
 
-    /**
-     * Determine whether the admin can delete the model.
-     */
-    public function delete(Admin $admin, User $user): bool
+    public function delete(AuthUser $authUser): bool
     {
-        return $admin->can('delete_User');
+        return $authUser->can('delete_User');
     }
 
-    /**
-     * Determine whether the admin can bulk delete.
-     */
-    public function deleteAny(Admin $admin): bool
+    public function restore(AuthUser $authUser): bool
     {
-        return $admin->can('delete_any_User');
+        return $authUser->can('restore_User');
     }
 
-    /**
-     * Determine whether the admin can permanently delete.
-     */
-    public function forceDelete(Admin $admin, User $user): bool
+    public function forceDelete(AuthUser $authUser): bool
     {
-        return $admin->can('{{ ForceDelete }}');
+        return $authUser->can('forceDelete_User');
     }
 
-    /**
-     * Determine whether the admin can permanently bulk delete.
-     */
-    public function forceDeleteAny(Admin $admin): bool
+    public function forceDeleteAny(AuthUser $authUser): bool
     {
-        return $admin->can('{{ ForceDeleteAny }}');
+        return $authUser->can('forceDeleteAny_User');
     }
 
-    /**
-     * Determine whether the admin can restore.
-     */
-    public function restore(Admin $admin, User $user): bool
+    public function restoreAny(AuthUser $authUser): bool
     {
-        return $admin->can('{{ Restore }}');
+        return $authUser->can('restoreAny_User');
     }
 
-    /**
-     * Determine whether the admin can bulk restore.
-     */
-    public function restoreAny(Admin $admin): bool
+    public function replicate(AuthUser $authUser): bool
     {
-        return $admin->can('{{ RestoreAny }}');
+        return $authUser->can('replicate_User');
     }
 
-    /**
-     * Determine whether the admin can replicate.
-     */
-    public function replicate(Admin $admin, User $user): bool
+    public function reorder(AuthUser $authUser): bool
     {
-        return $admin->can('{{ Replicate }}');
+        return $authUser->can('reorder_User');
     }
 
-    /**
-     * Determine whether the admin can reorder.
-     */
-    public function reorder(Admin $admin): bool
+    public function deleteAny(AuthUser $authUser): bool
     {
-        return $admin->can('{{ Reorder }}');
+        return $authUser->can('deleteAny_User');
     }
 
     /**
@@ -115,4 +79,5 @@ class UserPolicy
     {
         return $user->id === auth()->id();
     }
+
 }

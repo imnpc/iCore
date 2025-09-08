@@ -57,6 +57,7 @@ class WalletTypesTable
 //                    ->sortable()
 //                    ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('id', 'asc')
             ->filters([
                 TrashedFilter::make(),
             ])

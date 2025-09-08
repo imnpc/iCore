@@ -13,8 +13,6 @@ use App\Filament\Clusters\User\Resources\Users\Tables\UsersTable;
 use App\Filament\Clusters\User\UserCluster;
 use App\Models\User;
 use BackedEnum;
-use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
-use BezhanSalleh\FilamentShield\Traits\HasShieldFormComponents;
 use Filament\Resources\RelationManagers\RelationGroup;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -24,24 +22,11 @@ use Illuminate\Database\Eloquent\Model;
 use Maggomann\FilamentModelTranslator\Contracts\Translateable;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableResources;
 
-class UserResource extends Resource implements Translateable, HasShieldPermissions
+class UserResource extends Resource implements Translateable
 {
     use HasTranslateableResources;
-    use HasShieldFormComponents;
 
     protected static ?string $translateablePackageKey = '';
-
-    public static function getPermissionPrefixes(): array
-    {
-        return [
-            'view',
-            'view_any',
-            'create',
-            'update',
-            'delete',
-            'delete_any',
-        ];
-    }
 
     protected static ?string $cluster = UserCluster::class;
 

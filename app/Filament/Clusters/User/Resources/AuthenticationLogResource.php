@@ -26,21 +26,9 @@ use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Tapp\FilamentAuthenticationLog\FilamentAuthenticationLogPlugin;
 
-class AuthenticationLogResource extends Resource implements HasShieldPermissions
+class AuthenticationLogResource extends Resource
 {
     use HasShieldFormComponents; // 添加表单组件权限
-
-    /**
-     * 权限前缀
-     * @return string[]
-     */
-    public static function getPermissionPrefixes(): array
-    {
-        return [
-            'view',
-            'view_any',
-        ];
-    }
 
     protected static ?string $cluster = UserCluster::class;
 

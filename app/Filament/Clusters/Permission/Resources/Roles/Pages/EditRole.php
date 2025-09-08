@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Clusters\Permission\Resources\Roles\Pages;
 
 use App\Filament\Clusters\Permission\Resources\RoleResource;
@@ -18,21 +20,19 @@ class EditRole extends EditRecord
     protected function getActions(): array
     {
         return [
-//            DeleteAction::make(),
+            DeleteAction::make(),
         ];
     }
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $this->permissions = collect($data)
-            ->filter(function (mixed $permission, string $key): bool {
-                return ! in_array($key, ['name', 'guard_name', 'select_all', Utils::getTenantModelForeignKey()]);
-            })
+            ->filter(fn (mixed $permission, string $key): bool => ! in_array($key, ['name', 'guard_name', 'select_all', Utils::getTenantModelForeignKey()]))
             ->values()
             ->flatten()
             ->unique();
 
-        if (Arr::has($data, Utils::getTenantModelForeignKey())) {
+        if (Utils::isTenancyEnabled() && filled($data[Utils::getTenantModelForeignKey()]) && Arr::has($data, Utils::getTenantModelForeignKey())) {
             return Arr::only($data, ['name', 'guard_name', Utils::getTenantModelForeignKey()]);
         }
 
@@ -49,6 +49,7 @@ class EditRole extends EditRecord
             ]));
         });
 
+        // @phpstan-ignore-next-line
         $this->record->syncPermissions($permissionModels);
     }
 }

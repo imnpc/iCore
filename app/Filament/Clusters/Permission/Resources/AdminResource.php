@@ -10,7 +10,6 @@ use App\Filament\Clusters\Permission\Resources\Admins\Tables\AdminsTable;
 use App\Filament\Clusters\Permission\PermissionCluster;
 use App\Models\Admin;
 use BackedEnum;
-use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use BezhanSalleh\FilamentShield\Traits\HasShieldFormComponents;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -20,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Maggomann\FilamentModelTranslator\Contracts\Translateable;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableResources;
 
-class AdminResource extends Resource  implements Translateable, HasShieldPermissions
+class AdminResource extends Resource  implements Translateable
 {
     use HasTranslateableResources; // 添加翻译
     use HasShieldFormComponents; // 添加表单组件权限
@@ -30,22 +29,6 @@ class AdminResource extends Resource  implements Translateable, HasShieldPermiss
      * @var string|null
      */
     protected static ?string $translateablePackageKey = '';
-
-    /**
-     * 权限前缀
-     * @return string[]
-     */
-    public static function getPermissionPrefixes(): array
-    {
-        return [
-            'view',
-            'view_any',
-            'create',
-            'update',
-            'delete',
-            'delete_any',
-        ];
-    }
 
     /**
      * 集群

@@ -1,108 +1,70 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
-use App\Models\Admin;
+use Illuminate\Foundation\Auth\User as AuthUser;
 use TomatoPHP\FilamentWallet\Models\Wallet;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class WalletPolicy
 {
     use HandlesAuthorization;
-
-    /**
-     * Determine whether the admin can view any models.
-     */
-    public function viewAny(Admin $admin): bool
+    
+    public function viewAny(AuthUser $authUser): bool
     {
-        return $admin->can('view_any_Wallet');
+        return $authUser->can('viewAny_Wallet');
     }
 
-    /**
-     * Determine whether the admin can view the model.
-     */
-    public function view(Admin $admin, Wallet $wallet): bool
+    public function view(AuthUser $authUser, Wallet $wallet): bool
     {
-        return $admin->can('view_Wallet');
+        return $authUser->can('view_Wallet');
     }
 
-    /**
-     * Determine whether the admin can create models.
-     */
-    public function create(Admin $admin): bool
+    public function create(AuthUser $authUser): bool
     {
-        return $admin->can('create_Wallet');
+        return $authUser->can('create_Wallet');
     }
 
-    /**
-     * Determine whether the admin can update the model.
-     */
-    public function update(Admin $admin, Wallet $wallet): bool
+    public function update(AuthUser $authUser, Wallet $wallet): bool
     {
-        return $admin->can('update_Wallet');
+        return $authUser->can('update_Wallet');
     }
 
-    /**
-     * Determine whether the admin can delete the model.
-     */
-    public function delete(Admin $admin, Wallet $wallet): bool
+    public function delete(AuthUser $authUser, Wallet $wallet): bool
     {
-        return $admin->can('delete_Wallet');
+        return $authUser->can('delete_Wallet');
     }
 
-    /**
-     * Determine whether the admin can bulk delete.
-     */
-    public function deleteAny(Admin $admin): bool
+    public function restore(AuthUser $authUser, Wallet $wallet): bool
     {
-        return $admin->can('delete_any_Wallet');
+        return $authUser->can('restore_Wallet');
     }
 
-    /**
-     * Determine whether the admin can permanently delete.
-     */
-    public function forceDelete(Admin $admin, Wallet $wallet): bool
+    public function forceDelete(AuthUser $authUser, Wallet $wallet): bool
     {
-        return $admin->can('force_delete_Wallet');
+        return $authUser->can('forceDelete_Wallet');
     }
 
-    /**
-     * Determine whether the admin can permanently bulk delete.
-     */
-    public function forceDeleteAny(Admin $admin): bool
+    public function forceDeleteAny(AuthUser $authUser): bool
     {
-        return $admin->can('force_delete_any_Wallet');
+        return $authUser->can('forceDeleteAny_Wallet');
     }
 
-    /**
-     * Determine whether the admin can restore.
-     */
-    public function restore(Admin $admin, Wallet $wallet): bool
+    public function restoreAny(AuthUser $authUser): bool
     {
-        return $admin->can('restore_Wallet');
+        return $authUser->can('restoreAny_Wallet');
     }
 
-    /**
-     * Determine whether the admin can bulk restore.
-     */
-    public function restoreAny(Admin $admin): bool
+    public function replicate(AuthUser $authUser, Wallet $wallet): bool
     {
-        return $admin->can('restore_any_Wallet');
+        return $authUser->can('replicate_Wallet');
     }
 
-    /**
-     * Determine whether the admin can replicate.
-     */
-    public function replicate(Admin $admin, Wallet $wallet): bool
+    public function reorder(AuthUser $authUser): bool
     {
-        return $admin->can('replicate_Wallet');
+        return $authUser->can('reorder_Wallet');
     }
 
-    /**
-     * Determine whether the admin can reorder.
-     */
-    public function reorder(Admin $admin): bool
-    {
-        return $admin->can('reorder_Wallet');
-    }
 }

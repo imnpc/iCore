@@ -2,143 +2,71 @@
 
 namespace App\Policies;
 
-use App\Models\Admin;
-
+use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class AdminPolicy
 {
     use HandlesAuthorization;
-
-    /**
-     * Determine whether the admin can view any models.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return bool
-     */
-    public function viewAny(Admin $admin): bool
+    
+    public function viewAny(AuthUser $authUser): bool
     {
-        return $admin->can('view_any_Admin');
+        return $authUser->can('viewAny_Admin');
     }
 
-    /**
-     * Determine whether the admin can view the model.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return bool
-     */
-    public function view(Admin $admin): bool
+    public function view(AuthUser $authUser): bool
     {
-        return $admin->can('view_Admin');
+        return $authUser->can('view_Admin');
     }
 
-    /**
-     * Determine whether the admin can create models.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return bool
-     */
-    public function create(Admin $admin): bool
+    public function create(AuthUser $authUser): bool
     {
-        return $admin->can('create_Admin');
+        return $authUser->can('create_Admin');
     }
 
-    /**
-     * Determine whether the admin can update the model.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return bool
-     */
-    public function update(Admin $admin): bool
+    public function update(AuthUser $authUser): bool
     {
-        return $admin->can('update_Admin');
+        return $authUser->can('update_Admin');
     }
 
-    /**
-     * Determine whether the admin can delete the model.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return bool
-     */
-    public function delete(Admin $admin): bool
+    public function delete(AuthUser $authUser): bool
     {
-        return $admin->can('delete_Admin');
+        return $authUser->can('delete_Admin');
     }
 
-    /**
-     * Determine whether the admin can bulk delete.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return bool
-     */
-    public function deleteAny(Admin $admin): bool
+    public function restore(AuthUser $authUser): bool
     {
-        return $admin->can('delete_any_Admin');
+        return $authUser->can('restore_Admin');
     }
 
-    /**
-     * Determine whether the admin can permanently delete.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return bool
-     */
-    public function forceDelete(Admin $admin): bool
+    public function forceDelete(AuthUser $authUser): bool
     {
-        return $admin->can('{{ ForceDelete }}');
+        return $authUser->can('forceDelete_Admin');
     }
 
-    /**
-     * Determine whether the admin can permanently bulk delete.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return bool
-     */
-    public function forceDeleteAny(Admin $admin): bool
+    public function forceDeleteAny(AuthUser $authUser): bool
     {
-        return $admin->can('{{ ForceDeleteAny }}');
+        return $authUser->can('forceDeleteAny_Admin');
     }
 
-    /**
-     * Determine whether the admin can restore.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return bool
-     */
-    public function restore(Admin $admin): bool
+    public function restoreAny(AuthUser $authUser): bool
     {
-        return $admin->can('{{ Restore }}');
+        return $authUser->can('restoreAny_Admin');
     }
 
-    /**
-     * Determine whether the admin can bulk restore.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return bool
-     */
-    public function restoreAny(Admin $admin): bool
+    public function replicate(AuthUser $authUser): bool
     {
-        return $admin->can('{{ RestoreAny }}');
+        return $authUser->can('replicate_Admin');
     }
 
-    /**
-     * Determine whether the admin can bulk restore.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return bool
-     */
-    public function replicate(Admin $admin): bool
+    public function reorder(AuthUser $authUser): bool
     {
-        return $admin->can('{{ Replicate }}');
+        return $authUser->can('reorder_Admin');
     }
 
-    /**
-     * Determine whether the admin can reorder.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return bool
-     */
-    public function reorder(Admin $admin): bool
+    public function deleteAny(AuthUser $authUser): bool
     {
-        return $admin->can('{{ Reorder }}');
+        return $authUser->can('deleteAny_Admin');
     }
+
 }

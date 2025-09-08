@@ -1,108 +1,70 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
-use App\Models\Admin;
+use Illuminate\Foundation\Auth\User as AuthUser;
 use TomatoPHP\FilamentWallet\Models\Transaction;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TransactionPolicy
 {
     use HandlesAuthorization;
-
-    /**
-     * Determine whether the admin can view any models.
-     */
-    public function viewAny(Admin $admin): bool
+    
+    public function viewAny(AuthUser $authUser): bool
     {
-        return $admin->can('view_any_Transaction');
+        return $authUser->can('viewAny_Transaction');
     }
 
-    /**
-     * Determine whether the admin can view the model.
-     */
-    public function view(Admin $admin, Transaction $transaction): bool
+    public function view(AuthUser $authUser, Transaction $transaction): bool
     {
-        return $admin->can('view_Transaction');
+        return $authUser->can('view_Transaction');
     }
 
-    /**
-     * Determine whether the admin can create models.
-     */
-    public function create(Admin $admin): bool
+    public function create(AuthUser $authUser): bool
     {
-        return $admin->can('create_Transaction');
+        return $authUser->can('create_Transaction');
     }
 
-    /**
-     * Determine whether the admin can update the model.
-     */
-    public function update(Admin $admin, Transaction $transaction): bool
+    public function update(AuthUser $authUser, Transaction $transaction): bool
     {
-        return $admin->can('update_Transaction');
+        return $authUser->can('update_Transaction');
     }
 
-    /**
-     * Determine whether the admin can delete the model.
-     */
-    public function delete(Admin $admin, Transaction $transaction): bool
+    public function delete(AuthUser $authUser, Transaction $transaction): bool
     {
-        return $admin->can('delete_Transaction');
+        return $authUser->can('delete_Transaction');
     }
 
-    /**
-     * Determine whether the admin can bulk delete.
-     */
-    public function deleteAny(Admin $admin): bool
+    public function restore(AuthUser $authUser, Transaction $transaction): bool
     {
-        return $admin->can('delete_any_Transaction');
+        return $authUser->can('restore_Transaction');
     }
 
-    /**
-     * Determine whether the admin can permanently delete.
-     */
-    public function forceDelete(Admin $admin, Transaction $transaction): bool
+    public function forceDelete(AuthUser $authUser, Transaction $transaction): bool
     {
-        return $admin->can('force_delete_Transaction');
+        return $authUser->can('forceDelete_Transaction');
     }
 
-    /**
-     * Determine whether the admin can permanently bulk delete.
-     */
-    public function forceDeleteAny(Admin $admin): bool
+    public function forceDeleteAny(AuthUser $authUser): bool
     {
-        return $admin->can('force_delete_any_Transaction');
+        return $authUser->can('forceDeleteAny_Transaction');
     }
 
-    /**
-     * Determine whether the admin can restore.
-     */
-    public function restore(Admin $admin, Transaction $transaction): bool
+    public function restoreAny(AuthUser $authUser): bool
     {
-        return $admin->can('restore_Transaction');
+        return $authUser->can('restoreAny_Transaction');
     }
 
-    /**
-     * Determine whether the admin can bulk restore.
-     */
-    public function restoreAny(Admin $admin): bool
+    public function replicate(AuthUser $authUser, Transaction $transaction): bool
     {
-        return $admin->can('restore_any_Transaction');
+        return $authUser->can('replicate_Transaction');
     }
 
-    /**
-     * Determine whether the admin can replicate.
-     */
-    public function replicate(Admin $admin, Transaction $transaction): bool
+    public function reorder(AuthUser $authUser): bool
     {
-        return $admin->can('replicate_Transaction');
+        return $authUser->can('reorder_Transaction');
     }
 
-    /**
-     * Determine whether the admin can reorder.
-     */
-    public function reorder(Admin $admin): bool
-    {
-        return $admin->can('reorder_Transaction');
-    }
 }

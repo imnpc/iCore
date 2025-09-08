@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Traits\DateTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModel;
 use Spatie\Permission\Models\Role as SpatieRole;
 use Spatie\Activitylog\LogOptions;

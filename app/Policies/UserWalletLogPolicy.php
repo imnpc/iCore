@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
-use App\Models\Admin;
 use App\Models\User;
+use Illuminate\Foundation\Auth\User as AuthUser;
 use App\Models\UserWalletLog;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -11,100 +13,59 @@ class UserWalletLogPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the admin can view any models.
-     */
-    public function viewAny(Admin $admin): bool
+    public function viewAny(AuthUser $authUser): bool
     {
-        return $admin->can('view_any_UserWalletLog');
+        return $authUser->can('viewAny_UserWalletLog');
     }
 
-    /**
-     * Determine whether the admin can view the model.
-     */
-    public function view(Admin $admin, UserWalletLog $userWalletLog): bool
+    public function view(AuthUser $authUser, UserWalletLog $userWalletLog): bool
     {
-        return $admin->can('view_UserWalletLog');
+        return $authUser->can('view_UserWalletLog');
     }
 
-    /**
-     * Determine whether the admin can create models.
-     */
-    public function create(Admin $admin): bool
+    public function create(AuthUser $authUser): bool
     {
-        return $admin->can('{{ Create }}');
+        return $authUser->can('create_UserWalletLog');
     }
 
-    /**
-     * Determine whether the admin can update the model.
-     */
-    public function update(Admin $admin, UserWalletLog $userWalletLog): bool
+    public function update(AuthUser $authUser, UserWalletLog $userWalletLog): bool
     {
-        return $admin->can('{{ Update }}');
+        return $authUser->can('update_UserWalletLog');
     }
 
-    /**
-     * Determine whether the admin can delete the model.
-     */
-    public function delete(Admin $admin, UserWalletLog $userWalletLog): bool
+    public function delete(AuthUser $authUser, UserWalletLog $userWalletLog): bool
     {
-        return $admin->can('{{ Delete }}');
+        return $authUser->can('delete_UserWalletLog');
     }
 
-    /**
-     * Determine whether the admin can bulk delete.
-     */
-    public function deleteAny(Admin $admin): bool
+    public function restore(AuthUser $authUser, UserWalletLog $userWalletLog): bool
     {
-        return $admin->can('{{ DeleteAny }}');
+        return $authUser->can('restore_UserWalletLog');
     }
 
-    /**
-     * Determine whether the admin can permanently delete.
-     */
-    public function forceDelete(Admin $admin, UserWalletLog $userWalletLog): bool
+    public function forceDelete(AuthUser $authUser, UserWalletLog $userWalletLog): bool
     {
-        return $admin->can('{{ ForceDelete }}');
+        return $authUser->can('forceDelete_UserWalletLog');
     }
 
-    /**
-     * Determine whether the admin can permanently bulk delete.
-     */
-    public function forceDeleteAny(Admin $admin): bool
+    public function forceDeleteAny(AuthUser $authUser): bool
     {
-        return $admin->can('{{ ForceDeleteAny }}');
+        return $authUser->can('forceDeleteAny_UserWalletLog');
     }
 
-    /**
-     * Determine whether the admin can restore.
-     */
-    public function restore(Admin $admin, UserWalletLog $userWalletLog): bool
+    public function restoreAny(AuthUser $authUser): bool
     {
-        return $admin->can('{{ Restore }}');
+        return $authUser->can('restoreAny_UserWalletLog');
     }
 
-    /**
-     * Determine whether the admin can bulk restore.
-     */
-    public function restoreAny(Admin $admin): bool
+    public function replicate(AuthUser $authUser, UserWalletLog $userWalletLog): bool
     {
-        return $admin->can('{{ RestoreAny }}');
+        return $authUser->can('replicate_UserWalletLog');
     }
 
-    /**
-     * Determine whether the admin can replicate.
-     */
-    public function replicate(Admin $admin, UserWalletLog $userWalletLog): bool
+    public function reorder(AuthUser $authUser): bool
     {
-        return $admin->can('{{ Replicate }}');
-    }
-
-    /**
-     * Determine whether the admin can reorder.
-     */
-    public function reorder(Admin $admin): bool
-    {
-        return $admin->can('{{ Reorder }}');
+        return $authUser->can('reorder_UserWalletLog');
     }
 
     /**

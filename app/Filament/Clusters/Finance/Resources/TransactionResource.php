@@ -5,8 +5,6 @@ namespace App\Filament\Clusters\Finance\Resources;
 use App\Filament\Clusters\Finance\FinanceCluster;
 use App\Filament\Clusters\Finance\Resources\Transactions\Pages\ListTransactions;
 use BackedEnum;
-use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
-use BezhanSalleh\FilamentShield\Traits\HasShieldFormComponents;
 use Filament\Resources\Resource;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\IconColumn;
@@ -17,20 +15,11 @@ use Maggomann\FilamentModelTranslator\Contracts\Translateable;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableResources;
 use TomatoPHP\FilamentWallet\Models\Transaction;
 
-class TransactionResource extends Resource implements Translateable, HasShieldPermissions
+class TransactionResource extends Resource implements Translateable
 {
     use HasTranslateableResources;
-    use HasShieldFormComponents;
 
     protected static ?string $translateablePackageKey = '';
-
-    public static function getPermissionPrefixes(): array
-    {
-        return [
-            'view',
-            'view_any',
-        ];
-    }
 
     protected static ?string $model = Transaction::class;
 

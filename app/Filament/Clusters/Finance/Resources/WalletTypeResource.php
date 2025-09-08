@@ -10,7 +10,6 @@ use App\Filament\Clusters\Finance\Resources\WalletTypes\Schemas\WalletTypeForm;
 use App\Filament\Clusters\Finance\Resources\WalletTypes\Tables\WalletTypesTable;
 use App\Models\WalletType;
 use BackedEnum;
-use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
@@ -19,22 +18,11 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Maggomann\FilamentModelTranslator\Contracts\Translateable;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableResources;
 
-class WalletTypeResource extends Resource implements Translateable, HasShieldPermissions
+class WalletTypeResource extends Resource implements Translateable
 {
     use HasTranslateableResources;
 
     protected static ?string $translateablePackageKey = '';
-    public static function getPermissionPrefixes(): array
-    {
-        return [
-            'view',
-            'view_any',
-            'create',
-            'update',
-            'delete',
-            'delete_any',
-        ];
-    }
 
     protected static ?string $model = WalletType::class;
 

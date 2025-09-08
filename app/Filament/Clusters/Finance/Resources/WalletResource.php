@@ -4,9 +4,8 @@ namespace App\Filament\Clusters\Finance\Resources;
 
 use App\Filament\Clusters\Finance\FinanceCluster;
 use App\Filament\Clusters\Finance\Resources\Wallets\Pages\ListWallets;
+use App\Models\User;
 use BackedEnum;
-use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
-use BezhanSalleh\FilamentShield\Traits\HasShieldFormComponents;
 use Filament\Resources\Resource;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
@@ -16,20 +15,11 @@ use Maggomann\FilamentModelTranslator\Contracts\Translateable;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableResources;
 use TomatoPHP\FilamentWallet\Models\Wallet;
 
-class WalletResource extends Resource  implements Translateable, HasShieldPermissions
+class WalletResource extends Resource  implements Translateable
 {
     use HasTranslateableResources;
-    use HasShieldFormComponents;
 
     protected static ?string $translateablePackageKey = '';
-
-    public static function getPermissionPrefixes(): array
-    {
-        return [
-            'view',
-            'view_any',
-        ];
-    }
 
     protected static ?string $model = Wallet::class;
 
@@ -67,12 +57,20 @@ class WalletResource extends Resource  implements Translateable, HasShieldPermis
                     ->dateTime()
                     ->sortable(),
             ])
-            ->filters(filament('filament-wallet')->useAccounts ? [
-                SelectFilter::make('holder_id')
-                    ->label(trans('filament-wallet::messages.wallets.filters.accounts'))
-                    ->searchable()
-                    ->options(fn () => config('filament-accounts.model')::query()->pluck('name', 'id')->toArray())
-            ] : [])
+            ->filters(
+                filament('filament-wallet')->useAccounts ? [
+                    SelectFilter::make('holder_id')
+                        ->label(trans('filament-wallet::messages.wallets.filters.accounts'))
+                        ->searchable()
+                        ->options(fn() => config('filament-accounts.model')::query()->pluck('name', 'id')->toArray())
+                ] : [
+                    SelectFilter::make('holder_id')
+                        ->label(trans('filament-model.general.user_id'))
+                        ->options(User::query()->pluck('email', 'id')->toArray())
+                        ->searchable()
+                        ->preload()
+                ],
+            )
             ->defaultSort('id', 'desc');
     }
 

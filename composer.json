@@ -25,6 +25,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
         "leonis/easysms-notification-channel": "^3.0",
+        "livewire/livewire": "^3.6",
         "maggomann/filament-model-translator": "^1.1",
         "marcelweidum/filament-passkeys": "^1.0@beta",
         "mews/captcha": "^3.4",
@@ -55,6 +56,7 @@
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
+        "overtrue/laravel-query-logger": "^3.4",
         "phpunit/phpunit": "^11.5.3"
     },
     "autoload": {
