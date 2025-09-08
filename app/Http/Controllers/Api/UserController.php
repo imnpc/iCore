@@ -11,11 +11,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
-use PragmaRX\Google2FA\Exceptions\IncompatibleWithGoogleAuthenticatorException;
-use PragmaRX\Google2FA\Exceptions\InvalidCharactersException;
-use PragmaRX\Google2FA\Exceptions\SecretKeyTooShortException;
 use PragmaRX\Google2FA\Google2FA;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Spatie\RouteAttributes\Attributes\Get;
@@ -31,9 +29,6 @@ class UserController extends Controller
      * 登录
      *
      * 使用谷歌验证器登录的必须输入生成的6位数字
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
      */
     #[Post('login')]
     public function login(Request $request)
@@ -52,7 +47,7 @@ class UserController extends Controller
         ]);
 
         // 图片验证码验证是否有效
-        if (!captcha_api_check($request->captcha , $request->captcha_key, 'flat')){
+        if (!captcha_api_check($request->captcha, $request->captcha_key, 'flat')) {
             return $this->fail('图片验证码错误或者已使用!', 422);
         }
         // 验证用户信息
@@ -60,25 +55,35 @@ class UserController extends Controller
             'email'    => $request->email,
             'password' => $request->password
         ];
-        if (!Auth::attempt($credentials)) {
-            return $this->fail('登录信息有误!', 401);
+
+        if (!Auth::guard('web')->attempt($credentials)) {
+            return $this->fail('提供的凭据不正确!', 401);
         }
+
+        // 获取已认证的用户（使用同一 guard）
+        $user = Auth::guard('web')->user();
+        if (!$user) {
+            return $this->fail('登录状态初始化失败，请重试!', 500);
+        }
+
         // 谷歌验证器
-        if (Auth::user()->app_authentication_secret) {
+        if ($user->app_authentication_secret) {
             $google2fa = new Google2FA(); // 谷歌验证器
-            $valid = $google2fa->verifyKey(Auth::user()->app_authentication_secret, $request->two_fa_code);
+            $valid = $google2fa->verifyKey($user->app_authentication_secret, $request->two_fa_code ?? '');
             if (!$valid) {
                 return $this->fail('验证错误,请输入谷歌验证器生成的验证码!', 401);
             }
         }
 
         // 创建用户 access_token
-        $token = Auth::user()->createToken('api')->plainTextToken;
+        $token = $user->createToken('api')->plainTextToken;
 
         // 返回用户信息和 access_token
         return $this->success([
             // 用户信息
-            'user'         => Auth::user(),
+            'user'         => new UserResource($user),
+            // token 类型
+            'token_type'   => 'Bearer',
             //  用户 access_token
             'access_token' => $token
         ], '登录成功', 200);
@@ -113,7 +118,7 @@ class UserController extends Controller
     {
         $request->validate([
             // 邮箱地址
-            'email' => 'required|email',
+            'email'       => 'required|email',
             // 图形验证码 key(从工具->获取图形验证码获取)
             'captcha_key' => 'required|string',
             // 图片验证码
@@ -121,7 +126,7 @@ class UserController extends Controller
         ]);
 
         // 验证码验证是否有效
-        if (!captcha_api_check($request->captcha , $request->captcha_key, 'flat')){
+        if (!captcha_api_check($request->captcha, $request->captcha_key, 'flat')) {
             return $this->fail('图形验证码错误或者已使用!', 422);
         }
 
@@ -132,7 +137,7 @@ class UserController extends Controller
         $code = str_pad(random_int(1, 999999), 6, 0, STR_PAD_LEFT); // 生成6位随机数，左侧补0
         // 发送验证码邮件
         Notification::route('mail', $email)->notify(new VerifyCodeEmail($code));// 发送邮件验证码
-        \Cache::put($key, ['email' => $email, 'code' => $code], $expiredAt); // 缓存验证码 30 分钟过期。
+        Cache::put($key, ['email' => $email, 'code' => $code], $expiredAt); // 缓存验证码 30 分钟过期。
 
         return $this->success('', '邮箱验证码发送成功!', 200);
     }
@@ -162,7 +167,7 @@ class UserController extends Controller
         $email = $request->email;
         $key = 'verificationCode_' . $email;
 
-        $verifyData = \Cache::get($key);
+        $verifyData = Cache::get($key);
         if (!$verifyData) {
             return $this->fail('邮箱验证码已失效！', 403);
         }
@@ -183,9 +188,9 @@ class UserController extends Controller
 
         // 创建用户
         $user = User::create([
-            'email'    => $email,
-            'name'     => $email,
-            'password' => bcrypt($request->password),
+            'email'     => $email,
+            'name'      => $email,
+            'password'  => bcrypt($request->password),
             'parent_id' => $parent_id,
         ]);
         $invite_code = Hashids::encode($user->id); // 个人邀请码
@@ -193,7 +198,7 @@ class UserController extends Controller
             'invite_code' => $invite_code, // 邀请码
         ]);
         // 清除验证码缓存
-        \Cache::forget($key);
+        Cache::forget($key);
 
         // 返回成功响应
         return $this->success([
@@ -230,7 +235,7 @@ class UserController extends Controller
         $key = 'verificationCode_' . $email; // 缓存 key
 
         // 验证码验证是否有效
-        $verifyData = \Cache::get($key);
+        $verifyData = Cache::get($key);
         if (!$verifyData) {
             return $this->fail('邮箱验证码已失效！', 403);
         }
@@ -241,7 +246,7 @@ class UserController extends Controller
         // 查询该邮箱用户 重设密码
         $user = User::where('email', '=', $request->email)->first();
         if ($user) {
-            \Cache::forget($key);
+            Cache::forget($key);
             $user->update([
                 'password' => bcrypt($request->password), // 更新新密码
             ]);
@@ -372,22 +377,22 @@ class UserController extends Controller
         }
 
         $google2fa = new Google2FA(); // 谷歌验证器
-        $key = 'two_fa_secret_'.$user->email; // 缓存key
+        $key = 'two_fa_secret_' . $user->email; // 缓存key
         // 默认缓存 1 小时
-        $verifyData = \Cache::get($key);
+        $verifyData = Cache::get($key);
         if ($verifyData) {
             $secretKey = $verifyData;
         } else {
             $secretKey = $google2fa->generateSecretKey();
-            \Cache::put($key, $secretKey, 3600);
+            Cache::put($key, $secretKey, 3600);
         }
         // 二维码数据
         $qrCodeData = $google2fa->getQRCodeUrl(config('app.name'), $user->email, $secretKey);
         // 二维码图片名称
         if (config('app.env') == 'local') {
-            $path = 'google2fa/dev/'.$secretKey.'.png'; // 二维码图片名称路径
+            $path = 'google2fa/dev/' . $secretKey . '.png'; // 二维码图片名称路径
         } else {
-            $path = 'google2fa/'.$secretKey.'.png'; // 二维码图片名称路径
+            $path = 'google2fa/' . $secretKey . '.png'; // 二维码图片名称路径
         }
         $exists = Storage::disk(config('filesystems.default'))->exists($path); // 查询文件是否存在
         if (!$exists) {
@@ -398,9 +403,9 @@ class UserController extends Controller
 
         return $this->success([
             // 谷歌验证器密钥(下一步要使用)
-            'app_authentication_secret'    => $secretKey,
+            'app_authentication_secret' => $secretKey,
             // 二维码图片
-            'qrcode_image' => Storage::disk(config('filesystems.default'))->url($path),
+            'qrcode_image'              => Storage::disk(config('filesystems.default'))->url($path),
         ], '获取成功,请使用谷歌验证器扫描二维码', 200);
     }
 
@@ -437,13 +442,13 @@ class UserController extends Controller
                 'app_authentication_secret' => $app_authentication_secret,
             ]);
             // 清除缓存
-            $key = 'two_fa_secret_'.$user->email;
-            \Cache::forget($key);
+            $key = 'two_fa_secret_' . $user->email;
+            Cache::forget($key);
             // 二维码图片名称
             if (config('app.env') == 'local') {
-                $path = 'google2fa/dev/'.$app_authentication_secret.'.png'; // 二维码图片名称路径
+                $path = 'google2fa/dev/' . $app_authentication_secret . '.png'; // 二维码图片名称路径
             } else {
-                $path = 'google2fa/'.$app_authentication_secret.'.png'; // 二维码图片名称路径
+                $path = 'google2fa/' . $app_authentication_secret . '.png'; // 二维码图片名称路径
             }
             // 设置成功以后删除图片
             Storage::disk(config('filesystems.default'))->delete($path);
@@ -463,7 +468,7 @@ class UserController extends Controller
     {
         $request->validate([
             // 谷歌验证器生成的6位数验证码
-            'two_fa_code'               => 'required|string',
+            'two_fa_code' => 'required|string',
         ]);
         $user = $request->user();
 
