@@ -1496,16 +1496,16 @@
         },
         {
             "name": "dedoc/scramble",
-            "version": "v0.12.32",
+            "version": "v0.12.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dedoc/scramble.git",
-                "reference": "7af06fe46b4242d97d8815f570e1e29627e774b7"
+                "reference": "4331215bad6533aa07e46520a8881a04fe1cd12a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dedoc/scramble/zipball/7af06fe46b4242d97d8815f570e1e29627e774b7",
-                "reference": "7af06fe46b4242d97d8815f570e1e29627e774b7",
+                "url": "https://api.github.com/repos/dedoc/scramble/zipball/4331215bad6533aa07e46520a8881a04fe1cd12a",
+                "reference": "4331215bad6533aa07e46520a8881a04fe1cd12a",
                 "shasum": ""
             },
             "require": {
@@ -1564,7 +1564,7 @@
             ],
             "support": {
                 "issues": "https://github.com/dedoc/scramble/issues",
-                "source": "https://github.com/dedoc/scramble/tree/v0.12.32"
+                "source": "https://github.com/dedoc/scramble/tree/v0.12.33"
             },
             "funding": [
                 {
@@ -1572,7 +1572,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-09-08T09:48:36+00:00"
+            "time": "2025-09-09T09:51:38+00:00"
         },
         {
             "name": "devonab/filament-easy-footer",
