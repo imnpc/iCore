@@ -11,9 +11,9 @@ use Bavix\Wallet\Traits\HasWallets;
 use Cog\Contracts\Ban\Bannable as BannableContract;
 use Cog\Laravel\Ban\Traits\Bannable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModel;
 use Plank\Mediable\Mediable;
@@ -36,6 +36,7 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
     use HasTags; // 标签
     use Notifiable, AuthenticationLoggable; // 登录日志
     use Bannable; // 封禁
+    use SoftDeletes;
 
     protected static ?string $translateablePackageKey = ''; // 翻译
 
@@ -93,17 +94,6 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
             'last_login_at'     => 'datetime',
             'app_authentication_secret' => 'encrypted',
         ];
-    }
-
-    /**
-     * Get the user's initials
-     */
-    public function initials(): string
-    {
-        return Str::of($this->name)
-            ->explode(' ')
-            ->map(fn(string $name) => Str::of($name)->substr(0, 1))
-            ->implode('');
     }
 
     /**

@@ -57,7 +57,7 @@ class UserController extends Controller
         ];
 
         if (!Auth::guard('web')->attempt($credentials)) {
-            return $this->fail('提供的凭据不正确!', 401);
+            return $this->fail('帐号或者密码错误!', 401);
         }
 
         // 获取已认证的用户（使用同一 guard）
@@ -254,7 +254,7 @@ class UserController extends Controller
 
             return $this->success('', '密码重设成功,清使用新密码登录!', 200);
         } else {
-            return $this->fail('用户不存在', 404);
+            return $this->fail('用户不存在', 403);
         }
     }
 
@@ -350,7 +350,7 @@ class UserController extends Controller
         $user = $request->user();
         // 验证旧密码
         if (!Hash::check($request->old_password, $user->password)) {
-            return $this->fail('旧密码错误!', 404);
+            return $this->fail('旧密码错误!', 403);
         }
         $user->update([
             'password' => bcrypt($request->password), // 更新新密码
@@ -373,7 +373,7 @@ class UserController extends Controller
     {
         $user = $request->user();
         if ($user->app_authentication_secret) {
-            return $this->fail('已经设置过谷歌验证器了!', 404);
+            return $this->fail('已经设置过谷歌验证器了!', 403);
         }
 
         $google2fa = new Google2FA(); // 谷歌验证器
@@ -429,7 +429,7 @@ class UserController extends Controller
 
         $user = $request->user();
         if ($user->app_authentication_secret) {
-            return $this->fail('已经设置过谷歌验证器了!', 404);
+            return $this->fail('已经设置过谷歌验证器了!', 403);
         }
         $app_authentication_secret = $request->app_authentication_secret;
         $two_fa_code = $request->two_fa_code;

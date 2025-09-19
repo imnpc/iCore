@@ -141,6 +141,7 @@ return [
     'general' => [
         'id' => 'ID',
         'user_id' => '用户ID',
+        'parent_id' => '上级ID',
         'user' => '用户',
         'name' => '名称',
         'email' => '邮箱',
@@ -191,7 +192,7 @@ return [
             'description' => '系统设置',
         ],
         'app' => [
-            'title' => 'APP设置',
+            'title' => '网站设置',
             'description' => '设置网站信息',
             'name' => '网站名称',
             'logo' => '网站 Logo',
