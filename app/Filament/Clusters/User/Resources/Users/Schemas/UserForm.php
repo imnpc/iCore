@@ -7,6 +7,7 @@ use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
+use Relaticle\CustomFields\Facades\CustomFields;
 use Ysfkaya\FilamentPhoneInput\Forms\PhoneInput;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
 
@@ -38,6 +39,9 @@ class UserForm
                     ->helperText(User::transAttribute('password_help'))
                     ->autocomplete('new-password')
                     ->revealable(),
+                // Add Custom Fields
+                CustomFields::form()->forSchema($schema)
+                    ->build(),
                 Toggle::make('status')
                     ->label(trans('filament-model.general.status'))
                     ->required()

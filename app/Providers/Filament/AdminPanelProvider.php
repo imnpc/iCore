@@ -32,6 +32,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Maggomann\FilamentModelTranslator\FilamentModelTranslatorServicePlugin;
 use Outerweb\FilamentSettings\Filament\Plugins\FilamentSettingsPlugin;
 use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
+use Relaticle\CustomFields\CustomFieldsPlugin;
 use Tapp\FilamentAuthenticationLog\FilamentAuthenticationLogPlugin;
 use TomatoPHP\FilamentWallet\FilamentWalletPlugin;
 
@@ -134,6 +135,7 @@ class AdminPanelProvider extends PanelProvider
                 EasyFooterPlugin::make()
                     ->withLoadTime('Processed in '), // 页脚
                 FilamentWalletPlugin::make()->hideResources(), // 钱包
+                CustomFieldsPlugin::make(), // 自定义字段
             ])
             ->profile()
             ->multiFactorAuthentication([

@@ -19,11 +19,13 @@ use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModel;
 use Plank\Mediable\Mediable;
 use Plank\Mediable\MediableInterface;
 use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
+use Relaticle\CustomFields\Models\Concerns\UsesCustomFields;
+use Relaticle\CustomFields\Models\Contracts\HasCustomFields;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Tags\HasTags;
 
-class User extends Authenticatable implements MediableInterface, Wallet, WalletFloat,BannableContract
+class User extends Authenticatable implements MediableInterface, Wallet, WalletFloat,BannableContract,HasCustomFields
 {
     use HasFactory, Notifiable;
     use HasApiTokens;
@@ -37,6 +39,7 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
     use Notifiable, AuthenticationLoggable; // 登录日志
     use Bannable; // 封禁
     use SoftDeletes;
+    use UsesCustomFields;
 
     protected static ?string $translateablePackageKey = ''; // 翻译
 
