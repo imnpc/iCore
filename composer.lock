@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ceea7687369e059590ea191c5c3bcdc3",
+    "content-hash": "a49077fd5f1f55f4b98ebc873af2e7e5",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -3490,66 +3490,6 @@
                 "source": "https://github.com/imnpc/filament-bandel/tree/3.0.1"
             },
             "time": "2025-08-07T06:57:51+00:00"
-        },
-        {
-            "name": "imnpc/filament-wallet",
-            "version": "2.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/imnpc/filament-wallet.git",
-                "reference": "154059ac41c944bcf2aaf159d63b0616c771af8a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/imnpc/filament-wallet/zipball/154059ac41c944bcf2aaf159d63b0616c771af8a",
-                "reference": "154059ac41c944bcf2aaf159d63b0616c771af8a",
-                "shasum": ""
-            },
-            "require": {
-                "bavix/laravel-wallet": "^10.0|^11.0",
-                "filament/filament": "^4.0.0",
-                "php": "^8.1|^8.2|^8.3",
-                "tomatophp/console-helpers": "^1.1"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "TomatoPHP\\FilamentWallet\\FilamentWalletServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "TomatoPHP\\FilamentWallet\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fady Mondy",
-                    "email": "info@3x1.io"
-                }
-            ],
-            "description": "Account Balance / Wallets Manager For FilamentPHP and Filament Account Builder",
-            "keywords": [
-                "laravel",
-                "php",
-                "template"
-            ],
-            "support": {
-                "source": "https://github.com/imnpc/filament-wallet/tree/2.0.3"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/3x1io",
-                    "type": "github"
-                }
-            ],
-            "time": "2025-08-07T02:42:32+00:00"
         },
         {
             "name": "imnpc/laravel-flysystem-oss",
@@ -14578,6 +14518,81 @@
                 }
             ],
             "time": "2023-02-12T12:00:38+00:00"
+        },
+        {
+            "name": "tomatophp/filament-wallet",
+            "version": "4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tomatophp/filament-wallet.git",
+                "reference": "72780f89c92a4aeeee4c62eece1a5bd8318b3634"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tomatophp/filament-wallet/zipball/72780f89c92a4aeeee4c62eece1a5bd8318b3634",
+                "reference": "72780f89c92a4aeeee4c62eece1a5bd8318b3634",
+                "shasum": ""
+            },
+            "require": {
+                "bavix/laravel-wallet": "^10.0|^11.0",
+                "filament/filament": "^4.0",
+                "php": "^8.2|^8.3|^8.4",
+                "tomatophp/console-helpers": "^1.1"
+            },
+            "require-dev": {
+                "larastan/larastan": "^2.9||^3.0",
+                "laravel/pint": "^1.14",
+                "nunomaduro/collision": "^8.1.1||^7.10.0",
+                "orchestra/testbench": "^10.0.0||^9.0.0",
+                "pestphp/pest": "^3.0",
+                "pestphp/pest-plugin-arch": "^3.0",
+                "pestphp/pest-plugin-laravel": "^3.0",
+                "pestphp/pest-plugin-livewire": "^3.0",
+                "pestphp/pest-plugin-type-coverage": "^3.5",
+                "phpstan/extension-installer": "^1.3||^2.0",
+                "phpstan/phpstan-deprecation-rules": "^1.1||^2.0",
+                "phpstan/phpstan-phpunit": "^1.3||^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TomatoPHP\\FilamentWallet\\FilamentWalletServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentWallet\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fady Mondy",
+                    "email": "info@3x1.io"
+                }
+            ],
+            "description": "Account Balance / Wallets Manager For FilamentPHP and Filament Account Builder",
+            "keywords": [
+                "laravel",
+                "php",
+                "template"
+            ],
+            "support": {
+                "issues": "https://github.com/tomatophp/filament-wallet/issues",
+                "source": "https://github.com/tomatophp/filament-wallet/tree/v4.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/fadymondy",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-10-08T06:51:38+00:00"
         },
         {
             "name": "torann/geoip",
