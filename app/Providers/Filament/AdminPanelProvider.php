@@ -30,7 +30,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Maggomann\FilamentModelTranslator\FilamentModelTranslatorServicePlugin;
-use Outerweb\FilamentSettings\Filament\Plugins\FilamentSettingsPlugin;
+use Outerweb\FilamentSettings\SettingsPlugin;
 use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
 use Relaticle\CustomFields\CustomFieldsPlugin;
 use Tapp\FilamentAuthenticationLog\FilamentAuthenticationLogPlugin;
@@ -118,7 +118,7 @@ class AdminPanelProvider extends PanelProvider
                         'default' => 1,
                         'sm'      => 2,
                     ]), // 权限
-                FilamentSettingsPlugin::make()
+                SettingsPlugin::make()
                     ->pages([
 //                        \App\Filament\Clusters\Settings\Pages\SystemConfig::class,
                     ]), // 系统设置

@@ -11,11 +11,12 @@ use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Tabs;
-use Outerweb\FilamentSettings\Filament\Pages\Settings as BaseSettings;
+use Filament\Schemas\Schema;
+use Outerweb\FilamentSettings\Pages\Settings;
 use Ysfkaya\FilamentPhoneInput\Forms\PhoneInput;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
 
-class SystemConfig extends BaseSettings
+class SystemConfig extends Settings
 {
     use HasPageShield;
 
@@ -31,10 +32,12 @@ class SystemConfig extends BaseSettings
      */
 //    protected static ?string $cluster = PermissionCluster::class;
 
-    public function schema(): array|Closure
+    public function form(Schema $schema): Schema
     {
-        return [
-                Tabs::make('Tabs')
+        return $schema
+            ->components([
+                Tabs::make()
+                    ->columnSpanFull()
                     ->tabs([
                         Tabs\Tab::make('app')
                             ->label(trans('filament-model.settings.app.title'))
@@ -48,11 +51,28 @@ class SystemConfig extends BaseSettings
                             ->schema([
                                 // ...
                             ]),
-                    ])
-                    ->persistTabInQueryString()
-                    ->columnSpanFull()
-                    ->activeTab(1),
-            ];
+                    ]),
+            ]);
+//        return [
+//                Tabs::make('Tabs')
+//                    ->tabs([
+//                        Tabs\Tab::make('app')
+//                            ->label(trans('filament-model.settings.app.title'))
+//                            ->icon('heroicon-o-computer-desktop')
+//                            ->schema(self::getAppFields()),
+//                        Tabs\Tab::make('payment')
+//                            ->label(trans('filament-model.payment.name'))
+//                            ->icon('fab-paypal')
+//                            ->schema(self::getPaymentFields()),
+//                        Tabs\Tab::make('Tab 3')
+//                            ->schema([
+//                                // ...
+//                            ]),
+//                    ])
+//                    ->persistTabInQueryString()
+//                    ->columnSpanFull()
+//                    ->activeTab(1),
+//            ];
     }
 
     public function getAppFields(): array
