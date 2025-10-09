@@ -9,7 +9,7 @@
         "php": "^8.4",
         "bavix/laravel-wallet": "^11.4",
         "bezhansalleh/filament-language-switch": "^4.0",
-        "bezhansalleh/filament-shield": "^4.0@beta",
+        "bezhansalleh/filament-shield": "^4.0",
         "codewithdennis/filament-lucide-icons": "^4.0",
         "dedoc/scramble": "^0.12.26",
         "devonab/filament-easy-footer": "^2.0",
@@ -25,7 +25,7 @@
         "leonis/easysms-notification-channel": "^3.0",
         "livewire/livewire": "^3.6",
         "maggomann/filament-model-translator": "^1.1",
-        "marcelweidum/filament-passkeys": "^1.0@beta",
+        "marcelweidum/filament-passkeys": "^1.0",
         "mews/captcha": "^3.4",
         "outerweb/filament-settings": "^2.1",
         "outerweb/settings": "^2.0",
@@ -35,7 +35,6 @@
         "pxlrbt/filament-environment-indicator": "^3.1",
         "pxlrbt/filament-excel": "3.0",
         "rappasoft/laravel-authentication-log": "^5.0",
-        "relaticle/custom-fields": "^2.0",
         "resend/resend-laravel": "^0.19.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-activitylog": "^4.10",
@@ -116,6 +115,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "beta",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }

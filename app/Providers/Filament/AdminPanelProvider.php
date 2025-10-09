@@ -135,7 +135,7 @@ class AdminPanelProvider extends PanelProvider
                 EasyFooterPlugin::make()
                     ->withLoadTime('Processed in '), // 页脚
                 FilamentWalletPlugin::make()->hideResources(), // 钱包
-                CustomFieldsPlugin::make(), // 自定义字段
+//                CustomFieldsPlugin::make(), // 自定义字段
             ])
             ->profile()
             ->multiFactorAuthentication([

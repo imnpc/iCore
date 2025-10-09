@@ -15,7 +15,6 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use pxlrbt\FilamentExcel\Actions\ExportAction;
-use Relaticle\CustomFields\Facades\CustomFields;
 use Widiu7omo\FilamentBandel\Actions\BanAction;
 use Widiu7omo\FilamentBandel\Actions\UnbanAction;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
@@ -43,10 +42,6 @@ class UsersTable
                 ImageColumn::make('avatar_url')
                     ->label(trans('filament-model.general.avatar_url'))
                     ->circular(),
-//                 Add custom field columns
-//                CustomFields::table()
-//                    ->forModel($table->getModel())
-//                    ->columns(),
                 IconColumn::make('status')
                     ->label(trans('filament-model.general.status'))
                     ->boolean(),
