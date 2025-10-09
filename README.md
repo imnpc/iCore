@@ -17,7 +17,7 @@ https://filamentphp.com/plugins/riodewanto-superduper-starter
 目前版本： v1.0.0
 
 ![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
-![PHP Version](https://img.shields.io/badge/PHP-8.3-blue?style=flat-square&logo=php)
+![PHP Version](https://img.shields.io/badge/PHP-8.4-blue?style=flat-square&logo=php)
 ![Laravel Version](https://img.shields.io/badge/Laravel-12.0-red?style=flat-square&logo=laravel)
 ![Filament Version](https://img.shields.io/badge/Filament-4.0-purple?style=flat-square)
 
