@@ -157,6 +157,7 @@ class AdminPanelProvider extends PanelProvider
                 __('filament-model.navigation_group.setting.name'),
             ])
 //            ->topNavigation() // 顶部导航
+            ->topbar(false)
             ->sidebarWidth('15rem')
             ->sidebarCollapsibleOnDesktop();
     }
