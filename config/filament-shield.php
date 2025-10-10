@@ -176,11 +176,11 @@ return [
                 'view', 'viewAny', 'create', 'update', 'delete', 'deleteAny',
             ],
             // 用户
-            \App\Filament\Clusters\User\Resources\UserResource::class => [
+            \App\Filament\Resources\Users\UserResource::class                           => [
                 'view', 'viewAny', 'create', 'update', 'delete', 'deleteAny',
             ],
             // 用户日志
-            \App\Filament\Clusters\User\Resources\AuthenticationLogResource::class => [
+            \App\Filament\Resources\AuthenticationLogs\AuthenticationLogResource::class => [
                 'view', 'viewAny',
             ],
             // 钱包

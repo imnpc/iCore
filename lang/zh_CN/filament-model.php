@@ -81,9 +81,9 @@ return [
         'activity_log' => [
             'name' => '日志',
         ],
-        'user' => [
-            'name' => '用户',
-        ],
+//        'user' => [
+//            'name' => '用户',
+//        ],
         'wallet' => [
             'name' => '钱包',
         ],

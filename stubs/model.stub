@@ -15,11 +15,11 @@ class {{ class }} extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    use DateTrait; // 日期重写
-    use HasTranslateableModel; // 翻译
-    use LogsActivity; // 记录日志
+    use DateTrait;
+    use HasTranslateableModel;
+    use LogsActivity;
 
-    protected static ?string $translateablePackageKey = ''; // 翻译
+    protected static ?string $translateablePackageKey = '';
 
     /**
      * 日志

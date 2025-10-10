@@ -96,6 +96,7 @@ class TransactionResource extends Resource implements Translateable
         return __('filament-model.navigation_group.wallet.name');
     }
 
+
     /**
      * 排序
      * @return int|null
@@ -104,4 +105,10 @@ class TransactionResource extends Resource implements Translateable
     {
         return 4;
     }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Clusters\User\Resources\Users\RelationManagers;
+namespace App\Filament\Resources\Users\RelationManagers;
 
 use App\Filament\Clusters\Finance\Resources\UserWalletLogs\Tables\UserWalletLogsTable;
 use Filament\Resources\RelationManagers\RelationManager;

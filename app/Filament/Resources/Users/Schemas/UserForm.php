@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Filament\Clusters\User\Resources\Users\Schemas;
+namespace App\Filament\Resources\Users\Schemas;
 
 use App\Models\User;
 use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 use Ysfkaya\FilamentPhoneInput\Forms\PhoneInput;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
 
@@ -40,10 +41,17 @@ class UserForm
                     ->revealable(),
                 Toggle::make('status')
                     ->label(trans('filament-model.general.status'))
+                    ->onColor('success')
+                    ->offColor('danger')
+                    ->onIcon(Heroicon::OutlinedCheck)
+                    ->offIcon(Heroicon::OutlinedXMark)
                     ->required()
                     ->inline(false)
                     ->default(1)
                     ->columnSpan('full'),
+                TextInput::make('parent_id')
+                    ->label(trans('filament-model.general.parent_id'))
+                    ->disabled(),
                 TextInput::make('created_at')
                     ->label(trans('filament-model.general.created_at'))
                     ->disabled(),

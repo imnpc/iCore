@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Filament\Clusters\User\Resources;
+namespace App\Filament\Resources\Users;
 
-use App\Filament\Clusters\Finance\FinanceCluster;
-use App\Filament\Clusters\User\Resources\Users\Pages\CreateUser;
-use App\Filament\Clusters\User\Resources\Users\Pages\EditUser;
-use App\Filament\Clusters\User\Resources\Users\Pages\ListUsers;
-use App\Filament\Clusters\User\Resources\Users\RelationManagers\UserWalletLogRelationManager;
-use App\Filament\Clusters\User\Resources\Users\RelationManagers\WalletRelationManager;
-use App\Filament\Clusters\User\Resources\Users\Schemas\UserForm;
-use App\Filament\Clusters\User\Resources\Users\Tables\UsersTable;
-use App\Filament\Clusters\User\UserCluster;
+use App\Filament\Resources\Users\Pages\CreateUser;
+use App\Filament\Resources\Users\Pages\EditUser;
+use App\Filament\Resources\Users\Pages\ListUsers;
+use App\Filament\Resources\Users\RelationManagers\UserWalletLogRelationManager;
+use App\Filament\Resources\Users\RelationManagers\WalletRelationManager;
+use App\Filament\Resources\Users\Schemas\UserForm;
+use App\Filament\Resources\Users\Tables\UsersTable;
 use App\Models\User;
 use BackedEnum;
 use Filament\Resources\RelationManagers\RelationGroup;
@@ -28,11 +26,9 @@ class UserResource extends Resource implements Translateable
 
     protected static ?string $translateablePackageKey = '';
 
-    protected static ?string $cluster = UserCluster::class;
-
     protected static ?string $model = User::class;
 
-    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-users';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-user-circle';
 
     public static function form(Schema $schema): Schema
     {
@@ -72,10 +68,10 @@ class UserResource extends Resource implements Translateable
      * 导航组
      * @return string|null
      */
-    public static function getNavigationGroup(): ?string
-    {
-        return __('filament-model.navigation_group.user.name');
-    }
+//    public static function getNavigationGroup(): ?string
+//    {
+//        return __('filament-model.navigation_group.user.name');
+//    }
 
     /**
      * 导航徽章

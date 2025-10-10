@@ -180,7 +180,7 @@ php artisan make:enum PayType
 12. 设置为超级管理员
 
      ```bash
-    php artisan shield:super-admin --user=1
+    php artisan shield:super-admin --user=1 --panel=admin
     php artisan shield:install admin
      ```
 

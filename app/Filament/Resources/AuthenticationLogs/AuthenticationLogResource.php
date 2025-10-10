@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Filament\Clusters\User\Resources;
+namespace App\Filament\Resources\AuthenticationLogs;
 
-use App\Filament\Clusters\User\Resources\AuthenticationLogs\Pages\ListAuthenticationLogs;
-use App\Filament\Clusters\User\UserCluster;
+use App\Filament\Resources\AuthenticationLogs\Pages\ListAuthenticationLogs;
 use App\Models\User;
-use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use BezhanSalleh\FilamentShield\Traits\HasShieldFormComponents;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
@@ -21,16 +19,11 @@ use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
-use Tapp\FilamentAuthenticationLog\FilamentAuthenticationLogPlugin;
 
 class AuthenticationLogResource extends Resource
 {
     use HasShieldFormComponents; // 添加表单组件权限
-
-    protected static ?string $cluster = UserCluster::class;
 
     protected static ?string $model = \Rappasoft\LaravelAuthenticationLog\Models\AuthenticationLog::class;
 
@@ -49,10 +42,10 @@ class AuthenticationLogResource extends Resource
         return config('filament-authentication-log.navigation.authentication-log.sort');
     }
 
-    public static function getNavigationGroup(): ?string
-    {
-        return config('filament-authentication-log.navigation.authentication-log.group', __('filament-authentication-log::filament-authentication-log.navigation.group'));
-    }
+//    public static function getNavigationGroup(): ?string
+//    {
+//        return config('filament-authentication-log.navigation.authentication-log.group', __('filament-authentication-log::filament-authentication-log.navigation.group'));
+//    }
 
     public static function getLabel(): string
     {
@@ -230,4 +223,10 @@ class AuthenticationLogResource extends Resource
     {
         return static::getModel()::count();
     }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
+
 }

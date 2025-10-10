@@ -6816,16 +6816,16 @@
         },
         {
             "name": "outerweb/settings",
-            "version": "v2.0.1",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/outer-web/settings.git",
-                "reference": "fb80e360bab5d47574775e5ed997f79aba797679"
+                "reference": "ea6ab44e4d774864054b69d2419c191be8cd9f08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/outer-web/settings/zipball/fb80e360bab5d47574775e5ed997f79aba797679",
-                "reference": "fb80e360bab5d47574775e5ed997f79aba797679",
+                "url": "https://api.github.com/repos/outer-web/settings/zipball/ea6ab44e4d774864054b69d2419c191be8cd9f08",
+                "reference": "ea6ab44e4d774864054b69d2419c191be8cd9f08",
                 "shasum": ""
             },
             "require": {
@@ -6851,7 +6851,7 @@
             "extra": {
                 "laravel": {
                     "aliases": {
-                        "Settings": "Outerweb\\Settings\\Facades\\Settings"
+                        "Setting": "Outerweb\\Settings\\Facades\\Setting"
                     },
                     "providers": [
                         "Outerweb\\Settings\\SettingsServiceProvider"
@@ -6887,7 +6887,7 @@
             ],
             "support": {
                 "issues": "https://github.com/outer-web/settings/issues",
-                "source": "https://github.com/outer-web/settings/tree/v2.0.1"
+                "source": "https://github.com/outer-web/settings/tree/v2.0.2"
             },
             "funding": [
                 {
@@ -6895,7 +6895,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-10-08T15:55:18+00:00"
+            "time": "2025-10-09T12:02:13+00:00"
         },
         {
             "name": "overtrue/easy-sms",

@@ -6,7 +6,7 @@ return [
     // 'user-resource' => \App\Filament\Resources\UserResource::class,
     'resources' => [
 //        'AutenticationLogResource' => AuthenticationLogResource::class,
-        'AutenticationLogResource' => \App\Filament\Clusters\User\Resources\AuthenticationLogResource::class,
+        'AutenticationLogResource' => \App\Filament\Resources\AuthenticationLogs\AuthenticationLogResource::class,
     ],
 
     'authenticable-resources' => [

@@ -2,7 +2,7 @@
 
 namespace App\Filament\RelationManagers;
 
-use App\Filament\Clusters\User\Resources\AuthenticationLogResource;
+use App\Filament\Resources\AuthenticationLogs\AuthenticationLogResource;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
