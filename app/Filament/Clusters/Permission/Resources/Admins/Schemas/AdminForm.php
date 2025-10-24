@@ -51,6 +51,7 @@ class AdminForm
                 Select::make('roles')
                     ->label(__('filament-shield::filament-shield.resource.label.role'))
                     ->relationship('roles', 'name')
+                    ->multiple()
                     ->preload(),
                 Toggle::make('status')
                     ->label(trans('filament-model.general.status'))

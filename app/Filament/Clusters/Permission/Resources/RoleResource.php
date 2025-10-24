@@ -12,6 +12,7 @@ use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use BezhanSalleh\FilamentShield\Support\Utils;
 use BezhanSalleh\FilamentShield\Traits\HasShieldFormComponents;
 use BezhanSalleh\PluginEssentials\Concerns\Resource as Essentials;
+use DiscoveryDesign\FilamentGaze\Forms\Components\GazeBanner;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -48,6 +49,19 @@ class RoleResource extends Resource
                     ->schema([
                         Section::make()
                             ->schema([
+                                GazeBanner::make()
+                                    ->lock()
+                                    ->canTakeControl(fn() => auth()->user()->isAdmin())
+                                    ->hideOnCreate()
+                                    ->columnSpan('full'),
+
+                                TextInput::make('title')
+                                    ->label(__('filament-shield::filament-shield.field.title'))
+                                    ->unique(ignoreRecord: true)
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->helperText("中文名称"),
+
                                 TextInput::make('name')
                                     ->label(__('filament-shield::filament-shield.field.name'))
                                     ->unique(
@@ -55,12 +69,17 @@ class RoleResource extends Resource
                                         modifyRuleUsing: fn (Unique $rule): Unique => Utils::isTenancyEnabled() ? $rule->where(Utils::getTenantModelForeignKey(), Filament::getTenant()?->id) : $rule
                                     )
                                     ->required()
-                                    ->maxLength(255),
+                                    ->alphaDash()
+                                    ->maxLength(255)
+                                    ->disabled(fn ($operation) => $operation === 'edit') // 新增禁用逻辑
+                                    ->dehydrated(true) // 保持数据持久化
+                                    ->helperText("英文名,使用下划线区分,例如 super_admin, 请勿使用中文,编辑无法修改"),
 
                                 TextInput::make('guard_name')
                                     ->label(__('filament-shield::filament-shield.field.guard_name'))
                                     ->default(Utils::getFilamentAuthGuard())
                                     ->nullable()
+                                    ->disabled()
                                     ->maxLength(255),
 
                                 Select::make(config('permission.column_names.team_foreign_key'))
@@ -89,10 +108,16 @@ class RoleResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('id')
+                    ->label(trans('filament-model.general.id')),
+                TextColumn::make('title')
+                    ->weight('font-medium')
+                    ->label(__('filament-shield::filament-shield.column.title'))
+                    ->searchable(),
                 TextColumn::make('name')
                     ->weight(FontWeight::Medium)
                     ->label(__('filament-shield::filament-shield.column.name'))
-                    ->formatStateUsing(fn (string $state): string => Str::headline($state))
+//                    ->formatStateUsing(fn (string $state): string => Str::headline($state))
                     ->searchable(),
                 TextColumn::make('guard_name')
                     ->badge()

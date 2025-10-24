@@ -13,6 +13,7 @@ return [
     'column.roles' => '角色',
     'column.permissions' => '权限',
     'column.updated_at' => '更新时间',
+    'column.title' => '中文角色名',
 
     /*
     |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ return [
     'field.team.placeholder' => '选择一个团队 ...',
     'field.select_all.name' => '全选',
     'field.select_all.message' => '启用当前为该角色 <span class="text-primary font-medium">启用的</span> 所有权限',
+    'field.title' => '中文角色名',
 
     /*
     |--------------------------------------------------------------------------

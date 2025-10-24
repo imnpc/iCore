@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Users\Schemas;
 
 use App\Models\User;
+use DiscoveryDesign\FilamentGaze\Forms\Components\GazeBanner;
 use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -17,6 +18,11 @@ class UserForm
     {
         return $schema
             ->components([
+                GazeBanner::make()
+                    ->lock()
+                    ->canTakeControl(fn() => auth()->user()->isAdmin())
+                    ->hideOnCreate()
+                    ->columnSpan('full'),
                 TextInput::make('name')
                     ->label(trans('filament-model.general.name'))
                     ->required()
