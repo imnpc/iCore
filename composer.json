@@ -7,6 +7,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
+        "amidesfahani/filament-tinyeditor": "^4.0",
         "bavix/laravel-wallet": "^11.4",
         "bezhansalleh/filament-language-switch": "^4.0",
         "bezhansalleh/filament-shield": "^4.0",

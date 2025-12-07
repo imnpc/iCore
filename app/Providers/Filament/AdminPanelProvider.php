@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 use App\Filament\Auth\Login;
 use App\Http\Middleware\ForbidBannedUser;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
@@ -10,6 +11,7 @@ use DiscoveryDesign\FilamentGaze\FilamentGazePlugin;
 use Filament\Actions\CreateAction;
 use Filament\Auth\MultiFactor\App\AppAuthentication;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\RichEditor;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -60,6 +62,27 @@ class AdminPanelProvider extends PanelProvider
             $component->defaultDateDisplayFormat('Y-m-d');
             $component->defaultDateTimeDisplayFormat('Y-m-d H:i:s');
         });
+
+        // RichEditor : TipTap 富文本编辑器
+        RichEditor::configureUsing(function (RichEditor $component) {
+            $component->toolbarButtons([
+                ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
+                ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
+                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                ['textColor','table', 'grid','attachFiles',],
+                ['undo', 'redo'],
+            ]);
+        });
+        // TinyEditor : TinyMCE 富文本编辑器
+        if (class_exists(TinyEditor::class)) {
+            TinyEditor::configureUsing(function (TinyEditor $component) {
+                $component->toolbarMode('wrap')
+                    ->showMenuBar(true)
+                    ->profile('full')
+                    ->fileAttachmentsDirectory('attachments/' . date('Y/m/d'))
+                    ->columnSpanFull();
+            });
+        }
 
         // 默认关闭 创建另一个按钮
         CreateRecord::disableCreateAnother();
