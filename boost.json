@@ -1,12 +1,16 @@
 {
     "agents": [
         "claude_code",
+        "codex",
         "copilot",
-        "cursor"
+        "cursor",
+        "gemini"
     ],
     "editors": [
         "claude_code",
+        "codex",
         "cursor",
+        "gemini",
         "phpstorm",
         "vscode"
     ],
