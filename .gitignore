@@ -28,7 +28,7 @@ Thumbs.db
 /.github
 /.junie
 .mcp.json
-.boost.json
+boost.json
 CLAUDE.md
 GEMINI.md
 AGENTS.md
