@@ -79,6 +79,7 @@ class AdminPanelProvider extends PanelProvider
                 $component->toolbarMode('wrap')
                     ->showMenuBar(true)
                     ->profile('full')
+                    ->fileAttachmentsVisibility('public')
                     ->fileAttachmentsDirectory('attachments/' . date('Y/m/d'))
                     ->columnSpanFull();
             });
