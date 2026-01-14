@@ -2,10 +2,10 @@
 
 return [
     'version' => [
-        'tiny' => '8.3.1',
+        'tiny' => '8.3.2',
         'language' => [
             // https://cdn.jsdelivr.net/npm/tinymce-i18n@latest/
-            'version' => '25.11.17',
+            'version' => '26.1.12',
             'package' => 'langs8',
         ],
         'licence_key' => env('TINY_LICENSE_KEY', 'no-api-key'),
