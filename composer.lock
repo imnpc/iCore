@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c1b9913bd9788acd9fd6f4ded7262d9",
+    "content-hash": "aa3f41d87a0b3f70ead98f6eb6eafd65",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -5654,23 +5654,24 @@
         },
         {
             "name": "marcelweidum/filament-passkeys",
-            "version": "v1.0.1",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MarcelWeidum/filament-passkeys.git",
-                "reference": "01e2ab6b32acb649b98d893dddb6f1dcc8a1b345"
+                "reference": "ccb80dcda3a0bcc4aacb42043d88c528b17bc7fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MarcelWeidum/filament-passkeys/zipball/01e2ab6b32acb649b98d893dddb6f1dcc8a1b345",
-                "reference": "01e2ab6b32acb649b98d893dddb6f1dcc8a1b345",
+                "url": "https://api.github.com/repos/MarcelWeidum/filament-passkeys/zipball/ccb80dcda3a0bcc4aacb42043d88c528b17bc7fa",
+                "reference": "ccb80dcda3a0bcc4aacb42043d88c528b17bc7fa",
                 "shasum": ""
             },
             "require": {
-                "filament/filament": "^4.0",
+                "filament/filament": "^4.0|^5.0",
                 "php": "^8.2",
                 "spatie/laravel-package-tools": "^1.15.0",
-                "spatie/laravel-passkeys": "*"
+                "spatie/laravel-passkeys": "^1.5.3",
+                "web-auth/webauthn-lib": "5.2.3"
             },
             "require-dev": {
                 "laravel/pint": "^1.0",
@@ -5722,7 +5723,7 @@
                     "type": "buy_me_a_coffee"
                 }
             ],
-            "time": "2025-09-20T09:58:55+00:00"
+            "time": "2026-01-17T13:21:33+00:00"
         },
         {
             "name": "markbaker/complex",
@@ -8734,21 +8735,21 @@
         },
         {
             "name": "pxlrbt/filament-excel",
-            "version": "v3.0.0",
+            "version": "v3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pxlrbt/filament-excel.git",
-                "reference": "317e7e480c233509d52cc7f5b646cc5e2848f3af"
+                "reference": "1f4c958a8c4aa8386c5e5c96eba956ac307b6e19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pxlrbt/filament-excel/zipball/317e7e480c233509d52cc7f5b646cc5e2848f3af",
-                "reference": "317e7e480c233509d52cc7f5b646cc5e2848f3af",
+                "url": "https://api.github.com/repos/pxlrbt/filament-excel/zipball/1f4c958a8c4aa8386c5e5c96eba956ac307b6e19",
+                "reference": "1f4c958a8c4aa8386c5e5c96eba956ac307b6e19",
                 "shasum": ""
             },
             "require": {
                 "anourvalar/eloquent-serialize": "^1.2",
-                "filament/filament": "^4.0",
+                "filament/filament": "^4.0|^5.0",
                 "maatwebsite/excel": "^3.1",
                 "php": "^8.1"
             },
@@ -8789,7 +8790,7 @@
             ],
             "support": {
                 "issues": "https://github.com/pxlrbt/filament-excel/issues",
-                "source": "https://github.com/pxlrbt/filament-excel/tree/v3.0.0"
+                "source": "https://github.com/pxlrbt/filament-excel/tree/v3.4.0"
             },
             "funding": [
                 {
@@ -8797,7 +8798,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-06-17T07:34:28+00:00"
+            "time": "2026-01-16T17:09:19+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
