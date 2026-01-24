@@ -15439,20 +15439,20 @@
         },
         {
             "name": "ysfkaya/filament-phone-input",
-            "version": "v4.0.0",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ysfkaya/filament-phone-input.git",
-                "reference": "9258ed00da844b60cf72ac8dbbacbef33e92b787"
+                "reference": "7e1e2bdabe59a88f94e64303fea02b5d99607287"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ysfkaya/filament-phone-input/zipball/9258ed00da844b60cf72ac8dbbacbef33e92b787",
-                "reference": "9258ed00da844b60cf72ac8dbbacbef33e92b787",
+                "url": "https://api.github.com/repos/ysfkaya/filament-phone-input/zipball/7e1e2bdabe59a88f94e64303fea02b5d99607287",
+                "reference": "7e1e2bdabe59a88f94e64303fea02b5d99607287",
                 "shasum": ""
             },
             "require": {
-                "filament/filament": "^4.0",
+                "filament/filament": "^4.0|^5.0",
                 "php": "^8.2",
                 "propaganistas/laravel-phone": "^6.0",
                 "spatie/laravel-package-tools": "^1.92"
@@ -15462,10 +15462,10 @@
                 "nunomaduro/collision": "^8.1",
                 "nunomaduro/larastan": "^3.0",
                 "orchestra/testbench-dusk": "^10.0",
-                "pestphp/pest": "^3.0",
-                "pestphp/pest-plugin-arch": "^3.0",
-                "pestphp/pest-plugin-laravel": "^3.0",
-                "pestphp/pest-plugin-livewire": "^3.0",
+                "pestphp/pest": "^3.0|^4.0",
+                "pestphp/pest-plugin-arch": "^3.0|^4.0",
+                "pestphp/pest-plugin-laravel": "^3.0|^4.0",
+                "pestphp/pest-plugin-livewire": "^3.0|^4.0",
                 "phpstan/extension-installer": "^1.1",
                 "phpstan/phpstan-deprecation-rules": "^2.0",
                 "phpstan/phpstan-phpunit": "^2.0"
@@ -15497,9 +15497,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ysfkaya/filament-phone-input/issues",
-                "source": "https://github.com/ysfkaya/filament-phone-input/tree/v4.0.0"
+                "source": "https://github.com/ysfkaya/filament-phone-input/tree/v4.1.0"
             },
-            "time": "2025-08-23T17:08:36+00:00"
+            "time": "2026-01-23T20:02:18+00:00"
         }
     ],
     "packages-dev": [
@@ -16260,16 +16260,16 @@
         },
         {
             "name": "laravel-lang/lang",
-            "version": "15.26.5",
+            "version": "15.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/lang.git",
-                "reference": "7bb1eead5ccf7e50f313003775f6046fd8967ef5"
+                "reference": "1684701b49401eb98c250e1b9a6b09fa768dfecb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/7bb1eead5ccf7e50f313003775f6046fd8967ef5",
-                "reference": "7bb1eead5ccf7e50f313003775f6046fd8967ef5",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/1684701b49401eb98c250e1b9a6b09fa768dfecb",
+                "reference": "1684701b49401eb98c250e1b9a6b09fa768dfecb",
                 "shasum": ""
             },
             "require": {
@@ -16320,7 +16320,17 @@
                 "issues": "https://github.com/Laravel-Lang/lang/issues",
                 "source": "https://github.com/Laravel-Lang/lang"
             },
-            "time": "2026-01-10T18:54:31+00:00"
+            "funding": [
+                {
+                    "url": "https://boosty.to/dragon-code",
+                    "type": "boosty"
+                },
+                {
+                    "url": "https://yoomoney.ru/to/410012608840929",
+                    "type": "yoomoney"
+                }
+            ],
+            "time": "2026-01-23T19:22:49+00:00"
         },
         {
             "name": "laravel-lang/locale-list",
