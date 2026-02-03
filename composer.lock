@@ -5343,16 +5343,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v3.7.6",
+            "version": "v3.7.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "276ac156f6ae414990784854a2673e3d23c68b24"
+                "reference": "93cfb04b0b4990e43b0a3ed4e3fda732144fff62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/276ac156f6ae414990784854a2673e3d23c68b24",
-                "reference": "276ac156f6ae414990784854a2673e3d23c68b24",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/93cfb04b0b4990e43b0a3ed4e3fda732144fff62",
+                "reference": "93cfb04b0b4990e43b0a3ed4e3fda732144fff62",
                 "shasum": ""
             },
             "require": {
@@ -5407,7 +5407,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v3.7.6"
+                "source": "https://github.com/livewire/livewire/tree/v3.7.7"
             },
             "funding": [
                 {
@@ -5415,7 +5415,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-01-23T05:41:38+00:00"
+            "time": "2026-02-02T23:47:52+00:00"
         },
         {
             "name": "maatwebsite/excel",
@@ -14051,16 +14051,16 @@
         },
         {
             "name": "tapp/filament-authentication-log",
-            "version": "v5.0.3",
+            "version": "v5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TappNetwork/filament-authentication-log.git",
-                "reference": "cb02b25b51e6a1fcdfb883ef112d1a6e2f75a3a0"
+                "reference": "3c1fc82d97dbd9887d4ee4dd9bd954d8f415eb3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TappNetwork/filament-authentication-log/zipball/cb02b25b51e6a1fcdfb883ef112d1a6e2f75a3a0",
-                "reference": "cb02b25b51e6a1fcdfb883ef112d1a6e2f75a3a0",
+                "url": "https://api.github.com/repos/TappNetwork/filament-authentication-log/zipball/3c1fc82d97dbd9887d4ee4dd9bd954d8f415eb3f",
+                "reference": "3c1fc82d97dbd9887d4ee4dd9bd954d8f415eb3f",
                 "shasum": ""
             },
             "require": {
@@ -14125,7 +14125,7 @@
                 "issues": "https://github.com/TappNetwork/filament-authentication-log/issues",
                 "source": "https://github.com/TappNetwork/filament-authentication-log"
             },
-            "time": "2026-01-21T20:50:58+00:00"
+            "time": "2026-02-02T17:37:29+00:00"
         },
         {
             "name": "technikermathe/blade-lucide-icons",
