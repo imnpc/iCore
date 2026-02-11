@@ -8527,16 +8527,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.12.19",
+            "version": "v0.12.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "a4f766e5c5b6773d8399711019bb7d90875a50ee"
+                "reference": "19678eb6b952a03b8a1d96ecee9edba518bb0373"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/a4f766e5c5b6773d8399711019bb7d90875a50ee",
-                "reference": "a4f766e5c5b6773d8399711019bb7d90875a50ee",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/19678eb6b952a03b8a1d96ecee9edba518bb0373",
+                "reference": "19678eb6b952a03b8a1d96ecee9edba518bb0373",
                 "shasum": ""
             },
             "require": {
@@ -8600,9 +8600,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.12.19"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.12.20"
             },
-            "time": "2026-01-30T17:33:13+00:00"
+            "time": "2026-02-11T15:05:28+00:00"
         },
         {
             "name": "pxlrbt/filament-environment-indicator",
@@ -9929,16 +9929,16 @@
         },
         {
             "name": "spatie/laravel-route-attributes",
-            "version": "1.26.2",
+            "version": "1.26.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-route-attributes.git",
-                "reference": "16acdf2d7e04e75c1716c9ef148871266bdc0070"
+                "reference": "64a667e3026f131706ea5cf62a07b9da1d5729e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-route-attributes/zipball/16acdf2d7e04e75c1716c9ef148871266bdc0070",
-                "reference": "16acdf2d7e04e75c1716c9ef148871266bdc0070",
+                "url": "https://api.github.com/repos/spatie/laravel-route-attributes/zipball/64a667e3026f131706ea5cf62a07b9da1d5729e7",
+                "reference": "64a667e3026f131706ea5cf62a07b9da1d5729e7",
                 "shasum": ""
             },
             "require": {
@@ -9986,7 +9986,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-route-attributes/issues",
-                "source": "https://github.com/spatie/laravel-route-attributes/tree/1.26.2"
+                "source": "https://github.com/spatie/laravel-route-attributes/tree/1.26.3"
             },
             "funding": [
                 {
@@ -9998,7 +9998,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2025-11-25T12:39:38+00:00"
+            "time": "2026-02-11T00:17:12+00:00"
         },
         {
             "name": "spatie/laravel-tags",
