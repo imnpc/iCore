@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa3f41d87a0b3f70ead98f6eb6eafd65",
+    "content-hash": "08544774eab9a469f5d7cf21f4f59257",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -1557,16 +1557,16 @@
         },
         {
             "name": "dedoc/scramble",
-            "version": "v0.12.36",
+            "version": "v0.13.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dedoc/scramble.git",
-                "reference": "e2741add99b5f9360a7a58a58ce97781569e4cc6"
+                "reference": "1788ab68ae51ae2fce34e16add1387ee1ac5d88b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dedoc/scramble/zipball/e2741add99b5f9360a7a58a58ce97781569e4cc6",
-                "reference": "e2741add99b5f9360a7a58a58ce97781569e4cc6",
+                "url": "https://api.github.com/repos/dedoc/scramble/zipball/1788ab68ae51ae2fce34e16add1387ee1ac5d88b",
+                "reference": "1788ab68ae51ae2fce34e16add1387ee1ac5d88b",
                 "shasum": ""
             },
             "require": {
@@ -1625,7 +1625,7 @@
             ],
             "support": {
                 "issues": "https://github.com/dedoc/scramble/issues",
-                "source": "https://github.com/dedoc/scramble/tree/v0.12.36"
+                "source": "https://github.com/dedoc/scramble/tree/v0.13.12"
             },
             "funding": [
                 {
@@ -1633,7 +1633,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-10-20T08:06:09+00:00"
+            "time": "2026-02-05T07:47:09+00:00"
         },
         {
             "name": "devonab/filament-easy-footer",
