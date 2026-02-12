@@ -49,7 +49,7 @@ class RoleResource extends Resource
                     ->schema([
                         Section::make()
                             ->schema([
-                                GazeBanner::make()
+                                GazeBanner::make('role')
                                     ->lock()
                                     ->canTakeControl(fn() => auth()->user()->isAdmin())
                                     ->hideOnCreate()

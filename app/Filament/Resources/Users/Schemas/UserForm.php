@@ -18,9 +18,9 @@ class UserForm
     {
         return $schema
             ->components([
-                GazeBanner::make()
+                GazeBanner::make('user')
                     ->lock()
-                    ->canTakeControl(fn() => auth()->user()->isAdmin())
+                    ->canTakeControl(fn () => auth()->user()->isAdmin())
                     ->hideOnCreate()
                     ->columnSpan('full'),
                 TextInput::make('name')
