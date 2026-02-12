@@ -12,23 +12,24 @@ use Illuminate\Support\Collection;
 
 class CreateRole extends CreateRecord
 {
-    protected static string $resource = RoleResource::class;
-
     public Collection $permissions;
+
+    protected static string $resource = RoleResource::class;
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $this->permissions = collect($data)
-            ->filter(fn (mixed $permission, string $key): bool => ! in_array($key, ['name','title', 'guard_name', 'select_all', Utils::getTenantModelForeignKey()]))
+            ->filter(fn (mixed $permission, string $key): bool => ! in_array($key, ['name', 'title', 'guard_name', 'select_all', Utils::getTenantModelForeignKey()]))
             ->values()
             ->flatten()
+            ->filter(fn ($permission) => is_string($permission))
             ->unique();
 
-        if (Utils::isTenancyEnabled() && filled($data[Utils::getTenantModelForeignKey()]) && Arr::has($data, Utils::getTenantModelForeignKey())) {
-            return Arr::only($data, ['name','title', 'guard_name', Utils::getTenantModelForeignKey()]);
+        if (Utils::isTenancyEnabled() && Arr::has($data, Utils::getTenantModelForeignKey()) && filled($data[Utils::getTenantModelForeignKey()])) {
+            return Arr::only($data, ['name', 'title', 'guard_name', Utils::getTenantModelForeignKey()]);
         }
 
-        return Arr::only($data, ['name', 'title','guard_name']);
+        return Arr::only($data, ['name', 'title', 'guard_name']);
     }
 
     protected function afterCreate(): void

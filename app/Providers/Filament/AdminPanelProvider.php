@@ -35,6 +35,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Maggomann\FilamentModelTranslator\FilamentModelTranslatorServicePlugin;
 use Outerweb\FilamentSettings\SettingsPlugin;
 use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
+use Relaticle\CustomFields\CustomFieldsPlugin;
 use Tapp\FilamentAuthenticationLog\FilamentAuthenticationLogPlugin;
 use TomatoPHP\FilamentWallet\FilamentWalletPlugin;
 

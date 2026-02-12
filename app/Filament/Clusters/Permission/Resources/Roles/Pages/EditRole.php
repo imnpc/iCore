@@ -13,9 +13,9 @@ use Illuminate\Support\Collection;
 
 class EditRole extends EditRecord
 {
-    protected static string $resource = RoleResource::class;
-
     public Collection $permissions;
+
+    protected static string $resource = RoleResource::class;
 
     protected function getActions(): array
     {
@@ -33,9 +33,10 @@ class EditRole extends EditRecord
             ->flatten()
             ->unique();
 
-        if (Utils::isTenancyEnabled() && filled($data[Utils::getTenantModelForeignKey()]) && Arr::has($data, Utils::getTenantModelForeignKey())) {
+        if (Utils::isTenancyEnabled() && Arr::has($data, Utils::getTenantModelForeignKey()) && filled($data[Utils::getTenantModelForeignKey()])) {
             return Arr::only($data, ['name', 'title', 'guard_name', Utils::getTenantModelForeignKey()]);
         }
+
 
         return Arr::only($data, ['name','title', 'guard_name']);
     }
