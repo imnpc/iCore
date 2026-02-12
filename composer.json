@@ -44,7 +44,7 @@
         "spatie/laravel-route-attributes": "^1.25",
         "stijnvanouplines/blade-country-flags": "^1.0",
         "tapp/filament-authentication-log": "^5.0",
-        "tomatophp/filament-wallet": "^4.0",
+        "imnpc/filament-wallet": "^5.0",
         "torann/geoip": "^3.0",
         "vinkla/hashids": "^13.0",
         "yansongda/laravel-pay": "~3.7.0",
