@@ -49,12 +49,6 @@ class RoleResource extends Resource
                     ->schema([
                         Section::make()
                             ->schema([
-//                                GazeBanner::make('role')
-//                                    ->lock()
-//                                    ->canTakeControl(fn() => auth()->user()->isAdmin())
-//                                    ->hideOnCreate()
-//                                    ->columnSpan('full'),
-
                                 TextInput::make('title')
                                     ->label(__('filament-shield::filament-shield.field.title'))
                                     ->unique(ignoreRecord: true)

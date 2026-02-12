@@ -18,11 +18,6 @@ class UserForm
     {
         return $schema
             ->components([
-                GazeBanner::make('user')
-                    ->lock()
-                    ->canTakeControl(fn() => auth()->user()->isAdmin())
-                    ->hideOnCreate()
-                    ->columnSpan('full'),
                 TextInput::make('name')
                     ->label(trans('filament-model.general.name'))
                     ->required()

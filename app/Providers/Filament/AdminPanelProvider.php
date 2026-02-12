@@ -7,7 +7,6 @@ use App\Filament\Auth\Login;
 use App\Http\Middleware\ForbidBannedUser;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Devonab\FilamentEasyFooter\EasyFooterPlugin;
-use DiscoveryDesign\FilamentGaze\FilamentGazePlugin;
 use Filament\Actions\CreateAction;
 use Filament\Auth\MultiFactor\App\AppAuthentication;
 use Filament\Forms\Components\DateTimePicker;
@@ -161,7 +160,6 @@ class AdminPanelProvider extends PanelProvider
                     ->withLoadTime('Processed in '), // 页脚
                 FilamentWalletPlugin::make()->hideResources(), // 钱包
 //                CustomFieldsPlugin::make(), // 自定义字段
-                FilamentGazePlugin::make(), // 监控资源谁在查看编辑
             ])
             ->profile()
             ->multiFactorAuthentication([
