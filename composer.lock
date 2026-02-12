@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "69f17731dc125b77e357ebca704c4be3",
+    "content-hash": "bba4b0614a62e1f0e43d8df168559e1b",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -53,16 +53,16 @@
         },
         {
             "name": "amidesfahani/filament-tinyeditor",
-            "version": "v4.0.5",
+            "version": "v4.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amidesfahani/filament-tinyeditor.git",
-                "reference": "1388a96a9b41ab6dc76effd2f0f722cffd5d470e"
+                "reference": "9b86b633860a6a75f16f5adb93112f16824a2020"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amidesfahani/filament-tinyeditor/zipball/1388a96a9b41ab6dc76effd2f0f722cffd5d470e",
-                "reference": "1388a96a9b41ab6dc76effd2f0f722cffd5d470e",
+                "url": "https://api.github.com/repos/amidesfahani/filament-tinyeditor/zipball/9b86b633860a6a75f16f5adb93112f16824a2020",
+                "reference": "9b86b633860a6a75f16f5adb93112f16824a2020",
                 "shasum": ""
             },
             "require": {
@@ -106,9 +106,9 @@
             ],
             "support": {
                 "issues": "https://github.com/amidesfahani/filament-tinyeditor/issues",
-                "source": "https://github.com/amidesfahani/filament-tinyeditor/tree/v4.0.5"
+                "source": "https://github.com/amidesfahani/filament-tinyeditor/tree/v4.0.6"
             },
-            "time": "2026-01-27T07:22:54+00:00"
+            "time": "2026-02-12T07:38:48+00:00"
         },
         {
             "name": "anourvalar/eloquent-serialize",
@@ -1557,16 +1557,16 @@
         },
         {
             "name": "dedoc/scramble",
-            "version": "v0.13.12",
+            "version": "v0.13.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dedoc/scramble.git",
-                "reference": "1788ab68ae51ae2fce34e16add1387ee1ac5d88b"
+                "reference": "35a3b0810c30cce334b68fa03d9b2b9085fb0bd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dedoc/scramble/zipball/1788ab68ae51ae2fce34e16add1387ee1ac5d88b",
-                "reference": "1788ab68ae51ae2fce34e16add1387ee1ac5d88b",
+                "url": "https://api.github.com/repos/dedoc/scramble/zipball/35a3b0810c30cce334b68fa03d9b2b9085fb0bd6",
+                "reference": "35a3b0810c30cce334b68fa03d9b2b9085fb0bd6",
                 "shasum": ""
             },
             "require": {
@@ -1625,7 +1625,7 @@
             ],
             "support": {
                 "issues": "https://github.com/dedoc/scramble/issues",
-                "source": "https://github.com/dedoc/scramble/tree/v0.13.12"
+                "source": "https://github.com/dedoc/scramble/tree/v0.13.13"
             },
             "funding": [
                 {
@@ -1633,7 +1633,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-02-05T07:47:09+00:00"
+            "time": "2026-02-12T06:10:32+00:00"
         },
         {
             "name": "devonab/filament-easy-footer",
@@ -5681,20 +5681,20 @@
         },
         {
             "name": "marcelweidum/filament-passkeys",
-            "version": "v2.0.2",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MarcelWeidum/filament-passkeys.git",
-                "reference": "ccb80dcda3a0bcc4aacb42043d88c528b17bc7fa"
+                "reference": "9d6c0136290447b5164cfcca4823f7ce2e0425ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MarcelWeidum/filament-passkeys/zipball/ccb80dcda3a0bcc4aacb42043d88c528b17bc7fa",
-                "reference": "ccb80dcda3a0bcc4aacb42043d88c528b17bc7fa",
+                "url": "https://api.github.com/repos/MarcelWeidum/filament-passkeys/zipball/9d6c0136290447b5164cfcca4823f7ce2e0425ad",
+                "reference": "9d6c0136290447b5164cfcca4823f7ce2e0425ad",
                 "shasum": ""
             },
             "require": {
-                "filament/filament": "^4.0|^5.0",
+                "filament/filament": "^5.0",
                 "php": "^8.2",
                 "spatie/laravel-package-tools": "^1.15.0",
                 "spatie/laravel-passkeys": "^1.5.3",
@@ -5750,7 +5750,7 @@
                     "type": "buy_me_a_coffee"
                 }
             ],
-            "time": "2026-01-17T13:21:33+00:00"
+            "time": "2026-02-09T09:53:30+00:00"
         },
         {
             "name": "markbaker/complex",

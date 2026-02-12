@@ -27,7 +27,7 @@
         "leonis/easysms-notification-channel": "^3.0",
         "livewire/livewire": "^4.0",
         "maggomann/filament-model-translator": "^1.1",
-        "marcelweidum/filament-passkeys": "^2.0",
+        "marcelweidum/filament-passkeys": "^3.0",
         "mews/captcha": "^3.4",
         "outerweb/filament-settings": "^2.0",
         "outerweb/settings": "^2.0",
