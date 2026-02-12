@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('admins', function (Blueprint $table) {
-            $table->text('recovery_codes')->nullable()->comment('恢复代码');
+            $table->text('app_authentication_recovery_codes')->nullable()->comment('恢复代码');
         });
     }
 

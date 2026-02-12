@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Traits\DateTrait;
 use Cog\Contracts\Ban\Bannable as BannableContract;
 use Cog\Laravel\Ban\Traits\Bannable;
+use Filament\Auth\MultiFactor\App\Concerns\InteractsWithAppAuthentication;
+use Filament\Auth\MultiFactor\App\Concerns\InteractsWithAppAuthenticationRecovery;
 use Filament\Auth\MultiFactor\App\Contracts\HasAppAuthentication;
 use Filament\Auth\MultiFactor\App\Contracts\HasAppAuthenticationRecovery;
 use Filament\Models\Contracts\FilamentUser;
@@ -34,6 +36,8 @@ class Admin extends Authenticatable implements FilamentUser, HasAvatar, HasAppAu
     use Notifiable, AuthenticationLoggable; // 登录日志
     use Bannable; // 封禁
     use InteractsWithPasskeys; // 密钥
+    use InteractsWithAppAuthentication;
+    use InteractsWithAppAuthenticationRecovery;
 
     protected static ?string $translateablePackageKey = ''; // 翻译
 
@@ -61,8 +65,8 @@ class Admin extends Authenticatable implements FilamentUser, HasAvatar, HasAppAu
         'mobile',
         'status',
         'banned_at',
-        'secret',
-        'recovery_codes',
+        'app_authentication_secret',
+        'app_authentication_recovery_codes',
     ];
 
     /**
@@ -73,8 +77,8 @@ class Admin extends Authenticatable implements FilamentUser, HasAvatar, HasAppAu
     protected $hidden = [
         'password',
         'remember_token',
-        'secret',
-        'recovery_codes',
+        'app_authentication_secret',
+        'app_authentication_recovery_codes',
     ];
 
     /**
@@ -87,8 +91,8 @@ class Admin extends Authenticatable implements FilamentUser, HasAvatar, HasAppAu
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'secret' => 'encrypted',
-            'recovery_codes' => 'encrypted:array',
+            'app_authentication_secret' => 'encrypted',
+            'app_authentication_recovery_codes' => 'encrypted:array',
         ];
     }
 
@@ -110,46 +114,5 @@ class Admin extends Authenticatable implements FilamentUser, HasAvatar, HasAppAu
     public function canImpersonate(): true
     {
         return true;
-    }
-
-    public function getAppAuthenticationSecret(): ?string
-    {
-        // This method should return the user's saved app authentication secret.
-        return $this->secret;
-    }
-
-    public function saveAppAuthenticationSecret(?string $secret): void
-    {
-        // This method should save the user's app authentication secret.
-        $this->secret = $secret;
-        $this->save();
-    }
-
-    public function getAppAuthenticationHolderName(): string
-    {
-        // In a user's authentication app, each account can be represented by a "holder name".
-        // If the user has multiple accounts in your app, it might be a good idea to use
-        // their email address as then they are still uniquely identifiable.
-        return $this->email;
-    }
-
-    /**
-     * @return ?array<string>
-     */
-    public function getAppAuthenticationRecoveryCodes(): ?array
-    {
-        // This method should return the user's saved app authentication recovery codes.
-        return $this->_recovery_codes;
-    }
-
-    /**
-     * @param  array<string> | null  $codes
-     */
-    public function saveAppAuthenticationRecoveryCodes(?array $codes): void
-    {
-        // This method should save the user's app authentication recovery codes.
-
-        $this->recovery_codes = $codes;
-        $this->save();
     }
 }

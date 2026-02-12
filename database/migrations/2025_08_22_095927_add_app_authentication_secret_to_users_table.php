@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('app_authentication_secret')->nullable()->comment('谷歌验证器密钥');
+            $table->text('app_authentication_secret')->nullable()->comment('2FA密钥');
         });
     }
 

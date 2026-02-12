@@ -66,6 +66,7 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
         'parent_id',
         'avatar',
         'app_authentication_secret',
+        'app_authentication_recovery_codes',
     ];
 
     /**
@@ -79,6 +80,7 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
         'email_verified_at',
         'tags',
         'app_authentication_secret',
+        'app_authentication_recovery_codes',
     ];
 
     /**
@@ -93,6 +95,7 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
             'password'          => 'hashed',
             'last_login_at'     => 'datetime',
             'app_authentication_secret' => 'encrypted',
+            'app_authentication_recovery_codes' => 'encrypted:array',
         ];
     }
 
