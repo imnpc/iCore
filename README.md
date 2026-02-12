@@ -4,7 +4,7 @@
 
 内置权限管理，用户管理，财务钱包管理和系统设置，并且带有前台 API 和自动生成 API 文档。
 
-基于 Laravel 12 和 Filament 4，本脚手架参考了官方插件列表内的同类项目，针对中文项目优化。
+基于 Laravel 12 和 Filament 5，本脚手架参考了官方插件列表内的同类项目，针对中文项目优化。
 
 参考项目列表：
 
@@ -14,12 +14,12 @@ https://filamentphp.com/plugins/siubie-kaido-kit
 
 https://filamentphp.com/plugins/riodewanto-superduper-starter
 
-目前版本： v1.0.0
+目前版本： v5.0.0
 
 ![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
 ![PHP Version](https://img.shields.io/badge/PHP-8.4-blue?style=flat-square&logo=php)
 ![Laravel Version](https://img.shields.io/badge/Laravel-12.0-red?style=flat-square&logo=laravel)
-![Filament Version](https://img.shields.io/badge/Filament-4.0-purple?style=flat-square)
+![Filament Version](https://img.shields.io/badge/Filament-5.0-purple?style=flat-square)
 
 ## 📦 常用命令行
 
