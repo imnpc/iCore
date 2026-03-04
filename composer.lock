@@ -10554,26 +10554,26 @@
         },
         {
             "name": "stijnvanouplines/blade-country-flags",
-            "version": "1.0.8",
+            "version": "1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stijnvanouplines/blade-country-flags.git",
-                "reference": "2d296a38733391458dc0699dc637d657b0508a70"
+                "reference": "06b53f8ae58238c30a5eaa35fd199ffd772a83f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stijnvanouplines/blade-country-flags/zipball/2d296a38733391458dc0699dc637d657b0508a70",
-                "reference": "2d296a38733391458dc0699dc637d657b0508a70",
+                "url": "https://api.github.com/repos/stijnvanouplines/blade-country-flags/zipball/06b53f8ae58238c30a5eaa35fd199ffd772a83f8",
+                "reference": "06b53f8ae58238c30a5eaa35fd199ffd772a83f8",
                 "shasum": ""
             },
             "require": {
                 "blade-ui-kit/blade-icons": "^1.0",
-                "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
                 "php": "^7.4|^8.0"
             },
             "require-dev": {
-                "orchestra/testbench": "^6.18|^8.0|^9.0|^10.0",
-                "pestphp/pest": "^1.4|^2.34|^3.0",
+                "orchestra/testbench": "^6.18|^8.0|^9.0|^10.0|^11.0",
+                "pestphp/pest": "^1.4|^2.34|^3.0|^4.4",
                 "spatie/pest-plugin-snapshots": "^1.0|^2.1"
             },
             "type": "library",
@@ -10602,9 +10602,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stijnvanouplines/blade-country-flags/issues",
-                "source": "https://github.com/stijnvanouplines/blade-country-flags/tree/1.0.8"
+                "source": "https://github.com/stijnvanouplines/blade-country-flags/tree/1.0.9"
             },
-            "time": "2026-02-13T08:21:15+00:00"
+            "time": "2026-03-03T13:15:47+00:00"
         },
         {
             "name": "symfony/cache",
