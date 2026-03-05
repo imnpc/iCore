@@ -5743,16 +5743,16 @@
         },
         {
             "name": "marcelweidum/filament-passkeys",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MarcelWeidum/filament-passkeys.git",
-                "reference": "9d6c0136290447b5164cfcca4823f7ce2e0425ad"
+                "reference": "bdd3ac65e3d2db09c9dc7991eff2fd3c45734299"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MarcelWeidum/filament-passkeys/zipball/9d6c0136290447b5164cfcca4823f7ce2e0425ad",
-                "reference": "9d6c0136290447b5164cfcca4823f7ce2e0425ad",
+                "url": "https://api.github.com/repos/MarcelWeidum/filament-passkeys/zipball/bdd3ac65e3d2db09c9dc7991eff2fd3c45734299",
+                "reference": "bdd3ac65e3d2db09c9dc7991eff2fd3c45734299",
                 "shasum": ""
             },
             "require": {
@@ -5812,7 +5812,7 @@
                     "type": "buy_me_a_coffee"
                 }
             ],
-            "time": "2026-02-09T09:53:30+00:00"
+            "time": "2026-03-04T19:15:33+00:00"
         },
         {
             "name": "markbaker/complex",
