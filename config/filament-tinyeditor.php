@@ -5,7 +5,7 @@ return [
         'tiny' => '8.3.2',
         'language' => [
             // https://cdn.jsdelivr.net/npm/tinymce-i18n@latest/
-            'version' => '26.1.12',
+            'version' => '26.2.16',
             'package' => 'langs8',
         ],
         'licence_key' => env('TINY_LICENSE_KEY', 'no-api-key'),
@@ -63,13 +63,14 @@ return [
      * ]
      */
     'languages' => [
-//        'zh_CN' => 'https://cdn.jsdelivr.net/npm/tinymce-i18n@25.10.27/langs8/zh-CN.js'
+//       'zh_CN' => 'https://cdn.jsdelivr.net/npm/tinymce-i18n@25.2.16/langs8/zh-CN.js'
     ],
 
     'extra' => [
         'toolbar' => [
             // 'fontsize' => '10px 12px 13px 14px 16px 18px 20px',
             // 'fontfamily' => 'Tahoma=tahoma,arial,helvetica,sans-serif;',
+            // 'content_style' => 'body { font-family: "Tahoma", sans-serif; }',
         ]
     ]
 ];

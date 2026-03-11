@@ -23,14 +23,16 @@
                 x-data="tinyeditor({
                     state: $wire.{{ $applyStateBindingModifiers("\$entangle('{$statePath}')", isOptimisticallyLive: false) }},
                     statePath: @js($statePath),
-                
+
                     selector: '#{{ $textareaID }}',
                     plugins: '{{ $getPlugins() }}',
                     external_plugins: {{ $getExternalPlugins() }},
                     toolbar: '{{ $getToolbar() }}',
                     @if (!$getTextPattern()) text_patterns: @js($getTextPattern()), @endif
-                    language: '{{ $getInterfaceLanguage() }}',
-                    language_url: '{{ $getLanguageURL($getInterfaceLanguage()) }}',
+{{--                    language: '{{ $getInterfaceLanguage() }}',--}}
+{{--                    language_url: '{{ $getLanguageURL($getInterfaceLanguage()) }}',--}}
+                    language: 'zh-CN',
+                    language_url: '{{ asset('assets/zh-CN.js') }}',
                     directionality: '{{ $getDirection() }}',
                     @if ($getHeight()) height: @js($getHeight()), @endif
                     @if ($getMaxHeight()) max_height: @js($getMaxHeight()), @endif
