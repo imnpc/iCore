@@ -5744,16 +5744,16 @@
         },
         {
             "name": "marcelweidum/filament-passkeys",
-            "version": "v3.0.1",
+            "version": "v3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MarcelWeidum/filament-passkeys.git",
-                "reference": "bdd3ac65e3d2db09c9dc7991eff2fd3c45734299"
+                "reference": "b721b3966e9e4de7ca612c6c9d0052b4cbfd5676"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MarcelWeidum/filament-passkeys/zipball/bdd3ac65e3d2db09c9dc7991eff2fd3c45734299",
-                "reference": "bdd3ac65e3d2db09c9dc7991eff2fd3c45734299",
+                "url": "https://api.github.com/repos/MarcelWeidum/filament-passkeys/zipball/b721b3966e9e4de7ca612c6c9d0052b4cbfd5676",
+                "reference": "b721b3966e9e4de7ca612c6c9d0052b4cbfd5676",
                 "shasum": ""
             },
             "require": {
@@ -5761,7 +5761,7 @@
                 "php": "^8.2",
                 "spatie/laravel-package-tools": "^1.15.0",
                 "spatie/laravel-passkeys": "^1.5.3",
-                "web-auth/webauthn-lib": "5.2.3"
+                "web-auth/webauthn-lib": "^5.2.4"
             },
             "require-dev": {
                 "laravel/pint": "^1.0",
@@ -5813,7 +5813,7 @@
                     "type": "buy_me_a_coffee"
                 }
             ],
-            "time": "2026-03-04T19:15:33+00:00"
+            "time": "2026-03-11T07:05:48+00:00"
         },
         {
             "name": "markbaker/complex",
@@ -15031,16 +15031,16 @@
         },
         {
             "name": "web-auth/webauthn-lib",
-            "version": "5.2.3",
+            "version": "5.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/web-auth/webauthn-lib.git",
-                "reference": "8782f575032fedc36e2eb27c39c736054e2b6867"
+                "reference": "c346c9812d4d4a641f5ff26cd5fa4d0bf2035eeb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/web-auth/webauthn-lib/zipball/8782f575032fedc36e2eb27c39c736054e2b6867",
-                "reference": "8782f575032fedc36e2eb27c39c736054e2b6867",
+                "url": "https://api.github.com/repos/web-auth/webauthn-lib/zipball/c346c9812d4d4a641f5ff26cd5fa4d0bf2035eeb",
+                "reference": "c346c9812d4d4a641f5ff26cd5fa4d0bf2035eeb",
                 "shasum": ""
             },
             "require": {
@@ -15101,7 +15101,7 @@
                 "webauthn"
             ],
             "support": {
-                "source": "https://github.com/web-auth/webauthn-lib/tree/5.2.3"
+                "source": "https://github.com/web-auth/webauthn-lib/tree/5.2.4"
             },
             "funding": [
                 {
@@ -15113,7 +15113,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2025-12-20T10:54:02+00:00"
+            "time": "2026-03-08T17:01:15+00:00"
         },
         {
             "name": "webmozart/assert",
