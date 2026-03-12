@@ -19,7 +19,7 @@
         "geoip2/geoip2": "^3.2",
         "imnpc/filament-bandel": "^5.0",
         "imnpc/filament-wallet": "^5.0",
-        "imnpc/laravel-flysystem-oss": "^2.0",
+        "imnpc/laravel-flysystem-oss": "^3.0",
         "laravel/framework": "^12.0",
         "laravel/horizon": "^5.33",
         "laravel/sanctum": "^4.0",

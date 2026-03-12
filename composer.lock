@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bba4b0614a62e1f0e43d8df168559e1b",
+    "content-hash": "fe6e2466292b3756633d50571e0b2902",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -3731,20 +3731,20 @@
         },
         {
             "name": "imnpc/laravel-flysystem-oss",
-            "version": "2.0.7",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imnpc/laravel-flysystem-oss.git",
-                "reference": "00a0c6fa4f63ea788745aa5f877ec306743b0e9a"
+                "reference": "66cb1b6d4bcc96df922cda4051e86bcbdeff0441"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imnpc/laravel-flysystem-oss/zipball/00a0c6fa4f63ea788745aa5f877ec306743b0e9a",
-                "reference": "00a0c6fa4f63ea788745aa5f877ec306743b0e9a",
+                "url": "https://api.github.com/repos/imnpc/laravel-flysystem-oss/zipball/66cb1b6d4bcc96df922cda4051e86bcbdeff0441",
+                "reference": "66cb1b6d4bcc96df922cda4051e86bcbdeff0441",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "^9.40|^10.0|^11.0|^12.0",
+                "laravel/framework": "^9.40|^10.0|^11.0|^12.0|^13.0",
                 "larva/flysystem-oss": "^1.0",
                 "league/flysystem": "^3.0",
                 "php": "^8.0.2"
@@ -3780,9 +3780,9 @@
                 "oss"
             ],
             "support": {
-                "source": "https://github.com/imnpc/laravel-flysystem-oss/tree/2.0.7"
+                "source": "https://github.com/imnpc/laravel-flysystem-oss/tree/3.0.0"
             },
-            "time": "2025-04-22T01:01:13+00:00"
+            "time": "2026-03-12T07:48:25+00:00"
         },
         {
             "name": "intervention/gif",
