@@ -4215,16 +4215,16 @@
         },
         {
             "name": "laravel/horizon",
-            "version": "v5.45.2",
+            "version": "v5.45.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/horizon.git",
-                "reference": "8b3cc109130f16b848d1c15cab2e7a3d41e1074f"
+                "reference": "80c4de73c56227c625e5a3c6bfaddff760ab0962"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/horizon/zipball/8b3cc109130f16b848d1c15cab2e7a3d41e1074f",
-                "reference": "8b3cc109130f16b848d1c15cab2e7a3d41e1074f",
+                "url": "https://api.github.com/repos/laravel/horizon/zipball/80c4de73c56227c625e5a3c6bfaddff760ab0962",
+                "reference": "80c4de73c56227c625e5a3c6bfaddff760ab0962",
                 "shasum": ""
             },
             "require": {
@@ -4289,9 +4289,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/horizon/issues",
-                "source": "https://github.com/laravel/horizon/tree/v5.45.2"
+                "source": "https://github.com/laravel/horizon/tree/v5.45.3"
             },
-            "time": "2026-03-10T17:58:20+00:00"
+            "time": "2026-03-11T14:28:04+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -6275,16 +6275,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "3.11.1",
+            "version": "3.11.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CarbonPHP/carbon.git",
-                "reference": "f438fcc98f92babee98381d399c65336f3a3827f"
+                "reference": "6a7e652845bb018c668220c2a545aded8594fbbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CarbonPHP/carbon/zipball/f438fcc98f92babee98381d399c65336f3a3827f",
-                "reference": "f438fcc98f92babee98381d399c65336f3a3827f",
+                "url": "https://api.github.com/repos/CarbonPHP/carbon/zipball/6a7e652845bb018c668220c2a545aded8594fbbf",
+                "reference": "6a7e652845bb018c668220c2a545aded8594fbbf",
                 "shasum": ""
             },
             "require": {
@@ -6376,7 +6376,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-01-29T09:26:29+00:00"
+            "time": "2026-03-11T17:23:39+00:00"
         },
         {
             "name": "nette/php-generator",
@@ -15451,16 +15451,16 @@
         },
         {
             "name": "ysfkaya/filament-phone-input",
-            "version": "v4.1.1",
+            "version": "v4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ysfkaya/filament-phone-input.git",
-                "reference": "416fc765f611fde7c4e11140ceff336f48bd3090"
+                "reference": "b5384d45a8ddf6c2437c22512c6b69d012f12ba0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ysfkaya/filament-phone-input/zipball/416fc765f611fde7c4e11140ceff336f48bd3090",
-                "reference": "416fc765f611fde7c4e11140ceff336f48bd3090",
+                "url": "https://api.github.com/repos/ysfkaya/filament-phone-input/zipball/b5384d45a8ddf6c2437c22512c6b69d012f12ba0",
+                "reference": "b5384d45a8ddf6c2437c22512c6b69d012f12ba0",
                 "shasum": ""
             },
             "require": {
@@ -15509,9 +15509,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ysfkaya/filament-phone-input/issues",
-                "source": "https://github.com/ysfkaya/filament-phone-input/tree/v4.1.1"
+                "source": "https://github.com/ysfkaya/filament-phone-input/tree/v4.1.2"
             },
-            "time": "2026-02-25T11:14:02+00:00"
+            "time": "2026-03-10T19:35:04+00:00"
         }
     ],
     "packages-dev": [
