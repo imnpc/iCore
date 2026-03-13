@@ -34,6 +34,17 @@ php artisan filament:optimize
 php artisan icons:cache
 ```
 
+### AI辅助
+```bash
+composer require laravel/boost --dev
+php artisan boost:install
+```
+
+保持 Boost 资源更新
+```bash
+php artisan boost:update
+```
+
 ### 新建订单模型 Order
 ```bash
 // 创建模型和数据库迁移
