@@ -34,7 +34,7 @@ php artisan filament:optimize
 php artisan icons:cache
 ```
 
-### AI辅助
+### AI辅助 需要自己准备好支持编码的大模型或者软件
 ```bash
 composer require laravel/boost --dev
 php artisan boost:install
