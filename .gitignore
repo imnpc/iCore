@@ -28,6 +28,8 @@ Thumbs.db
 /.gemini
 /.github
 /.junie
+/.agents
+/.codex
 .mcp.json
 boost.json
 CLAUDE.md
