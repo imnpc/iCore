@@ -15173,26 +15173,26 @@
         },
         {
             "name": "yansongda/laravel-pay",
-            "version": "v3.7.3",
+            "version": "v3.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yansongda/laravel-pay.git",
-                "reference": "493824490a588ef38bbe5a3b2ce31be7b6fd9042"
+                "reference": "b2b2594e97f2ee2e1e672b55f8085b25819b9612"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yansongda/laravel-pay/zipball/493824490a588ef38bbe5a3b2ce31be7b6fd9042",
-                "reference": "493824490a588ef38bbe5a3b2ce31be7b6fd9042",
+                "url": "https://api.github.com/repos/yansongda/laravel-pay/zipball/b2b2594e97f2ee2e1e672b55f8085b25819b9612",
+                "reference": "b2b2594e97f2ee2e1e672b55f8085b25819b9612",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0",
-                "illuminate/support": "^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0",
+                "illuminate/contracts": "^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0 || ^13.0",
+                "illuminate/support": "^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0 || ^13.0",
                 "yansongda/pay": "~3.7.0"
             },
             "require-dev": {
-                "laravel/framework": "^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0",
-                "laravel/lumen-framework": "^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0"
+                "laravel/framework": "^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0 || ^13.0",
+                "laravel/lumen-framework": "^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0 || ^13.0"
             },
             "type": "library",
             "extra": {
@@ -15233,7 +15233,7 @@
                 "issues": "https://github.com/yansongda/laravel-pay/issues",
                 "source": "https://github.com/yansongda/laravel-pay"
             },
-            "time": "2025-03-10T05:10:42+00:00"
+            "time": "2026-03-19T02:44:55+00:00"
         },
         {
             "name": "yansongda/pay",
