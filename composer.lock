@@ -2979,28 +2979,28 @@
         },
         {
             "name": "graham-campbell/manager",
-            "version": "v5.2.0",
+            "version": "v5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrahamCampbell/Laravel-Manager.git",
-                "reference": "b6a4172a32b931fe20c5c242251c8c98b2c79e41"
+                "reference": "38580732dfbe4ddb7c0fad0720c3c80e46a9657e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Manager/zipball/b6a4172a32b931fe20c5c242251c8c98b2c79e41",
-                "reference": "b6a4172a32b931fe20c5c242251c8c98b2c79e41",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Manager/zipball/38580732dfbe4ddb7c0fad0720c3c80e46a9657e",
+                "reference": "38580732dfbe4ddb7c0fad0720c3c80e46a9657e",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "^8.75 || ^9.0 || ^10.0 || ^11.0 || ^12.0",
-                "illuminate/support": "^8.75 || ^9.0 || ^10.0 || ^11.0 || ^12.0",
+                "illuminate/contracts": "^8.75 || ^9.0 || ^10.0 || ^11.0 || ^12.0 || ^13.0",
+                "illuminate/support": "^8.75 || ^9.0 || ^10.0 || ^11.0 || ^12.0 || ^13.0",
                 "php": "^7.4.15 || ^8.0.2"
             },
             "require-dev": {
-                "graham-campbell/analyzer": "^4.2.1 || ^5.0.0",
-                "graham-campbell/testbench-core": "^4.2.1",
+                "graham-campbell/analyzer": "^4.2.1 || ^5.1",
+                "graham-campbell/testbench-core": "^4.3",
                 "mockery/mockery": "^1.6.12",
-                "phpunit/phpunit": "^9.6.22 || ^10.5.45 || ^11.5.10"
+                "phpunit/phpunit": "^9.6.34 || ^10.5.63 || ^11.5.55 || ^12.5.14"
             },
             "type": "library",
             "autoload": {
@@ -3033,7 +3033,7 @@
             ],
             "support": {
                 "issues": "https://github.com/GrahamCampbell/Laravel-Manager/issues",
-                "source": "https://github.com/GrahamCampbell/Laravel-Manager/tree/v5.2.0"
+                "source": "https://github.com/GrahamCampbell/Laravel-Manager/tree/v5.3.0"
             },
             "funding": [
                 {
@@ -3045,7 +3045,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-03-02T20:18:37+00:00"
+            "time": "2026-03-19T20:25:10+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -16233,16 +16233,16 @@
         },
         {
             "name": "laravel-lang/lang",
-            "version": "15.29.0",
+            "version": "15.29.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/lang.git",
-                "reference": "0ef94b493a0ff9db38761d1a0d9ede0ce993e6b0"
+                "reference": "afb2b23deff665e6858bb847bbec136c764eeace"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/0ef94b493a0ff9db38761d1a0d9ede0ce993e6b0",
-                "reference": "0ef94b493a0ff9db38761d1a0d9ede0ce993e6b0",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/afb2b23deff665e6858bb847bbec136c764eeace",
+                "reference": "afb2b23deff665e6858bb847bbec136c764eeace",
                 "shasum": ""
             },
             "require": {
@@ -16303,7 +16303,7 @@
                     "type": "yoomoney"
                 }
             ],
-            "time": "2026-03-17T23:12:45+00:00"
+            "time": "2026-03-19T21:14:21+00:00"
         },
         {
             "name": "laravel-lang/locale-list",
