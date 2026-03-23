@@ -15243,16 +15243,16 @@
         },
         {
             "name": "yansongda/pay",
-            "version": "v3.7.19",
+            "version": "v3.7.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yansongda/pay.git",
-                "reference": "57eaeff84bd4a19c4d09656a3c45250c9a032aa2"
+                "reference": "26987ebf789f1e7f0a85febb640986ab4289fd7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yansongda/pay/zipball/57eaeff84bd4a19c4d09656a3c45250c9a032aa2",
-                "reference": "57eaeff84bd4a19c4d09656a3c45250c9a032aa2",
+                "url": "https://api.github.com/repos/yansongda/pay/zipball/26987ebf789f1e7f0a85febb640986ab4289fd7f",
+                "reference": "26987ebf789f1e7f0a85febb640986ab4289fd7f",
                 "shasum": ""
             },
             "require": {
@@ -15312,7 +15312,7 @@
                 "issues": "https://github.com/yansongda/pay/issues",
                 "source": "https://github.com/yansongda/pay"
             },
-            "time": "2025-12-22T03:30:53+00:00"
+            "time": "2026-03-23T07:33:29+00:00"
         },
         {
             "name": "yansongda/supports",
