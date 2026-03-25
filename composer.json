@@ -20,6 +20,7 @@
         "imnpc/filament-bandel": "^5.0",
         "imnpc/filament-wallet": "^5.0",
         "imnpc/laravel-flysystem-oss": "^3.0",
+        "interaction-design-foundation/laravel-geoip": "^4.2",
         "laravel/framework": "^12.0",
         "laravel/horizon": "^5.33",
         "laravel/sanctum": "^4.0",
@@ -44,7 +45,6 @@
         "spatie/laravel-route-attributes": "^1.25",
         "stijnvanouplines/blade-country-flags": "^1.0",
         "tapp/filament-authentication-log": "^5.0",
-        "torann/geoip": "^3.0",
         "vinkla/hashids": "^13.0",
         "yansongda/laravel-pay": "~3.7.0",
         "ysfkaya/filament-phone-input": "^4.0"
@@ -52,7 +52,6 @@
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.6",
         "fakerphp/faker": "^1.23",
-        "filament/upgrade": "^5.0",
         "laravel-lang/lang": "^15.22",
         "laravel/boost": "^2.1",
         "laravel/pail": "^1.2.2",
@@ -60,7 +59,7 @@
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "overtrue/laravel-query-logger": "^3.4",
+        "overtrue/laravel-query-logger": "^5.0",
         "phpunit/phpunit": "^11.5.50"
     },
     "autoload": {

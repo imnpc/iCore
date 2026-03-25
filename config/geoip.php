@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -9,6 +11,8 @@ return [
     |
     | Here you may configure the log settings for when a location is not found
     | for the IP provided.
+    |
+    | Requires Monolog to be installed: `composer install monolog/monolog`
     |
     */
 
@@ -34,9 +38,11 @@ return [
     | Here you may specify the default storage driver that should be used
     | by the framework using the services listed below.
     |
+    | Supported: "maxmind_database", "maxmind_api", "ipapi", "ipgeolocation", "ipdata", "ipfinder", "ip2location"
+    |
     */
 
-    'service' => 'maxmind_database',
+    'service' => env('GEOIP_SERVICE', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -50,21 +56,29 @@ return [
     'services' => [
 
         'maxmind_database' => [
-            'class' => \Torann\GeoIP\Services\MaxMindDatabase::class,
+            'class' => \InteractionDesignFoundation\GeoIP\Services\MaxMindDatabase::class,
             'database_path' => storage_path('app/geoip.mmdb'),
             'update_url' => sprintf('https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=%s&suffix=tar.gz', env('MAXMIND_LICENSE_KEY')),
             'locales' => ['en'],
         ],
 
         'maxmind_api' => [
-            'class' => \Torann\GeoIP\Services\MaxMindWebService::class,
+            'class' => \InteractionDesignFoundation\GeoIP\Services\MaxMindWebService::class,
             'user_id' => env('MAXMIND_USER_ID'),
             'license_key' => env('MAXMIND_LICENSE_KEY'),
             'locales' => ['en'],
         ],
 
+        'ipapi' => [
+            'class' => \InteractionDesignFoundation\GeoIP\Services\IPApi::class,
+            'secure' => true,
+            'key' => env('IPAPI_KEY'),
+            'continent_path' => storage_path('app/continents.json'),
+            'lang' => 'en',
+        ],
+
         'ipgeolocation' => [
-            'class' => \Torann\GeoIP\Services\IPGeoLocation::class,
+            'class' => \InteractionDesignFoundation\GeoIP\Services\IPGeoLocation::class,
             'secure' => true,
             'key' => env('IPGEOLOCATION_KEY'),
             'continent_path' => storage_path('app/continents.json'),
@@ -72,16 +86,21 @@ return [
         ],
 
         'ipdata' => [
-            'class' => \Torann\GeoIP\Services\IPData::class,
+            'class' => \InteractionDesignFoundation\GeoIP\Services\IPData::class,
             'key' => env('IPDATA_API_KEY'),
             'secure' => true,
         ],
 
         'ipfinder' => [
-            'class' => \Torann\GeoIP\Services\IPFinder::class,
+            'class' => \InteractionDesignFoundation\GeoIP\Services\IPFinder::class,
             'key' => env('IPFINDER_API_KEY'),
             'secure' => true,
             'locales' => ['en'],
+        ],
+
+        'ip2location' => [
+            'class' => \InteractionDesignFoundation\GeoIP\Services\IP2Location::class,
+            'key' => env('IP2LOCATION_API_KEY'),
         ],
 
     ],
@@ -114,18 +133,29 @@ return [
     |
     */
 
-    'cache_tags' => ['torann-geoip-location'],
+    'cache_tags' => ['laravel-geoip-location'],
 
     /*
     |--------------------------------------------------------------------------
     | Cache Expiration
     |--------------------------------------------------------------------------
     |
-    | Define how long cached location are valid.
+    | Cache's time to live in seconds.
     |
     */
 
     'cache_expires' => 30,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Cache Prefix
+    |--------------------------------------------------------------------------
+    |
+    | Prefix used for cache keys (in addition to globally configured prefix).
+    |
+    */
+
+    'cache_prefix' => 'geoip:',
 
     /*
     |--------------------------------------------------------------------------
