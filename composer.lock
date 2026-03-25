@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe7051713db177299cf8c3f0c5e75896",
+    "content-hash": "c43b71c9d820fe0ba673ba5d5e3bb696",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -17410,16 +17410,16 @@
         },
         {
             "name": "overtrue/laravel-query-logger",
-            "version": "v5.1.0",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-query-logger.git",
-                "reference": "b09af8efab57b48b6d5ed3d49096398600615c5d"
+                "reference": "fe4f86881e873a27c308399fbb6e40ec3f42ef8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-query-logger/zipball/b09af8efab57b48b6d5ed3d49096398600615c5d",
-                "reference": "b09af8efab57b48b6d5ed3d49096398600615c5d",
+                "url": "https://api.github.com/repos/overtrue/laravel-query-logger/zipball/fe4f86881e873a27c308399fbb6e40ec3f42ef8c",
+                "reference": "fe4f86881e873a27c308399fbb6e40ec3f42ef8c",
                 "shasum": ""
             },
             "require": {
@@ -17465,7 +17465,7 @@
             "description": "A dev tool to log all queries for laravel application.",
             "support": {
                 "issues": "https://github.com/overtrue/laravel-query-logger/issues",
-                "source": "https://github.com/overtrue/laravel-query-logger/tree/v5.1.0"
+                "source": "https://github.com/overtrue/laravel-query-logger/tree/v4.0.0"
             },
             "funding": [
                 {
@@ -17473,7 +17473,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-21T14:24:59+00:00"
+            "time": "2026-03-21T14:20:53+00:00"
         },
         {
             "name": "phar-io/manifest",
