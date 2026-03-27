@@ -112,21 +112,21 @@
         },
         {
             "name": "anourvalar/eloquent-serialize",
-            "version": "1.3.6",
+            "version": "1.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AnourValar/eloquent-serialize.git",
-                "reference": "42645e5515d6105c0e6db202f93cab3d36cdce74"
+                "reference": "b6b16ab61316fb9885dff1ede29e72441c7098c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AnourValar/eloquent-serialize/zipball/42645e5515d6105c0e6db202f93cab3d36cdce74",
-                "reference": "42645e5515d6105c0e6db202f93cab3d36cdce74",
+                "url": "https://api.github.com/repos/AnourValar/eloquent-serialize/zipball/b6b16ab61316fb9885dff1ede29e72441c7098c0",
+                "reference": "b6b16ab61316fb9885dff1ede29e72441c7098c0",
                 "shasum": ""
             },
             "require": {
                 "laravel/framework": "^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
-                "php": "^7.4|^8.0"
+                "php": "^8.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.26",
@@ -171,9 +171,9 @@
             ],
             "support": {
                 "issues": "https://github.com/AnourValar/eloquent-serialize/issues",
-                "source": "https://github.com/AnourValar/eloquent-serialize/tree/1.3.6"
+                "source": "https://github.com/AnourValar/eloquent-serialize/tree/1.3.7"
             },
-            "time": "2026-03-18T15:36:03+00:00"
+            "time": "2026-03-27T16:21:06+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -1559,16 +1559,16 @@
         },
         {
             "name": "dedoc/scramble",
-            "version": "v0.13.16",
+            "version": "v0.13.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dedoc/scramble.git",
-                "reference": "43a5dd62b6a5d7d6fd0125092985d78ae22f0ffe"
+                "reference": "f7b1652316e3ed0243389837158128c8c1c8bfda"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dedoc/scramble/zipball/43a5dd62b6a5d7d6fd0125092985d78ae22f0ffe",
-                "reference": "43a5dd62b6a5d7d6fd0125092985d78ae22f0ffe",
+                "url": "https://api.github.com/repos/dedoc/scramble/zipball/f7b1652316e3ed0243389837158128c8c1c8bfda",
+                "reference": "f7b1652316e3ed0243389837158128c8c1c8bfda",
                 "shasum": ""
             },
             "require": {
@@ -1627,7 +1627,7 @@
             ],
             "support": {
                 "issues": "https://github.com/dedoc/scramble/issues",
-                "source": "https://github.com/dedoc/scramble/tree/v0.13.16"
+                "source": "https://github.com/dedoc/scramble/tree/v0.13.17"
             },
             "funding": [
                 {
@@ -1635,7 +1635,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-17T21:42:41+00:00"
+            "time": "2026-03-27T13:32:04+00:00"
         },
         {
             "name": "devonab/filament-easy-footer",
@@ -9853,16 +9853,16 @@
         },
         {
             "name": "spatie/laravel-passkeys",
-            "version": "1.6.4",
+            "version": "1.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-passkeys.git",
-                "reference": "7c9825a193107b951e2016f371a73d4b634986e0"
+                "reference": "108bc6b163034b2a19e22fdcf7a0a4bac5090585"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-passkeys/zipball/7c9825a193107b951e2016f371a73d4b634986e0",
-                "reference": "7c9825a193107b951e2016f371a73d4b634986e0",
+                "url": "https://api.github.com/repos/spatie/laravel-passkeys/zipball/108bc6b163034b2a19e22fdcf7a0a4bac5090585",
+                "reference": "108bc6b163034b2a19e22fdcf7a0a4bac5090585",
                 "shasum": ""
             },
             "require": {
@@ -9919,7 +9919,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-passkeys/issues",
-                "source": "https://github.com/spatie/laravel-passkeys/tree/1.6.4"
+                "source": "https://github.com/spatie/laravel-passkeys/tree/1.6.5"
             },
             "funding": [
                 {
@@ -9927,7 +9927,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-25T08:24:34+00:00"
+            "time": "2026-03-27T10:29:37+00:00"
         },
         {
             "name": "spatie/laravel-permission",
