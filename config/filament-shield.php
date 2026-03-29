@@ -1,5 +1,17 @@
 <?php
 
+use App\Filament\Clusters\Finance\Resources\TransactionResource;
+use App\Filament\Clusters\Finance\Resources\UserWalletLogResource;
+use App\Filament\Clusters\Finance\Resources\WalletResource;
+use App\Filament\Clusters\Finance\Resources\WalletTypeResource;
+use App\Filament\Clusters\Permission\PermissionCluster;
+use App\Filament\Clusters\Permission\Resources\AdminResource;
+use App\Filament\Clusters\Permission\Resources\RoleResource;
+use App\Filament\Resources\Users\UserResource;
+use Filament\Pages\Dashboard;
+use Filament\Widgets\AccountWidget;
+use Filament\Widgets\FilamentInfoWidget;
+
 return [
 
     /*
@@ -16,7 +28,7 @@ return [
     'shield_resource' => [
         'slug' => 'shield/roles',
         'show_model_path' => true,
-        'cluster' => \App\Filament\Clusters\Permission\PermissionCluster::class,
+        'cluster' => PermissionCluster::class,
         'tabs' => [
             'pages' => true,
             'widgets' => true,
@@ -164,7 +176,7 @@ return [
         'subject' => 'model',
         'manage' => [
             // 角色
-            \App\Filament\Clusters\Permission\Resources\RoleResource::class => [
+            RoleResource::class => [
                 'viewAny',
                 'view',
                 'create',
@@ -172,31 +184,27 @@ return [
                 'delete',
             ],
             // 管理员
-            \App\Filament\Clusters\Permission\Resources\AdminResource::class => [
+            AdminResource::class => [
                 'view', 'viewAny', 'create', 'update', 'delete', 'deleteAny',
             ],
             // 用户
-            \App\Filament\Resources\Users\UserResource::class                           => [
+            UserResource::class => [
                 'view', 'viewAny', 'create', 'update', 'delete', 'deleteAny',
             ],
-            // 用户日志
-            \App\Filament\Resources\AuthenticationLogs\AuthenticationLogResource::class => [
-                'view', 'viewAny',
-            ],
             // 钱包
-            \App\Filament\Clusters\Finance\Resources\WalletResource::class => [
+            WalletResource::class => [
                 'view', 'viewAny',
             ],
             // 钱包类型
-            \App\Filament\Clusters\Finance\Resources\WalletTypeResource::class => [
+            WalletTypeResource::class => [
                 'view', 'viewAny', 'create', 'update', 'delete', 'deleteAny',
             ],
             // 用户钱包日志
-            \App\Filament\Clusters\Finance\Resources\UserWalletLogResource::class => [
+            UserWalletLogResource::class => [
                 'view', 'viewAny',
             ],
             // 交易记录
-            \App\Filament\Clusters\Finance\Resources\TransactionResource::class => [
+            TransactionResource::class => [
                 'view', 'viewAny',
             ],
         ],
@@ -220,7 +228,7 @@ return [
         'subject' => 'class',
         'prefix' => 'view',
         'exclude' => [
-            \Filament\Pages\Dashboard::class,
+            Dashboard::class,
         ],
     ],
 
@@ -239,8 +247,8 @@ return [
         'subject' => 'class',
         'prefix' => 'view',
         'exclude' => [
-            \Filament\Widgets\AccountWidget::class,
-            \Filament\Widgets\FilamentInfoWidget::class,
+            AccountWidget::class,
+            FilamentInfoWidget::class,
         ],
     ],
 

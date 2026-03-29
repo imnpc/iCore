@@ -18,32 +18,30 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModel;
-use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\LaravelPasskeys\Models\Concerns\HasPasskeys;
 use Spatie\LaravelPasskeys\Models\Concerns\InteractsWithPasskeys;
 use Spatie\Permission\Traits\HasRoles;
 
-class Admin extends Authenticatable implements FilamentUser, HasAvatar, HasAppAuthentication, HasAppAuthenticationRecovery,BannableContract,HasPasskeys
+class Admin extends Authenticatable implements BannableContract, FilamentUser, HasAppAuthentication, HasAppAuthenticationRecovery, HasAvatar, HasPasskeys
 {
-    use HasFactory, Notifiable;
-    use SoftDeletes;
-    use DateTrait; // 日期重写
+    // 记录日志
+    use Bannable;
+    use DateTrait;
+    use HasFactory, Notifiable; // 日期重写
     use HasRoles; // 权限
-    use HasTranslateableModel; // 翻译
-    use LogsActivity; // 记录日志
-    use Notifiable, AuthenticationLoggable; // 登录日志
-    use Bannable; // 封禁
-    use InteractsWithPasskeys; // 密钥
+    use HasTranslateableModel; // 密钥
     use InteractsWithAppAuthentication;
-    use InteractsWithAppAuthenticationRecovery;
+    use InteractsWithAppAuthenticationRecovery; // 封禁
+    use InteractsWithPasskeys; // 翻译
+    use LogsActivity;
+    use SoftDeletes;
 
     protected static ?string $translateablePackageKey = ''; // 翻译
 
     /**
      * 日志
-     * @return LogOptions
      */
     public function getActivitylogOptions(): LogOptions
     {
@@ -52,6 +50,7 @@ class Admin extends Authenticatable implements FilamentUser, HasAvatar, HasAppAu
             ->logOnlyDirty()
             ->dontSubmitEmptyLogs();
     }
+
     /**
      * The attributes that are mass assignable.
      *

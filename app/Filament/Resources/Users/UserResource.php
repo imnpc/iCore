@@ -48,10 +48,6 @@ class UserResource extends Resource implements Translateable
                 UserWalletLogRelationManager::class, // 钱包日志
                 WalletRelationManager::class, // 钱包
             ])->icon('heroicon-o-wallet'),
-            RelationGroup::make(trans('filament-authentication-log::filament-authentication-log.navigation.authentication-log.label'), [
-                \App\Filament\RelationManagers\AuthenticationLogsRelationManager::class,
-            ])->icon('heroicon-o-shield-check'),
-
         ];
     }
 
@@ -66,16 +62,14 @@ class UserResource extends Resource implements Translateable
 
     /**
      * 导航组
-     * @return string|null
      */
-//    public static function getNavigationGroup(): ?string
-//    {
-//        return __('filament-model.navigation_group.user.name');
-//    }
+    //    public static function getNavigationGroup(): ?string
+    //    {
+    //        return __('filament-model.navigation_group.user.name');
+    //    }
 
     /**
      * 导航徽章
-     * @return string|null
      */
     public static function getNavigationBadge(): ?string
     {
@@ -84,7 +78,6 @@ class UserResource extends Resource implements Translateable
 
     /**
      * 排序
-     * @return int|null
      */
     public static function getNavigationSort(): ?int
     {
@@ -98,8 +91,8 @@ class UserResource extends Resource implements Translateable
     }
 
     // 搜索结果标题
-    public static function getGlobalSearchResultTitle(Model $record): string | Htmlable
+    public static function getGlobalSearchResultTitle(Model $record): string|Htmlable
     {
-        return $record->name." / ".$record->email." / ".$record->mobile;
+        return $record->name.' / '.$record->email.' / '.$record->mobile;
     }
 }

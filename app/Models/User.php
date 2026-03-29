@@ -18,31 +18,29 @@ use Laravel\Sanctum\HasApiTokens;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModel;
 use Plank\Mediable\Mediable;
 use Plank\Mediable\MediableInterface;
-use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Tags\HasTags;
 
-class User extends Authenticatable implements MediableInterface, Wallet, WalletFloat,BannableContract
+class User extends Authenticatable implements BannableContract, MediableInterface, Wallet, WalletFloat
 {
-    use HasFactory, Notifiable;
+    // 标签
+    use Bannable;
+    use DateTrait;
     use HasApiTokens;
-    use DateTrait; // 日期重写
-    use Mediable; // 媒体库
-    use HasWallet, HasWallets; // 钱包
-    use HasWalletFloat; // 钱包
-    use HasTranslateableModel; // 翻译
-    use LogsActivity; // 记录日志
-    use HasTags; // 标签
-    use Notifiable, AuthenticationLoggable; // 登录日志
-    use Bannable; // 封禁
+    use HasFactory, Notifiable; // 记录日志
+    use HasTags; // 钱包
+    use HasTranslateableModel; // 钱包
+    use HasWalletFloat; // 媒体库
+    use HasWallet, HasWallets; // 翻译
+    use LogsActivity; // 日期重写
+    use Mediable; // 封禁
     use SoftDeletes;
 
     protected static ?string $translateablePackageKey = ''; // 翻译
 
     /**
      * 日志
-     * @return LogOptions
      */
     public function getActivitylogOptions(): LogOptions
     {
@@ -92,8 +90,8 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
     {
         return [
             'email_verified_at' => 'datetime',
-            'password'          => 'hashed',
-            'last_login_at'     => 'datetime',
+            'password' => 'hashed',
+            'last_login_at' => 'datetime',
             'app_authentication_secret' => 'encrypted',
             'app_authentication_recovery_codes' => 'encrypted:array',
         ];
@@ -112,6 +110,7 @@ class User extends Authenticatable implements MediableInterface, Wallet, WalletF
     {
         if ($this->hasMedia('avatar')) {
             $media = $this->firstMedia('avatar');
+
             return $media->getUrl();
         }
 

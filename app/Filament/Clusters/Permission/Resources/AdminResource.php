@@ -2,12 +2,12 @@
 
 namespace App\Filament\Clusters\Permission\Resources;
 
+use App\Filament\Clusters\Permission\PermissionCluster;
 use App\Filament\Clusters\Permission\Resources\Admins\Pages\CreateAdmin;
 use App\Filament\Clusters\Permission\Resources\Admins\Pages\EditAdmin;
 use App\Filament\Clusters\Permission\Resources\Admins\Pages\ListAdmins;
 use App\Filament\Clusters\Permission\Resources\Admins\Schemas\AdminForm;
 use App\Filament\Clusters\Permission\Resources\Admins\Tables\AdminsTable;
-use App\Filament\Clusters\Permission\PermissionCluster;
 use App\Models\Admin;
 use BackedEnum;
 use BezhanSalleh\FilamentShield\Traits\HasShieldFormComponents;
@@ -19,32 +19,31 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Maggomann\FilamentModelTranslator\Contracts\Translateable;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableResources;
 
-class AdminResource extends Resource  implements Translateable
+class AdminResource extends Resource implements Translateable
 {
-    use HasTranslateableResources; // 添加翻译
-    use HasShieldFormComponents; // 添加表单组件权限
+    // 添加翻译
+    use HasShieldFormComponents;
+    use HasTranslateableResources; // 添加表单组件权限
 
     /**
      * 翻译
-     * @var string|null
      */
     protected static ?string $translateablePackageKey = '';
 
     /**
      * 集群
-     * @var string|null
      */
     protected static ?string $cluster = PermissionCluster::class;
 
     /**
      * 标题
-     * @var string|null
      */
     protected static ?string $recordTitleAttribute = 'name';
 
     protected static ?string $model = Admin::class;
 
-    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-user-circle';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-user-circle';
+
     public static function form(Schema $schema): Schema
     {
         return AdminForm::configure($schema);
@@ -58,8 +57,7 @@ class AdminResource extends Resource  implements Translateable
     public static function getRelations(): array
     {
         return [
-            \App\Filament\RelationManagers\AuthenticationLogsRelationManager::class,
-//            ActivitylogRelationManager::class,
+            //            ActivitylogRelationManager::class,
         ];
     }
 
@@ -82,7 +80,6 @@ class AdminResource extends Resource  implements Translateable
 
     /**
      * 导航组
-     * @return string|null
      */
     public static function getNavigationGroup(): ?string
     {
@@ -91,7 +88,6 @@ class AdminResource extends Resource  implements Translateable
 
     /**
      * 导航徽章
-     * @return string|null
      */
     public static function getNavigationBadge(): ?string
     {
@@ -100,11 +96,9 @@ class AdminResource extends Resource  implements Translateable
 
     /**
      * 排序
-     * @return int|null
      */
     public static function getNavigationSort(): ?int
     {
         return 1;
     }
-
 }

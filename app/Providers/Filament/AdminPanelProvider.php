@@ -27,7 +27,6 @@ use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
@@ -35,7 +34,6 @@ use Maggomann\FilamentModelTranslator\FilamentModelTranslatorServicePlugin;
 use Outerweb\FilamentSettings\SettingsPlugin;
 use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
 use Relaticle\CustomFields\CustomFieldsPlugin;
-use Tapp\FilamentAuthenticationLog\FilamentAuthenticationLogPlugin;
 use TomatoPHP\FilamentWallet\FilamentWalletPlugin;
 
 class AdminPanelProvider extends PanelProvider
@@ -68,7 +66,7 @@ class AdminPanelProvider extends PanelProvider
                 ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'link'],
                 ['h2', 'h3', 'alignStart', 'alignCenter', 'alignEnd'],
                 ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
-                ['textColor','table', 'grid','attachFiles',],
+                ['textColor', 'table', 'grid', 'attachFiles'],
                 ['undo', 'redo'],
             ]);
         });
@@ -79,14 +77,14 @@ class AdminPanelProvider extends PanelProvider
                     ->showMenuBar(true)
                     ->profile('full')
                     ->fileAttachmentsVisibility('public')
-                    ->fileAttachmentsDirectory('attachments/' . date('Y/m/d'))
+                    ->fileAttachmentsDirectory('attachments/'.date('Y/m/d'))
                     ->columnSpanFull();
             });
         }
 
         // 默认关闭 创建另一个按钮
         CreateRecord::disableCreateAnother();
-        CreateAction::configureUsing(fn(CreateAction $action) => $action->createAnother(false));
+        CreateAction::configureUsing(fn (CreateAction $action) => $action->createAnother(false));
     }
 
     public function panel(Panel $panel): Panel
@@ -98,7 +96,7 @@ class AdminPanelProvider extends PanelProvider
             ->authGuard('admin') // 自定义认证 guard
             ->login(Login::class) // 自定义登录页面
             ->colors([
-//                'primary' => Color::Amber,
+                //                'primary' => Color::Amber,
                 'primary' => Color::Blue,
             ])
             ->maxContentWidth('full')
@@ -119,7 +117,7 @@ class AdminPanelProvider extends PanelProvider
                 StartSession::class,
                 AuthenticateSession::class,
                 ShareErrorsFromSession::class,
-                VerifyCsrfToken::class,
+                PreventRequestForgery::class,
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
@@ -129,28 +127,27 @@ class AdminPanelProvider extends PanelProvider
                 FilamentShieldPlugin::make()
                     ->gridColumns([
                         'default' => 1,
-                        'sm'      => 2,
-                        'lg'      => 3
+                        'sm' => 2,
+                        'lg' => 3,
                     ])
                     ->sectionColumnSpan(1)
                     ->checkboxListColumns([
                         'default' => 1,
-                        'sm'      => 2,
-                        'lg'      => 4,
+                        'sm' => 2,
+                        'lg' => 4,
                     ])
                     ->resourceCheckboxListColumns([
                         'default' => 1,
-                        'sm'      => 2,
+                        'sm' => 2,
                     ]), // 权限
                 SettingsPlugin::make()
                     ->pages([
-//                        \App\Filament\Clusters\Settings\Pages\SystemConfig::class,
+                        //                        \App\Filament\Clusters\Settings\Pages\SystemConfig::class,
                     ]), // 系统设置
                 FilamentModelTranslatorServicePlugin::make(), //  模型翻译
-//                ActivitylogPlugin::make(), // 记录日志
-//                FilamentAuthenticationLogPlugin::make(), // 登录日志
+                //                ActivitylogPlugin::make(), // 记录日志
                 EnvironmentIndicatorPlugin::make()
-                    ->color(fn() => match (app()->environment()) {
+                    ->color(fn () => match (app()->environment()) {
                         'production' => Color::Green,
                         'staging' => Color::Orange,
                         'local' => Color::Red,
@@ -159,7 +156,7 @@ class AdminPanelProvider extends PanelProvider
                 EasyFooterPlugin::make()
                     ->withLoadTime('Processed in '), // 页脚
                 FilamentWalletPlugin::make()->hideResources(), // 钱包
-//                CustomFieldsPlugin::make(), // 自定义字段
+                //                CustomFieldsPlugin::make(), // 自定义字段
             ])
             ->profile()
             ->multiFactorAuthentication([
@@ -186,9 +183,8 @@ class AdminPanelProvider extends PanelProvider
             ->sidebarCollapsibleOnDesktop();
     }
 
-   function getNavigationGroup(): ?string
+    public function getNavigationGroup(): ?string
     {
         return __('filament-shield::filament-shield.nav.group');
     }
-
 }
