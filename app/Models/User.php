@@ -24,17 +24,16 @@ use Spatie\Tags\HasTags;
 
 class User extends Authenticatable implements BannableContract, MediableInterface, Wallet, WalletFloat
 {
-    // 标签
-    use Bannable;
-    use DateTrait;
+    use Bannable; // 封禁
+    use DateTrait; // 日期重写
     use HasApiTokens;
-    use HasFactory, Notifiable; // 记录日志
-    use HasTags; // 钱包
-    use HasTranslateableModel; // 钱包
-    use HasWalletFloat; // 媒体库
-    use HasWallet, HasWallets; // 翻译
-    use LogsActivity; // 日期重写
-    use Mediable; // 封禁
+    use HasFactory, Notifiable;
+    use HasTags; // 标签
+    use HasTranslateableModel; // 翻译
+    use HasWalletFloat; // 钱包
+    use HasWallet, HasWallets; // 钱包
+    use LogsActivity; // 记录日志
+    use Mediable; // 媒体库
     use SoftDeletes;
 
     protected static ?string $translateablePackageKey = ''; // 翻译

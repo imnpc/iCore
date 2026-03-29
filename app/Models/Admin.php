@@ -26,16 +26,15 @@ use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable implements BannableContract, FilamentUser, HasAppAuthentication, HasAppAuthenticationRecovery, HasAvatar, HasPasskeys
 {
-    // 记录日志
-    use Bannable;
-    use DateTrait;
-    use HasFactory, Notifiable; // 日期重写
+    use Bannable; // 封禁
+    use DateTrait; // 日期重写
+    use HasFactory, Notifiable;
     use HasRoles; // 权限
-    use HasTranslateableModel; // 密钥
-    use InteractsWithAppAuthentication;
-    use InteractsWithAppAuthenticationRecovery; // 封禁
-    use InteractsWithPasskeys; // 翻译
-    use LogsActivity;
+    use HasTranslateableModel; // 翻译
+    use InteractsWithAppAuthentication; // 双因素认证
+    use InteractsWithAppAuthenticationRecovery; // 双因素认证恢复
+    use InteractsWithPasskeys; // 密钥
+    use LogsActivity; // 记录日志
     use SoftDeletes;
 
     protected static ?string $translateablePackageKey = ''; // 翻译
