@@ -42,7 +42,7 @@ php artisan boost:install
 
 保持 Boost 资源更新
 ```bash
-php artisan boost:update
+php artisan boost:update --discover
 ```
 
 ### 新建订单模型 Order
