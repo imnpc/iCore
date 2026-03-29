@@ -4,7 +4,7 @@
 
 内置权限管理，用户管理，财务钱包管理和系统设置，并且带有前台 API 和自动生成 API 文档。
 
-基于 Laravel 12 和 Filament 5，本脚手架参考了官方插件列表内的同类项目，针对中文项目优化。
+基于 Laravel 13 和 Filament 5，本脚手架参考了官方插件列表内的同类项目，针对中文项目优化。
 
 参考项目列表：
 
@@ -18,7 +18,7 @@ https://filamentphp.com/plugins/riodewanto-superduper-starter
 
 ![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
 ![PHP Version](https://img.shields.io/badge/PHP-8.4-blue?style=flat-square&logo=php)
-![Laravel Version](https://img.shields.io/badge/Laravel-12.0-red?style=flat-square&logo=laravel)
+![Laravel Version](https://img.shields.io/badge/Laravel-13.0-red?style=flat-square&logo=laravel)
 ![Filament Version](https://img.shields.io/badge/Filament-5.0-purple?style=flat-square)
 
 ## 📦 常用命令行
@@ -294,7 +294,6 @@ php artisan make:enum PayType
 - 主题切换 (hasnayeen/themes)
 - 标识当前运行环境 (saasykit/filament-oops)
 - 封禁用户 (widiu7omo/filament-bandel)
-- 行为日志记录 (rmsramos/activitylog)
 
 #### 支付与财务
 - 微信 SDK (overtrue/laravel-wechat)

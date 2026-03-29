@@ -5,44 +5,26 @@ namespace App\Http\Middleware;
 use Closure;
 use Cog\Contracts\Ban\Bannable as BannableContract;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\Request;
 
 /**
  * 封禁用户禁止访问
- * @package App\Http\Middleware
  */
 class ForbidBannedUser
 {
-    /**
-     * The Guard implementation.
-     *
-     * @var \Illuminate\Contracts\Auth\Guard
-     */
-    protected $auth;
-
-    /**
-     * @param \Illuminate\Contracts\Auth\Guard $auth
-     */
-    public function __construct(Guard $auth)
-    {
-        $this->auth = $auth;
-    }
+    public function __construct(protected Guard $auth) {}
 
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
-     * @return mixed
-     *
      * @throws \Exception
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         $user = $this->auth->user();
 
-        // 判断用户是否被禁用
         if ($user && $user instanceof BannableContract && $user->isBanned()) {
-            abort_if($user->isBanned(), 403, '您的账号已被禁用，请联系管理员!');
+            abort(403, '您的账号已被禁用，请联系管理员!');
         }
 
         return $next($request);
