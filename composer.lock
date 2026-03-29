@@ -325,21 +325,22 @@
         },
         {
             "name": "bezhansalleh/filament-language-switch",
-            "version": "4.1.0",
+            "version": "4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bezhanSalleh/filament-language-switch.git",
-                "reference": "6024dfb81337ab87d782bc703923bee67907a797"
+                "reference": "0be32900b08ad0a3ab4c038550f8745669fd5700"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bezhanSalleh/filament-language-switch/zipball/6024dfb81337ab87d782bc703923bee67907a797",
-                "reference": "6024dfb81337ab87d782bc703923bee67907a797",
+                "url": "https://api.github.com/repos/bezhanSalleh/filament-language-switch/zipball/0be32900b08ad0a3ab4c038550f8745669fd5700",
+                "reference": "0be32900b08ad0a3ab4c038550f8745669fd5700",
                 "shasum": ""
             },
             "require": {
                 "filament/filament": "^4.0|^5.0",
-                "illuminate/support": "^11.28|^12.0",
+                "illuminate/contracts": "^11.28|^12.0|^13.0",
+                "illuminate/support": "^11.28|^12.0|^13.0",
                 "php": "^8.2",
                 "spatie/laravel-package-tools": "^1.9"
             },
@@ -347,18 +348,19 @@
                 "larastan/larastan": "^3.0",
                 "laravel/pint": "^1.0",
                 "nunomaduro/collision": "^8.0",
-                "orchestra/testbench": "^9.0|^10.0",
-                "pestphp/pest": "^2.0|^3.0",
-                "pestphp/pest-plugin-laravel": "^2.0|^3.0",
-                "pestphp/pest-plugin-livewire": "^2.0|^3.0",
-                "pestphp/pest-plugin-type-coverage": "^2.0|^3.5",
+                "orchestra/testbench": "^9.0|^10.0|^11.0",
+                "pestphp/pest": "^3.8|^4.0",
+                "pestphp/pest-plugin-laravel": "^3.2|^4.0",
+                "pestphp/pest-plugin-livewire": "^3.0|^4.0",
+                "pestphp/pest-plugin-type-coverage": "^3.6|^4.0",
                 "phpstan/extension-installer": "^1.4",
-                "phpstan/phpstan": "^1.0|^2.1",
-                "phpstan/phpstan-deprecation-rules": "^1.0|^2.0",
-                "phpstan/phpstan-phpunit": "^1.0|^2.0",
-                "phpunit/phpunit": "^10.1|^11.0",
-                "rector/rector": "^2.1",
-                "spatie/laravel-ray": "^1.40"
+                "phpstan/phpstan": "^2.1",
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0",
+                "phpunit/phpunit": "^11.0|^12.0",
+                "rector/jack": "^0.4.0",
+                "rector/rector": "^2.2",
+                "spatie/laravel-ray": "^1.43"
             },
             "type": "library",
             "extra": {
@@ -398,7 +400,7 @@
             ],
             "support": {
                 "issues": "https://github.com/bezhanSalleh/filament-language-switch/issues",
-                "source": "https://github.com/bezhanSalleh/filament-language-switch/tree/4.1.0"
+                "source": "https://github.com/bezhanSalleh/filament-language-switch/tree/4.2.0"
             },
             "funding": [
                 {
@@ -406,7 +408,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-02-05T03:36:08+00:00"
+            "time": "2026-03-29T11:07:23+00:00"
         },
         {
             "name": "bezhansalleh/filament-plugin-essentials",
