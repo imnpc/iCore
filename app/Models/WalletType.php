@@ -13,13 +13,11 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class WalletType extends Model
 {
-    use DateTrait;
+    use DateTrait; // 日期重写
     use HasFactory;
-
-    // 日期重写
     use HasTranslateableModel; // 翻译
-    use LogsActivity;
-    use SoftDeletes; // 记录日志
+    use LogsActivity; // 记录日志
+    use SoftDeletes;
 
     protected static ?string $translateablePackageKey = ''; // 翻译
 
