@@ -13,17 +13,18 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class WalletType extends Model
 {
+    use DateTrait;
     use HasFactory;
-    use SoftDeletes;
-    use DateTrait; // 日期重写
+
+    // 日期重写
     use HasTranslateableModel; // 翻译
-    use LogsActivity; // 记录日志
+    use LogsActivity;
+    use SoftDeletes; // 记录日志
 
     protected static ?string $translateablePackageKey = ''; // 翻译
 
     /**
      * 日志
-     * @return LogOptions
      */
     public function getActivitylogOptions(): LogOptions
     {
@@ -48,14 +49,6 @@ class WalletType extends Model
      * @var array
      */
     protected $hidden = [
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
     ];
 
     /**

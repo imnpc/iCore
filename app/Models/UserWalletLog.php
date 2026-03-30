@@ -6,6 +6,7 @@ use App\Enums\FromType;
 use App\Traits\DateTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModel;
 use Spatie\Activitylog\LogOptions;
@@ -13,17 +14,18 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class UserWalletLog extends Model
 {
+    use DateTrait;
     use HasFactory;
-    use SoftDeletes;
-    use DateTrait; // 日期重写
+
+    // 日期重写
     use HasTranslateableModel; // 翻译
-    use LogsActivity; // 记录日志
+    use LogsActivity;
+    use SoftDeletes; // 记录日志
 
     protected static ?string $translateablePackageKey = ''; // 翻译
 
     /**
      * 日志
-     * @return LogOptions
      */
     public function getActivitylogOptions(): LogOptions
     {
@@ -43,14 +45,17 @@ class UserWalletLog extends Model
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * Get the attributes that should be cast.
      *
-     * @var array
+     * @return array<string, string>
      */
-    protected $casts = [
-        'day'  => 'datetime',
-        'from' => FromType::class,
-    ];
+    protected function casts(): array
+    {
+        return [
+            'day' => 'datetime',
+            'from' => FromType::class,
+        ];
+    }
 
     /**
      * The accessors to append to the model's array form.
@@ -101,23 +106,24 @@ class UserWalletLog extends Model
     public function getTypeTextAttribute()
     {
         $state = $this->add > 0 ? 'deposit' : 'withdraw';
+
         return __("filament-wallet::messages.transactions.columns.{$state}");
     }
 
     // 关联 用户
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
     // 关联 来自用户
-    public function fromUser(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function fromUser(): BelongsTo
     {
         return $this->belongsTo(User::class, 'from_user_id', 'id');
     }
 
     // 关联 钱包类型
-    public function walletType(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function walletType(): BelongsTo
     {
         return $this->belongsTo(WalletType::class);
     }
