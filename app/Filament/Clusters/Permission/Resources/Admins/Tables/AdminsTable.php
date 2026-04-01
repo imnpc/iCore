@@ -53,7 +53,7 @@ class AdminsTable
             ])
             ->striped() // 斑马纹
             ->filters([
-//                TrashedFilter::make(),
+                //                TrashedFilter::make(),
             ])
             ->recordActions([
                 EditAction::make(),
@@ -62,15 +62,15 @@ class AdminsTable
                     UnbanAction::make(__('filament-bandel::translations.unban_model'))->color('success'),
                     DeleteAction::make(),
                 ])->visible(fn ($record): bool => $record->id > 1),
-//                ActivityLogTimelineTableAction::make('Activities'),
-//                WalletAction::make('money'),
+                //                ActivityLogTimelineTableAction::make('Activities'),
+                //                WalletAction::make('money'),
             ])
             ->toolbarActions([
-//                BulkActionGroup::make([
-//                    DeleteBulkAction::make(),
-//                    ForceDeleteBulkAction::make(),
-//                    RestoreBulkAction::make(),
-//                ]),
+                //                BulkActionGroup::make([
+                //                    DeleteBulkAction::make(),
+                //                    ForceDeleteBulkAction::make(),
+                //                    RestoreBulkAction::make(),
+                //                ]),
             ]);
     }
 }

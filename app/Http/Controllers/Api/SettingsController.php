@@ -19,7 +19,6 @@ class SettingsController extends Controller
      *
      * 输入星号获取所有设置或者指定key获取包含的设置项：app,price,wechat，alipay
      *
-     * @param Request $request
      * @return mixed
      */
     #[Get('allSettings')]
@@ -29,6 +28,7 @@ class SettingsController extends Controller
         $request->validate([
             /**
              * 设置项查询key，输入星号获取所有设置或者指定key：app,price,website
+             *
              * @example app
              */
             'key' => 'required|string',

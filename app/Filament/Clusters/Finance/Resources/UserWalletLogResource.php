@@ -62,7 +62,6 @@ class UserWalletLogResource extends Resource implements Translateable
 
     /**
      * 导航组
-     * @return string|null
      */
     public static function getNavigationGroup(): ?string
     {
@@ -71,7 +70,6 @@ class UserWalletLogResource extends Resource implements Translateable
 
     /**
      * 导航徽章
-     * @return string|null
      */
     public static function getNavigationBadge(): ?string
     {
@@ -80,7 +78,6 @@ class UserWalletLogResource extends Resource implements Translateable
 
     /**
      * 排序
-     * @return int|null
      */
     public static function getNavigationSort(): ?int
     {
@@ -89,10 +86,11 @@ class UserWalletLogResource extends Resource implements Translateable
 
     /**
      * 导航父级
+     *
      * @return string|null
      */
-//    public static function getNavigationParentItem(): ?string
-//    {
-//        return __('filament-model.label.wallet_type.label');
-//    }
+    //    public static function getNavigationParentItem(): ?string
+    //    {
+    //        return __('filament-model.label.wallet_type.label');
+    //    }
 }

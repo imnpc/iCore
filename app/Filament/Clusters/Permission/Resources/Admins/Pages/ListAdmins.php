@@ -21,6 +21,7 @@ class ListAdmins extends ListRecords
 
     /**
      * 标签过滤
+     *
      * @return array|Tab[]
      */
     public function getTabs(): array
@@ -36,13 +37,13 @@ class ListAdmins extends ListRecords
                 ->label(trans('filament-model.general.active'))
                 ->icon('heroicon-o-shield-check')
                 ->badgeColor('success')
-                ->modifyQueryUsing(fn(Builder $query) => $query->where('status', true))
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('status', true))
                 ->badge($modelClass::query()->where('status', true)->count()),
             'inactive' => Tab::make('Inactive')
                 ->label(trans('filament-model.general.inactive'))
                 ->icon('heroicon-o-x-circle')
                 ->badgeColor('danger')
-                ->modifyQueryUsing(fn(Builder $query) => $query->where('status', false))
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('status', false))
                 ->badge($modelClass::query()->where('status', false)->count()),
         ];
     }

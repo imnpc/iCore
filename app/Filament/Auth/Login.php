@@ -39,7 +39,7 @@ class Login extends BaseAuth
 
         return [
             $login_type => $data['login'],
-            'password'  => $data['password'],
+            'password' => $data['password'],
         ];
     }
 
@@ -50,4 +50,3 @@ class Login extends BaseAuth
         ]);
     }
 }
-

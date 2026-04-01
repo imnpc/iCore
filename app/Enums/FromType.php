@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use Filament\Support\Contracts\HasLabel;
 
-enum FromType: int implements hasLabel
+enum FromType: int implements HasLabel
 {
     // 积分来源
     // 核心操作项

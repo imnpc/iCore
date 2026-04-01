@@ -67,7 +67,6 @@ class WalletTypeResource extends Resource implements Translateable
 
     /**
      * 导航组
-     * @return string|null
      */
     public static function getNavigationGroup(): ?string
     {
@@ -76,7 +75,6 @@ class WalletTypeResource extends Resource implements Translateable
 
     /**
      * 导航徽章
-     * @return string|null
      */
     public static function getNavigationBadge(): ?string
     {
@@ -85,7 +83,6 @@ class WalletTypeResource extends Resource implements Translateable
 
     /**
      * 排序
-     * @return int|null
      */
     public static function getNavigationSort(): ?int
     {

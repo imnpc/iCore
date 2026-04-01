@@ -24,7 +24,7 @@ class WalletTypeForm
                     ->required()
                     ->alpha('ascii')
                     ->maxLength(255)
-                    ->helperText("大写英文,创建以后不可修改")
+                    ->helperText('大写英文,创建以后不可修改')
                     ->disabled(fn ($operation) => $operation === 'edit'),
                 TextInput::make('description')
                     ->label(WalletType::transAttribute('description'))
@@ -33,7 +33,7 @@ class WalletTypeForm
                     ->label(WalletType::transAttribute('decimal_places'))
                     ->required()
                     ->numeric()
-                    ->helperText("创建以后不可修改")
+                    ->helperText('创建以后不可修改')
                     ->default(2)
                     ->disabled(fn ($operation) => $operation === 'edit'),
                 FileUpload::make('icon')

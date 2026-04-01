@@ -3,15 +3,14 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 /**
  * 邮件验证
  *
  * @author
- *
  */
 class VerifyCodeEmail extends Notification implements ShouldQueue
 {
@@ -35,21 +34,21 @@ class VerifyCodeEmail extends Notification implements ShouldQueue
     /**
      * Get the notification's delivery channels.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return array
      */
     public function via($notifiable)
     {
         return [
-            'mail'
+            'mail',
         ];
     }
 
     /**
      * Get the mail representation of the notification.
      *
-     * @param mixed $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @param  mixed  $notifiable
+     * @return MailMessage
      */
     public function toMail($notifiable)
     {
@@ -63,7 +62,7 @@ class VerifyCodeEmail extends Notification implements ShouldQueue
     /**
      * Get the array representation of the notification.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return array
      */
     public function toArray($notifiable)

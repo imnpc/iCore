@@ -22,55 +22,55 @@ class UserResource extends JsonResource
              *
              * @example 1
              */
-            'id'         => $this->id,
+            'id' => $this->id,
             /**
              *  姓名
              *
              * @example 张三
              */
-            'name'       => $this->name,
+            'name' => $this->name,
             /**
              * 邮箱
              *
              * @example zhangsan@example.com
              */
-            'email'      => $this->email,
+            'email' => $this->email,
             /**
              * 上级ID
              *
              * @example 1
              */
-            'parent_id'      => $this->parent_id,
+            'parent_id' => $this->parent_id,
             /**
              * 邀请码
              *
              * @example 123456
              */
-            'invite_code'      => $this->invite_code,
+            'invite_code' => $this->invite_code,
             /**
              * 头像
              *
              * avatar.jpg
              */
-            'avatar'     => $this->avatar,
+            'avatar' => $this->avatar,
             /**
              * 头像URL
              *
              * @example https://example.com/avatar.jpg
              */
-            'avatar_url'     => $this->avatar_url,
+            'avatar_url' => $this->avatar_url,
             /**
              * 创建时间
              *
              * @example 2023-10-01 00:00:00
              */
-            'created_at' => (string)$this->created_at,
+            'created_at' => (string) $this->created_at,
             /**
              * 更新时间
              *
              * @example 2023-10-01 00:00:00
              */
-            'updated_at' => (string)$this->updated_at,
+            'updated_at' => (string) $this->updated_at,
             /**
              * 钱包
              */

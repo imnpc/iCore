@@ -6,7 +6,6 @@ use App\Filament\Clusters\Finance\FinanceCluster;
 use App\Filament\Clusters\Finance\Resources\Transactions\Pages\ListTransactions;
 use BackedEnum;
 use Filament\Resources\Resource;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -69,7 +68,7 @@ class TransactionResource extends Resource implements Translateable
                 SelectFilter::make('payable_id')
                     ->label(trans('filament-wallet::messages.transactions.filters.accounts'))
                     ->searchable()
-                    ->options(fn () => config('filament-accounts.model')::query()->pluck('name', 'id')->toArray())
+                    ->options(fn () => config('filament-accounts.model')::query()->pluck('name', 'id')->toArray()),
             ] : []);
     }
 
@@ -89,17 +88,14 @@ class TransactionResource extends Resource implements Translateable
 
     /**
      * 导航组
-     * @return string|null
      */
     public static function getNavigationGroup(): ?string
     {
         return __('filament-model.navigation_group.wallet.name');
     }
 
-
     /**
      * 排序
-     * @return int|null
      */
     public static function getNavigationSort(): ?int
     {
@@ -110,5 +106,4 @@ class TransactionResource extends Resource implements Translateable
     {
         return false;
     }
-
 }

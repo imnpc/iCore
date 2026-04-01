@@ -5,14 +5,14 @@ namespace App\Models;
 use App\Traits\DateTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModel;
-use Spatie\Permission\Models\Role as SpatieRole;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Permission\Models\Role as SpatieRole;
 
 class Role extends SpatieRole
 {
-    use HasFactory;
-    use DateTrait; // 日期重写
+    use DateTrait;
+    use HasFactory; // 日期重写
     use HasTranslateableModel; // 翻译
     use LogsActivity; // 记录日志
 
@@ -20,7 +20,6 @@ class Role extends SpatieRole
 
     /**
      * 日志
-     * @return LogOptions
      */
     public function getActivitylogOptions(): LogOptions
     {

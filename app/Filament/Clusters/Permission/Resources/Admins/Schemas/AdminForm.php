@@ -25,7 +25,7 @@ class AdminForm
                     ->label(trans('filament-model.general.email'))
                     ->email()
                     ->maxLength(255),
-//                DateTimePicker::make('email_verified_at'),
+                //                DateTimePicker::make('email_verified_at'),
                 TextInput::make('password')
                     ->label(trans('filament-model.general.password'))
                     ->password()
@@ -43,7 +43,7 @@ class AdminForm
                     ->displayNumberFormat(PhoneInputNumberType::NATIONAL),
                 FileUpload::make('avatar')
                     ->label(trans('filament-model.general.avatar'))
-                    ->directory('avatar/' . date('Y/m/d'))
+                    ->directory('avatar/'.date('Y/m/d'))
                     ->avatar()
                     ->image()
                     ->visibility('public')

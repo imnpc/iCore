@@ -50,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // filament 加载自定义 css
-        FilamentAsset::register( [
+        FilamentAsset::register([
             Css::make('custom-css', __DIR__.'/../../resources/css/custom.css'),
         ]);
 
@@ -63,15 +63,15 @@ class AppServiceProvider extends ServiceProvider
 
         // 自动发现策略文件
         Gate::guessPolicyNamesUsing(function (string $modelClass) {
-            return str_replace('Models', 'Policies', $modelClass) . 'Policy';
+            return str_replace('Models', 'Policies', $modelClass).'Policy';
         });
 
         // 插件需要手动注册策略，后台角色才能管理
-//        Gate::policy(Activity::class, ActivityPolicy::class); // 操作日志单独的策略文件
+        //        Gate::policy(Activity::class, ActivityPolicy::class); // 操作日志单独的策略文件
 
         // 更改权限生成规则 Change permission generation rules
         FilamentShield::buildPermissionKeyUsing(function (string $entity, string $affix, string $subject, string $case, string $separator) {
-            return str($affix)->camel() . '_' . str($subject)->pascal();
+            return str($affix)->camel().'_'.str($subject)->pascal();
         });
 
         // 自动配置 swagger 文档
@@ -96,7 +96,7 @@ class AppServiceProvider extends ServiceProvider
         // filament 多语言切换
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
             $switch
-                ->locales(['en','zh_CN','zh_TW'])
+                ->locales(['en', 'zh_CN', 'zh_TW'])
                 ->labels([
                     'en' => 'English',
                     'zh_CN' => '简体中文',
@@ -114,13 +114,13 @@ class AppServiceProvider extends ServiceProvider
     // 事件列表
     private $listen = [
         // access_token 生成以后清除旧的 token ，然后记录登录时间和日期
-//        'Laravel\Passport\Events\AccessTokenCreated' => [
-//            'App\Listeners\RevokeOldTokens',
-//            'App\Listeners\LogSuccessfulLogin',
-//        ],
+        //        'Laravel\Passport\Events\AccessTokenCreated' => [
+        //            'App\Listeners\RevokeOldTokens',
+        //            'App\Listeners\LogSuccessfulLogin',
+        //        ],
         // refresh_token 生成以后删除已吊销的 token
-//        'Laravel\Passport\Events\RefreshTokenCreated' => [
-//            'App\Listeners\PruneOldTokens',
-//        ],
+        //        'Laravel\Passport\Events\RefreshTokenCreated' => [
+        //            'App\Listeners\PruneOldTokens',
+        //        ],
     ];
 }

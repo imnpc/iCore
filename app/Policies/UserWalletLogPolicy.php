@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Policies;
 
 use App\Models\User;
-use Illuminate\Foundation\Auth\User as AuthUser;
 use App\Models\UserWalletLog;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Foundation\Auth\User as AuthUser;
 
 class UserWalletLogPolicy
 {
@@ -70,10 +70,6 @@ class UserWalletLogPolicy
 
     /**
      * 验证是否属于本人
-     *
-     * @param User $user
-     * @param UserWalletLog $userWalletLog
-     * @return bool
      */
     public function own(User $user, UserWalletLog $userWalletLog): bool
     {

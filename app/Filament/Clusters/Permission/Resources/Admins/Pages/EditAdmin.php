@@ -12,9 +12,9 @@ class EditAdmin extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-//            DeleteAction::make()->visible(fn ($record): bool => $record->id > 1),
-//            ForceDeleteAction::make(),
-//            RestoreAction::make(),
+            //            DeleteAction::make()->visible(fn ($record): bool => $record->id > 1),
+            //            ForceDeleteAction::make(),
+            //            RestoreAction::make(),
         ];
     }
 }

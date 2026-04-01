@@ -50,13 +50,13 @@ class UsersTable
                 IconColumn::make('status')
                     ->label(trans('filament-model.general.status'))
                     ->boolean(),
-//                TextColumn::make('last_login_at')
-//                    ->label(User::transAttribute('last_login_at'))
-//                    ->dateTime()
-//                    ->sortable(),
-//                TextColumn::make('last_login_ip')
-//                    ->label(User::transAttribute('last_login_ip'))
-//                    ->searchable(),
+                //                TextColumn::make('last_login_at')
+                //                    ->label(User::transAttribute('last_login_at'))
+                //                    ->dateTime()
+                //                    ->sortable(),
+                //                TextColumn::make('last_login_ip')
+                //                    ->label(User::transAttribute('last_login_ip'))
+                //                    ->searchable(),
                 TextColumn::make('created_at')
                     ->label(trans('filament-model.general.created_at'))
                     ->dateTime(),
@@ -84,6 +84,7 @@ class UsersTable
                         if (isset($data['parent_id']) && $data['parent_id'] !== null && $data['parent_id'] !== '') {
                             return $query->where('parent_id', '=', $data['parent_id']);
                         }
+
                         return $query;
                     }),
 
@@ -93,10 +94,10 @@ class UsersTable
                         1 => '启用',
                         0 => '禁用',
                     ]),
-                 SelectFilter::make('tags')
-                     ->label(trans('filament-model.general.tags'))
-                     ->relationship('tags', 'name')
-                     ->multiple(),
+                SelectFilter::make('tags')
+                    ->label(trans('filament-model.general.tags'))
+                    ->relationship('tags', 'name')
+                    ->multiple(),
                 // 日期筛选
                 Filter::make('created_at')
                     ->label('创建时间')
@@ -130,9 +131,9 @@ class UsersTable
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-//                    DeleteBulkAction::make(),
+                    //                    DeleteBulkAction::make(),
                 ]),
-//                ExportBulkAction::make(),
+                //                ExportBulkAction::make(),
             ]);
     }
 }

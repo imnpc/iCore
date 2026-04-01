@@ -43,19 +43,19 @@ class WalletTypesTable
                 IconColumn::make('is_enabled')
                     ->label(trans('filament-model.general.is_enabled'))
                     ->boolean(),
-//                TextColumn::make('created_at')
-//                    ->label(WalletType::transAttribute('created_at'))
-//                    ->dateTime()
-//                    ->sortable()
-//                    ->toggleable(isToggledHiddenByDefault: true),
+                //                TextColumn::make('created_at')
+                //                    ->label(WalletType::transAttribute('created_at'))
+                //                    ->dateTime()
+                //                    ->sortable()
+                //                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
                     ->label(trans('filament-model.general.updated_at'))
                     ->dateTime(),
-//                TextColumn::make('deleted_at')
-//                    ->label(WalletType::transAttribute('deleted_at'))
-//                    ->dateTime()
-//                    ->sortable()
-//                    ->toggleable(isToggledHiddenByDefault: true),
+                //                TextColumn::make('deleted_at')
+                //                    ->label(WalletType::transAttribute('deleted_at'))
+                //                    ->dateTime()
+                //                    ->sortable()
+                //                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->defaultSort('id', 'asc')
             ->filters([
@@ -69,9 +69,9 @@ class WalletTypesTable
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-//                    DeleteBulkAction::make(),
-//                    ForceDeleteBulkAction::make(),
-//                    RestoreBulkAction::make(),
+                    //                    DeleteBulkAction::make(),
+                    //                    ForceDeleteBulkAction::make(),
+                    //                    RestoreBulkAction::make(),
                 ]),
             ]);
     }

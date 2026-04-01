@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Laravel 7+ 处理日期格式
  */
@@ -11,9 +12,6 @@ trait DateTrait
 {
     /**
      * 为数组 / JSON 序列化准备日期。
-     *
-     * @param \DateTimeInterface $date
-     * @return string
      */
     protected function serializeDate(DateTimeInterface $date): string
     {

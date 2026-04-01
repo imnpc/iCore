@@ -7,10 +7,10 @@ use App\Models\WalletType;
 use App\Services\LogService;
 use App\Services\UserWalletService;
 use Carbon\Carbon;
+use Filament\Actions\Action;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
-use Filament\Actions\Action;
 
 class WalletAction extends Action
 {
@@ -31,9 +31,10 @@ class WalletAction extends Action
             $options = [];
             foreach ($list as $key => $value) {
                 $name = strtolower($value->slug);
-                $balance = $wallets[$name . '_balance'];
-                $options[$value->id] = $value->name . ' [ 当前: ' . $balance . ' ]';
+                $balance = $wallets[$name.'_balance'];
+                $options[$value->id] = $value->name.' [ 当前: '.$balance.' ]';
             }
+
             return [
                 // 钱包类型
                 Radio::make('wallet_type')
@@ -51,7 +52,7 @@ class WalletAction extends Action
                     ->maxWidth('xs')
                     ->options([
                         'credit' => trans('filament-wallet::messages.wallets.action.credit'),
-                        'debit' => trans('filament-wallet::messages.wallets.action.debit')
+                        'debit' => trans('filament-wallet::messages.wallets.action.debit'),
                     ])
                     ->label(trans('filament-wallet::messages.wallets.action.type'))
                     ->required()
@@ -84,9 +85,9 @@ class WalletAction extends Action
                 $remark = $data['remark'];
             } else {
                 if ($data['type'] == 'credit') {
-                    $remark = "后台管理员充值 ".$wallet_name." ,数量: " . $data['money'];
+                    $remark = '后台管理员充值 '.$wallet_name.' ,数量: '.$data['money'];
                 } elseif ($data['type'] == 'debit') {
-                    $remark = "后台管理员扣除 ".$wallet_name." ,数量: " . $data['money'];
+                    $remark = '后台管理员扣除 '.$wallet_name.' ,数量: '.$data['money'];
                 }
             }
             $money = $data['money']; // 操作数量
@@ -96,9 +97,10 @@ class WalletAction extends Action
                 if (abs($data['money']) > $balance) {
                     Notification::make()
                         ->title('操作失败')
-                        ->body("扣除数量不能超过账户余额数量")
+                        ->body('扣除数量不能超过账户余额数量')
                         ->danger()
                         ->send();
+
                     return;
                 }
                 $money = -$data['money']; // 扣除金额
@@ -109,13 +111,13 @@ class WalletAction extends Action
             if ($data['type'] == 'credit') {
                 Notification::make()
                     ->title('操作成功')
-                    ->body("已经成功充值了 ".$wallet_name." ,数量: " . $data['money'])
+                    ->body('已经成功充值了 '.$wallet_name.' ,数量: '.$data['money'])
                     ->success()
                     ->send();
             } elseif ($data['type'] == 'debit') {
                 Notification::make()
                     ->title('操作成功')
-                    ->body("已经成功扣除了 ".$wallet_name." ,数量: " . $data['money'])
+                    ->body('已经成功扣除了 '.$wallet_name.' ,数量: '.$data['money'])
                     ->warning()
                     ->send();
             }

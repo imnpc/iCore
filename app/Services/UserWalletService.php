@@ -9,7 +9,6 @@ use Bavix\Wallet\Internal\Service\MathServiceInterface;
 use Bavix\Wallet\Models\Transaction;
 use Bavix\Wallet\Models\Wallet;
 use Bavix\Wallet\Services\CastServiceInterface;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -19,11 +18,13 @@ class UserWalletService
 {
     /**
      * 写入钱包数据
-     * @param int $uid 用户 ID
-     * @param int $wallet_type_id 钱包类型 ID
-     * @param float|int $money 操作金额
-     * @param array|null $remark 备注
+     *
+     * @param  int  $uid  用户 ID
+     * @param  int  $wallet_type_id  钱包类型 ID
+     * @param  float|int  $money  操作金额
+     * @param  array|null  $remark  备注
      * @return true
+     *
      * @throws ExceptionInterface
      * @throws \Throwable
      */
@@ -37,32 +38,34 @@ class UserWalletService
 
         DB::beginTransaction(); // 开始事务
         try {
-            $key = 'user_wallet_lock_' . $wallet_type_id . '_' . $uid; // 钱包缓存 key
+            $key = 'user_wallet_lock_'.$wallet_type_id.'_'.$uid; // 钱包缓存 key
             $wallet->balanceInt; // 钱包进入事务锁定模式
 
             // 动态选择方法名称
             $operation = $money > 0 ? 'deposit' : 'withdraw';
             $methodSuffix = $wallet->decimal_places > 0 ? 'Float' : '';
-            $methodName = $operation . $methodSuffix;
+            $methodName = $operation.$methodSuffix;
 
             // 执行钱包操作
             $wallet->{$methodName}(abs($money), $remark);
 
             Cache::forget($key); // 清除钱包缓存
             DB::commit(); // 结束事务
+
             return true;
         } catch (\Exception $e) {
             DB::rollBack(); // 回滚事务
             // 异常处理
-            Log::error(__METHOD__ . '|' . __METHOD__ . '-UserWalletService-store-执行失败', ['error' => $e]);
+            Log::error(__METHOD__.'|'.__METHOD__.'-UserWalletService-store-执行失败', ['error' => $e]);
+
             return false;
         }
     }
 
     /**
      * 检测用户钱包,没有的钱包类型自动创建
-     * @param int $uid 用户 ID
-     * @return void
+     *
+     * @param  int  $uid  用户 ID
      */
     public function checkWallet(int $uid): void
     {
@@ -70,11 +73,11 @@ class UserWalletService
         $lists = WalletType::where('is_enabled', '=', 1)->get(); // 钱包类型列表: 状态为 启用 的
         foreach ($lists as $value) {
             $check = $user->hasWallet($value->slug); // 用户是否有某类型钱包
-            if (!$check) {
+            if (! $check) {
                 $user->createWallet([
-                    'name'           => $value->name, // 钱包名称
-                    'slug'           => $value->slug, // 钱包代码
-                    'description'    => '用户 ' . $user->id . ' 的 ' . $value->description, // 钱包介绍
+                    'name' => $value->name, // 钱包名称
+                    'slug' => $value->slug, // 钱包代码
+                    'description' => '用户 '.$user->id.' 的 '.$value->description, // 钱包介绍
                     'decimal_places' => $value->decimal_places, // 钱包小数位数
                 ]); // 创建钱包
             }
@@ -83,9 +86,10 @@ class UserWalletService
 
     /**
      * 获得用户指定钱包余额
-     * @param int $uid 用户 ID
-     * @param int $wallet_type_id 钱包类型 ID
-     * @return mixed
+     *
+     * @param  int  $uid  用户 ID
+     * @param  int  $wallet_type_id  钱包类型 ID
+     *
      * @throws \Throwable
      */
     public function checkBalance(int $uid, int $wallet_type_id): mixed
@@ -110,9 +114,9 @@ class UserWalletService
 
     /**
      * 用户指定钱包昨日增加金额
-     * @param int $uid 用户 ID
-     * @param int $wallet_type_id 钱包类型 ID
-     * @return int|string
+     *
+     * @param  int  $uid  用户 ID
+     * @param  int  $wallet_type_id  钱包类型 ID
      */
     public function yesterday(int $uid, int $wallet_type_id): int|string
     {
@@ -142,9 +146,9 @@ class UserWalletService
 
     /**
      * 用户指定钱包累计收入金额
-     * @param int $uid 用户 ID
-     * @param int $wallet_type_id 钱包类型 ID
-     * @return int|string
+     *
+     * @param  int  $uid  用户 ID
+     * @param  int  $wallet_type_id  钱包类型 ID
      */
     public function total(int $uid, int $wallet_type_id): int|string
     {
@@ -172,8 +176,8 @@ class UserWalletService
 
     /**
      * 指定类型钱包当前总余额
-     * @param int $wallet_type_id 钱包类型 ID
-     * @return int|string
+     *
+     * @param  int  $wallet_type_id  钱包类型 ID
      */
     public function walletBalance(int $wallet_type_id): int|string
     {
@@ -202,8 +206,8 @@ class UserWalletService
 
     /**
      * 指定类型钱包累计收入
-     * @param int $wallet_type_id 钱包类型 ID
-     * @return int|string
+     *
+     * @param  int  $wallet_type_id  钱包类型 ID
      */
     public function walletTotal(int $wallet_type_id): int|string
     {
@@ -237,8 +241,8 @@ class UserWalletService
 
     /**
      * 获取某个用户的所有钱包余额
-     * @param int $uid 用户 ID
-     * @return array
+     *
+     * @param  int  $uid  用户 ID
      */
     public function getUserWallets(int $uid): array
     {
@@ -248,9 +252,9 @@ class UserWalletService
         foreach ($list->wallets as $v) {
             $type = WalletType::where('slug', '=', $v->slug)->first();
             $name = strtolower($v->slug);
-            $data[$name . '_id'] = $type->id;
-            $data[$name . '_name'] = $type->name;
-            $data[$name . '_balance'] = $v->balanceFloat;
+            $data[$name.'_id'] = $type->id;
+            $data[$name.'_name'] = $type->name;
+            $data[$name.'_balance'] = $v->balanceFloat;
         }
 
         return $data;

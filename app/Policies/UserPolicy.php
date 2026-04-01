@@ -3,8 +3,8 @@
 namespace App\Policies;
 
 use App\Models\User;
-use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Foundation\Auth\User as AuthUser;
 
 class UserPolicy
 {
@@ -72,12 +72,11 @@ class UserPolicy
 
     /**
      * 是否本人
-     * @param User $user
+     *
      * @return bool
      */
     public function own(User $user)
     {
         return $user->id === auth()->id();
     }
-
 }

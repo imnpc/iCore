@@ -9,33 +9,33 @@ trait MakesApiResponses
     public static function success($data = null, $message = '', $code = 200): JsonResponse
     {
         return response()->json([
-            'status'  => "success",
-            'code'    => $code,
+            'status' => 'success',
+            'code' => $code,
             'message' => $message,
-            'data'    => $data,
-            'errors'  => [],
+            'data' => $data,
+            'errors' => [],
         ], $code);
     }
 
     public static function fail($message = '', $code = 500, $errors = []): JsonResponse
     {
         return response()->json([
-            'status'  => "fail",
-            'code'    => $code,
+            'status' => 'fail',
+            'code' => $code,
             'message' => $message,
-            'data'    => [],
-            'errors'  => $errors,
+            'data' => [],
+            'errors' => $errors,
         ], $code);
     }
 
     public static function error($message = '', $code = 422, $errors = []): JsonResponse
     {
         return response()->json([
-            'status'  => "error",
-            'code'    => $code,
+            'status' => 'error',
+            'code' => $code,
             'message' => $message,
-            'data'    => [],
-            'errors'  => $errors,
+            'data' => [],
+            'errors' => $errors,
         ], $code);
     }
 }

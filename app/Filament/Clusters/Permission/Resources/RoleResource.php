@@ -12,7 +12,6 @@ use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use BezhanSalleh\FilamentShield\Support\Utils;
 use BezhanSalleh\FilamentShield\Traits\HasShieldFormComponents;
 use BezhanSalleh\PluginEssentials\Concerns\Resource as Essentials;
-use DiscoveryDesign\FilamentGaze\Forms\Components\GazeBanner;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -34,7 +33,8 @@ class RoleResource extends Resource
 {
     use Essentials\BelongsToParent;
     use Essentials\BelongsToTenant;
-//    use Essentials\HasGlobalSearch;
+
+    //    use Essentials\HasGlobalSearch;
     use Essentials\HasLabels;
     use Essentials\HasNavigation;
     use HasShieldFormComponents;
@@ -54,7 +54,7 @@ class RoleResource extends Resource
                                     ->unique(ignoreRecord: true)
                                     ->required()
                                     ->maxLength(255)
-                                    ->helperText("中文名称"),
+                                    ->helperText('中文名称'),
 
                                 TextInput::make('name')
                                     ->label(__('filament-shield::filament-shield.field.name'))
@@ -67,7 +67,7 @@ class RoleResource extends Resource
                                     ->maxLength(255)
                                     ->disabled(fn ($operation) => $operation === 'edit') // 新增禁用逻辑
                                     ->dehydrated(true) // 保持数据持久化
-                                    ->helperText("英文名,使用下划线区分,例如 super_admin, 请勿使用中文,编辑无法修改"),
+                                    ->helperText('英文名,使用下划线区分,例如 super_admin, 请勿使用中文,编辑无法修改'),
 
                                 TextInput::make('guard_name')
                                     ->label(__('filament-shield::filament-shield.field.guard_name'))

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Policies;
 
+use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use TomatoPHP\FilamentWallet\Models\Wallet;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
 class WalletPolicy
 {
     use HandlesAuthorization;
-    
+
     public function viewAny(AuthUser $authUser): bool
     {
         return $authUser->can('viewAny_Wallet');
@@ -66,5 +66,4 @@ class WalletPolicy
     {
         return $authUser->can('reorder_Wallet');
     }
-
 }

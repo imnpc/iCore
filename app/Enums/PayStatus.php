@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use Filament\Support\Contracts\HasLabel;
 
-enum PayStatus: int implements hasLabel
+enum PayStatus: int implements HasLabel
 {
     // 支付状态 0-未支付 1-待审核 2-已支付
     case UNPAID = 0;

@@ -10,10 +10,10 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -40,56 +40,56 @@ class ApiExceptionHandler extends ExceptionHandler
      * 异常配置映射表
      */
     private const EXCEPTION_CONFIG = [
-        ValidationException::class              => [
-            'message'        => '请求参数验证失败',
-            'status'         => 422,
-            'level'          => 'warning',
+        ValidationException::class => [
+            'message' => '请求参数验证失败',
+            'status' => 422,
+            'level' => 'warning',
             'include_errors' => true,
         ],
-        AuthenticationException::class          => [
+        AuthenticationException::class => [
             'message' => '认证失败，请重新登录',
-            'status'  => 401,
-            'level'   => 'warning',
+            'status' => 401,
+            'level' => 'warning',
         ],
-        AuthorizationException::class           => [
+        AuthorizationException::class => [
             'message' => '权限不足，拒绝访问',
-            'status'  => 403,
-            'level'   => 'warning',
+            'status' => 403,
+            'level' => 'warning',
         ],
-        ModelNotFoundException::class           => [
+        ModelNotFoundException::class => [
             'message' => '请求的资源不存在',
-            'status'  => 404,
-            'level'   => 'notice',
+            'status' => 404,
+            'level' => 'notice',
         ],
-        NotFoundHttpException::class            => [
+        NotFoundHttpException::class => [
             'message' => '请求的路由不存在',
-            'status'  => 404,
-            'level'   => 'notice',
+            'status' => 404,
+            'level' => 'notice',
         ],
-        MethodNotAllowedHttpException::class    => [
+        MethodNotAllowedHttpException::class => [
             'message' => '请求方法不允许',
-            'status'  => 405,
-            'level'   => 'warning',
+            'status' => 405,
+            'level' => 'warning',
         ],
-        TooManyRequestsHttpException::class     => [
+        TooManyRequestsHttpException::class => [
             'message' => '请求过于频繁，请稍后再试',
-            'status'  => 429,
-            'level'   => 'warning',
+            'status' => 429,
+            'level' => 'warning',
         ],
-        ThrottleRequestsException::class        => [
+        ThrottleRequestsException::class => [
             'message' => '请求过于频繁，请稍后再试',
-            'status'  => 429,
-            'level'   => 'warning',
+            'status' => 429,
+            'level' => 'warning',
         ],
         UnprocessableEntityHttpException::class => [
             'message' => '无法处理的请求实体',
-            'status'  => 422,
-            'level'   => 'warning',
+            'status' => 422,
+            'level' => 'warning',
         ],
-        QueryException::class                   => [
-            'message'            => '数据库查询错误',
-            'status'             => 500,
-            'level'              => 'error',
+        QueryException::class => [
+            'message' => '数据库查询错误',
+            'status' => 500,
+            'level' => 'error',
             'hide_in_production' => true,
         ],
     ];
@@ -274,18 +274,18 @@ class ApiExceptionHandler extends ExceptionHandler
 
         $context = [
             'exception_class' => $exceptionClass,
-            'file'            => $exception->getFile(),
-            'line'            => $exception->getLine(),
-            'trace_id'        => $this->getTraceId(),
+            'file' => $exception->getFile(),
+            'line' => $exception->getLine(),
+            'trace_id' => $this->getTraceId(),
         ];
 
         if ($request) {
             $context['request'] = [
-                'method'     => $request->getMethod(),
-                'url'        => $request->fullUrl(),
-                'ip'         => $request->ip(),
+                'method' => $request->getMethod(),
+                'url' => $request->fullUrl(),
+                'ip' => $request->ip(),
                 'user_agent' => $request->userAgent(),
-                'user_id'    => $request->user()?->id,
+                'user_id' => $request->user()?->id,
             ];
         }
 
@@ -307,10 +307,10 @@ class ApiExceptionHandler extends ExceptionHandler
 
         return [
             'exception' => get_class($exception),
-            'file'      => $exception->getFile(),
-            'line'      => $exception->getLine(),
-            'trace_id'  => $this->getTraceId(),
-            'previous'  => $exception->getPrevious()?->getMessage(),
+            'file' => $exception->getFile(),
+            'line' => $exception->getLine(),
+            'trace_id' => $this->getTraceId(),
+            'previous' => $exception->getPrevious()?->getMessage(),
         ];
     }
 
@@ -337,7 +337,7 @@ class ApiExceptionHandler extends ExceptionHandler
      */
     private function addDebugInfo(JsonResponse $response, Throwable $exception): JsonResponse
     {
-        if (!app()->environment('production')) {
+        if (! app()->environment('production')) {
             $responseData = $response->getData(true);
             $responseData['debug'] = $this->getDebugData($exception);
             $response->setData($responseData);

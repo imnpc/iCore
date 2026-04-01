@@ -7,7 +7,6 @@ use App\Filament\Clusters\Finance\Resources\Wallets\Pages\ListWallets;
 use App\Models\User;
 use BackedEnum;
 use Filament\Resources\Resource;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -15,7 +14,7 @@ use Maggomann\FilamentModelTranslator\Contracts\Translateable;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableResources;
 use TomatoPHP\FilamentWallet\Models\Wallet;
 
-class WalletResource extends Resource  implements Translateable
+class WalletResource extends Resource implements Translateable
 {
     use HasTranslateableResources;
 
@@ -33,9 +32,9 @@ class WalletResource extends Resource  implements Translateable
             ->columns([
                 TextColumn::make('id')
                     ->label(trans('filament-model.general.id')),
-//                Tables\Columns\TextColumn::make('created_at')
-//                    ->label(trans('filament-wallet::messages.wallets.columns.created_at'))
-//                    ->dateTime(),
+                //                Tables\Columns\TextColumn::make('created_at')
+                //                    ->label(trans('filament-wallet::messages.wallets.columns.created_at'))
+                //                    ->dateTime(),
                 TextColumn::make('holder.id')
                     ->label(trans('filament-model.general.user_id'))
                     ->searchable(),
@@ -62,13 +61,13 @@ class WalletResource extends Resource  implements Translateable
                     SelectFilter::make('holder_id')
                         ->label(trans('filament-wallet::messages.wallets.filters.accounts'))
                         ->searchable()
-                        ->options(fn() => config('filament-accounts.model')::query()->pluck('name', 'id')->toArray())
+                        ->options(fn () => config('filament-accounts.model')::query()->pluck('name', 'id')->toArray()),
                 ] : [
                     SelectFilter::make('holder_id')
                         ->label(trans('filament-model.general.user_id'))
                         ->options(User::query()->pluck('email', 'id')->toArray())
                         ->searchable()
-                        ->preload()
+                        ->preload(),
                 ],
             )
             ->defaultSort('id', 'desc');
@@ -90,7 +89,6 @@ class WalletResource extends Resource  implements Translateable
 
     /**
      * 导航组
-     * @return string|null
      */
     public static function getNavigationGroup(): ?string
     {
@@ -99,7 +97,6 @@ class WalletResource extends Resource  implements Translateable
 
     /**
      * 导航徽章
-     * @return string|null
      */
     public static function getNavigationBadge(): ?string
     {
@@ -108,7 +105,6 @@ class WalletResource extends Resource  implements Translateable
 
     /**
      * 排序
-     * @return int|null
      */
     public static function getNavigationSort(): ?int
     {
@@ -119,5 +115,4 @@ class WalletResource extends Resource  implements Translateable
     {
         return false;
     }
-
 }

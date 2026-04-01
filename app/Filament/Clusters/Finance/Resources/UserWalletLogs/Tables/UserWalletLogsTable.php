@@ -59,8 +59,8 @@ class UserWalletLogsTable
                 TextColumn::make('from_user_id')
                     ->label(UserWalletLog::transAttribute('fromUser')),
 
-//                TextColumn::make('fromUser.name')
-//                    ->label(UserWalletLog::transAttribute('fromUser')),
+                //                TextColumn::make('fromUser.name')
+                //                    ->label(UserWalletLog::transAttribute('fromUser')),
                 TextColumn::make('order_id')
                     ->label(trans('filament-model.general.order_id')),
                 TextColumn::make('created_at')
@@ -116,16 +116,16 @@ class UserWalletLogsTable
                                 fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
                             );
                     }),
-//                TrashedFilter::make(),
+                //                TrashedFilter::make(),
             ])
             ->recordActions([
-//                EditAction::make(),
+                //                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-//                    DeleteBulkAction::make(),
-//                    ForceDeleteBulkAction::make(),
-//                    RestoreBulkAction::make(),
+                    //                    DeleteBulkAction::make(),
+                    //                    ForceDeleteBulkAction::make(),
+                    //                    RestoreBulkAction::make(),
                 ]),
             ])
             ->defaultSort('id', 'desc'); // 默认排序
