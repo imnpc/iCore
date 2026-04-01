@@ -6,7 +6,6 @@ use App\Enums\FromType;
 use App\Models\WalletType;
 use App\Services\LogService;
 use App\Services\UserWalletService;
-use Carbon\Carbon;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
@@ -25,20 +24,22 @@ class WalletAction extends Action
         $this->tooltip(__('filament-model.attributes.user.tooltip'));
         $this->label(__('filament-model.attributes.user.recharge'));
         $this->schema(function ($record) {
-            $UserWalletService = app()->make(UserWalletService::class);
-            $wallets = $UserWalletService->getUserWallets($record->id); // 获取用户账户各种积分余额
-            $list = WalletType::all();
+            $userWalletService = app(UserWalletService::class);
+            $wallets = $userWalletService->getUserWallets($record->id); // 获取用户账户各种积分余额
+            $list = WalletType::query()
+                ->where('is_enabled', '=', 1)
+                ->get(['id', 'name', 'slug']);
             $options = [];
             foreach ($list as $key => $value) {
                 $name = strtolower($value->slug);
-                $balance = $wallets[$name.'_balance'];
+                $balance = $wallets[$name.'_balance'] ?? 0;
                 $options[$value->id] = $value->name.' [ 当前: '.$balance.' ]';
             }
 
             return [
                 // 钱包类型
                 Radio::make('wallet_type')
-                    ->default('1')
+                    ->default((string) ($list->first()?->id ?? ''))
                     ->options($options)
                     ->label(__('filament-model.attributes.user.wallet_type'))
                     ->helperText('请选择要充值的钱包类型')
@@ -76,24 +77,32 @@ class WalletAction extends Action
         });
         $this->action(function ($record, array $data) {
 
-            $logService = app()->make(LogService::class); // 钱包服务初始化
-            $UserWalletService = app()->make(UserWalletService::class);
-            $day = Carbon::now()->toDateString();
-            $wallet_name = WalletType::find($data['wallet_type'])->name;
+            $logService = app(LogService::class); // 钱包服务初始化
+            $userWalletService = app(UserWalletService::class);
+            $walletType = WalletType::query()->find($data['wallet_type']);
+            if (! $walletType) {
+                Notification::make()
+                    ->title('操作失败')
+                    ->body('钱包类型不存在')
+                    ->danger()
+                    ->send();
+
+                return;
+            }
+
+            $walletName = $walletType->name;
 
             if ($data['remark']) {
                 $remark = $data['remark'];
             } else {
-                if ($data['type'] == 'credit') {
-                    $remark = '后台管理员充值 '.$wallet_name.' ,数量: '.$data['money'];
-                } elseif ($data['type'] == 'debit') {
-                    $remark = '后台管理员扣除 '.$wallet_name.' ,数量: '.$data['money'];
-                }
+                $remark = $data['type'] === 'debit'
+                    ? '后台管理员扣除 '.$walletName.' ,数量: '.$data['money']
+                    : '后台管理员充值 '.$walletName.' ,数量: '.$data['money'];
             }
             $money = $data['money']; // 操作数量
             // 需要处理扣除不能超过账户余额数量
-            if ($data['type'] == 'debit') {
-                $balance = $UserWalletService->checkBalance($record->id, $data['wallet_type']);
+            if ($data['type'] === 'debit') {
+                $balance = $userWalletService->checkBalance($record->id, $data['wallet_type']);
                 if (abs($data['money']) > $balance) {
                     Notification::make()
                         ->title('操作失败')
@@ -106,18 +115,27 @@ class WalletAction extends Action
                 $money = -$data['money']; // 扣除金额
             }
 
-            $logService->userWalletLog($record->id, $data['wallet_type'], $money, 0, $day, FromType::ADMIN->value, $remark);
+            $executed = $logService->userWalletLog($record->id, $data['wallet_type'], $money, 0, '', FromType::ADMIN->value, $remark);
+            if (! $executed) {
+                Notification::make()
+                    ->title('操作失败')
+                    ->body('钱包操作执行失败，请重试')
+                    ->danger()
+                    ->send();
 
-            if ($data['type'] == 'credit') {
+                return;
+            }
+
+            if ($data['type'] === 'credit') {
                 Notification::make()
                     ->title('操作成功')
-                    ->body('已经成功充值了 '.$wallet_name.' ,数量: '.$data['money'])
+                    ->body('已经成功充值了 '.$walletName.' ,数量: '.$data['money'])
                     ->success()
                     ->send();
-            } elseif ($data['type'] == 'debit') {
+            } elseif ($data['type'] === 'debit') {
                 Notification::make()
                     ->title('操作成功')
-                    ->body('已经成功扣除了 '.$wallet_name.' ,数量: '.$data['money'])
+                    ->body('已经成功扣除了 '.$walletName.' ,数量: '.$data['money'])
                     ->warning()
                     ->send();
             }
