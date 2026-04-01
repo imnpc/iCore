@@ -4,7 +4,7 @@
 
 内置用户/角色权限、系统设置、钱包与支付能力，并集成 API 文档生成。
 
-![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square&logo=mit)
+![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
 ![PHP Version](https://img.shields.io/badge/PHP-8.5-blue?style=flat-square&logo=php)
 ![Laravel Version](https://img.shields.io/badge/Laravel-13.0-red?style=flat-square&logo=laravel)
 ![Filament Version](https://img.shields.io/badge/Filament-5.0-purple?style=flat-square&logo=filament)
