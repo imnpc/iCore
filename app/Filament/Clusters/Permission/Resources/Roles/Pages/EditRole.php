@@ -11,6 +11,9 @@ use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
+/**
+ * 角色编辑页面。
+ */
 class EditRole extends EditRecord
 {
     public Collection $permissions;

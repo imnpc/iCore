@@ -7,6 +7,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 use TomatoPHP\FilamentWallet\Filament\Resources\WalletResource;
 
+/**
+ * 用户钱包关联管理器。
+ */
 class WalletRelationManager extends RelationManager
 {
     protected static string $relationship = 'wallets';

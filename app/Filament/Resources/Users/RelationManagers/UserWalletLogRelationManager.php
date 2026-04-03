@@ -7,6 +7,9 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * 用户钱包日志关联管理器。
+ */
 class UserWalletLogRelationManager extends RelationManager
 {
     protected static string $relationship = 'userWalletLog';

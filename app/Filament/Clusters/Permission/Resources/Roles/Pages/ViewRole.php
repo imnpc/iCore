@@ -8,6 +8,9 @@ use App\Filament\Clusters\Permission\Resources\RoleResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
+/**
+ * 角色详情页面。
+ */
 class ViewRole extends ViewRecord
 {
     protected static string $resource = RoleResource::class;

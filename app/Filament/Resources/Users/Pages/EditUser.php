@@ -6,6 +6,9 @@ use App\Filament\Resources\Users\UserResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
+/**
+ * 用户编辑页面。
+ */
 class EditUser extends EditRecord
 {
     protected static string $resource = UserResource::class;

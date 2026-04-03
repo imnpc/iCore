@@ -11,6 +11,9 @@ use Filament\Support\Icons\Heroicon;
 use Ysfkaya\FilamentPhoneInput\Forms\PhoneInput;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
 
+/**
+ * 用户表单结构定义。
+ */
 class UserForm
 {
     public static function configure(Schema $schema): Schema

@@ -11,6 +11,9 @@ use Filament\Schemas\Schema;
 use Ysfkaya\FilamentPhoneInput\Forms\PhoneInput;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
 
+/**
+ * 管理员表单结构定义。
+ */
 class AdminForm
 {
     public static function configure(Schema $schema): Schema

@@ -23,6 +23,9 @@ use Widiu7omo\FilamentBandel\Actions\UnbanAction;
 use Ysfkaya\FilamentPhoneInput\PhoneInputNumberType;
 use Ysfkaya\FilamentPhoneInput\Tables\PhoneColumn;
 
+/**
+ * 用户资源表格定义。
+ */
 class UsersTable
 {
     public static function configure(Table $table): Table

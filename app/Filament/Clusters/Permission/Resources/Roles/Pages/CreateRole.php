@@ -10,6 +10,9 @@ use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
+/**
+ * 角色创建页面。
+ */
 class CreateRole extends CreateRecord
 {
     public Collection $permissions;

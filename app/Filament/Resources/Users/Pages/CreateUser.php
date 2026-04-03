@@ -5,6 +5,9 @@ namespace App\Filament\Resources\Users\Pages;
 use App\Filament\Resources\Users\UserResource;
 use Filament\Resources\Pages\CreateRecord;
 
+/**
+ * 用户创建页面。
+ */
 class CreateUser extends CreateRecord
 {
     protected static string $resource = UserResource::class;
