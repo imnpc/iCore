@@ -8,6 +8,9 @@ use App\Models\WalletType;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Foundation\Auth\User as AuthUser;
 
+/**
+ * 钱包类型授权策略。
+ */
 class WalletTypePolicy
 {
     use HandlesAuthorization;

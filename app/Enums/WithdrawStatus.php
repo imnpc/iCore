@@ -4,6 +4,9 @@ namespace App\Enums;
 
 use Filament\Support\Contracts\HasLabel;
 
+/**
+ * 提现状态枚举。
+ */
 enum WithdrawStatus: int implements HasLabel
 {
     // 审核状态:0-待审核 1-已转账 -1-驳回

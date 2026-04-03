@@ -5,6 +5,9 @@ namespace App\Policies;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Foundation\Auth\User as AuthUser;
 
+/**
+ * 管理员模型授权策略。
+ */
 class AdminPolicy
 {
     use HandlesAuthorization;

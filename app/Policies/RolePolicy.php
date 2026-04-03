@@ -8,6 +8,9 @@ use App\Models\Role;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Foundation\Auth\User as AuthUser;
 
+/**
+ * 角色模型授权策略。
+ */
 class RolePolicy
 {
     use HandlesAuthorization;

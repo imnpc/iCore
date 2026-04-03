@@ -4,6 +4,9 @@ namespace App\Traits;
 
 use Illuminate\Http\JsonResponse;
 
+/**
+ * API 统一响应 Trait。
+ */
 trait MakesApiResponses
 {
     public static function success($data = null, $message = '', $code = 200): JsonResponse

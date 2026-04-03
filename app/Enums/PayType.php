@@ -4,6 +4,9 @@ namespace App\Enums;
 
 use Filament\Support\Contracts\HasLabel;
 
+/**
+ * 支付方式枚举。
+ */
 enum PayType: int implements HasLabel
 {
     // 支付类型 1:订单 2:充值

@@ -11,6 +11,9 @@ use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 
+/**
+ * 钱包余额调整动作。
+ */
 class WalletAction extends Action
 {
     public static function getDefaultName(): ?string

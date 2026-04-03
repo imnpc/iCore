@@ -4,6 +4,9 @@ namespace App\Enums;
 
 use Filament\Support\Contracts\HasLabel;
 
+/**
+ * 支付类型枚举。
+ */
 enum PaymentType: int implements HasLabel
 {
     // 支付网关 1-支付宝 2-微信

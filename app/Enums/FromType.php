@@ -4,6 +4,9 @@ namespace App\Enums;
 
 use Filament\Support\Contracts\HasLabel;
 
+/**
+ * 账变来源类型枚举。
+ */
 enum FromType: int implements HasLabel
 {
     // 积分来源

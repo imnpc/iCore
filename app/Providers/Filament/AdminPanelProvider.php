@@ -37,6 +37,9 @@ use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
 use Relaticle\CustomFields\CustomFieldsPlugin;
 use TomatoPHP\FilamentWallet\FilamentWalletPlugin;
 
+/**
+ * Filament 后台面板服务提供者。
+ */
 class AdminPanelProvider extends PanelProvider
 {
     public function boot(): void

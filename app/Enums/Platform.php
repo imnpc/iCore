@@ -4,6 +4,9 @@ namespace App\Enums;
 
 use Filament\Support\Contracts\HasLabel;
 
+/**
+ * 来源平台枚举。
+ */
 enum Platform: int implements HasLabel
 {
     // 1-PC 2-H5 3-公众号 4-安卓APP 5-苹果APP 6-小程序

@@ -8,6 +8,9 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use TomatoPHP\FilamentWallet\Models\Transaction;
 
+/**
+ * 交易记录授权策略。
+ */
 class TransactionPolicy
 {
     use HandlesAuthorization;
