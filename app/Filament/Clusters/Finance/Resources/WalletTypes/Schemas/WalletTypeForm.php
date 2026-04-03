@@ -44,6 +44,7 @@ class WalletTypeForm
                     ->directory('wallet')
                     ->avatar()
                     ->image()
+                    ->visibility('public')
                     ->columnSpan('full'),
                 TextInput::make('sort')
                     ->label(trans('filament-model.general.sort'))
