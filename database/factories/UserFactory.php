@@ -8,17 +8,19 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
+ * 用户模型工厂。
+ *
  * @extends Factory<User>
  */
 class UserFactory extends Factory
 {
     /**
-     * The current password being used by the factory.
+     * 工厂当前复用的密码哈希。
      */
     protected static ?string $password;
 
     /**
-     * Define the model's default state.
+     * 定义模型的默认状态。
      *
      * @return array<string, mixed>
      */
@@ -37,7 +39,7 @@ class UserFactory extends Factory
     }
 
     /**
-     * Indicate that the model's email address should be unverified.
+     * 将邮箱标记为未验证状态。
      */
     public function unverified(): static
     {

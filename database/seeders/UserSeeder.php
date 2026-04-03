@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * 用户数据填充器。
+ */
 class UserSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * 执行用户数据填充。
      */
     public function run(): void
     {
