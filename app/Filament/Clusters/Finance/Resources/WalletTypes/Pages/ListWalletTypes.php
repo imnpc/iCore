@@ -6,6 +6,9 @@ use App\Filament\Clusters\Finance\Resources\WalletTypeResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
+/**
+ * 钱包类型列表页面。
+ */
 class ListWalletTypes extends ListRecords
 {
     protected static string $resource = WalletTypeResource::class;

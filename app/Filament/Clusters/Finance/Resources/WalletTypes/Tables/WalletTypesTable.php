@@ -13,6 +13,9 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
+/**
+ * 钱包类型资源表格定义。
+ */
 class WalletTypesTable
 {
     public static function configure(Table $table): Table

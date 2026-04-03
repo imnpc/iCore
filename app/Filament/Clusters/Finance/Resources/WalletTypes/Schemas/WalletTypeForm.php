@@ -8,6 +8,9 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
+/**
+ * 钱包类型表单结构定义。
+ */
 class WalletTypeForm
 {
     public static function configure(Schema $schema): Schema

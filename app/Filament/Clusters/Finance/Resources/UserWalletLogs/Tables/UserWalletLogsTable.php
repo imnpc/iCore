@@ -13,6 +13,9 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * 用户钱包日志表格定义。
+ */
 class UserWalletLogsTable
 {
     public static function configure(Table $table): Table
