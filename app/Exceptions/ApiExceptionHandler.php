@@ -15,7 +15,9 @@ use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -24,27 +26,20 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Throwable;
 
 /**
- * Laravel 12 优化版 API 异常处理器
- *
- * 提供统一的 API 异常处理，包含：
- * - 异常分类处理
- * - 日志记录
- * - 开发/生产环境差异化处理
- * - 错误追踪和调试信息
+ * Laravel 13 API 异常处理器。
  */
 class ApiExceptionHandler extends ExceptionHandler
 {
     use MakesApiResponses;
 
     /**
-     * 异常配置映射表
+     * @var array<class-string<Throwable>, array{message: string, status: int, level: string, hide_in_production?: bool}>
      */
     private const EXCEPTION_CONFIG = [
         ValidationException::class => [
             'message' => '请求参数验证失败',
             'status' => 422,
             'level' => 'warning',
-            'include_errors' => true,
         ],
         AuthenticationException::class => [
             'message' => '认证失败，请重新登录',
@@ -95,7 +90,24 @@ class ApiExceptionHandler extends ExceptionHandler
     ];
 
     /**
-     * 不需要报告的异常类型
+     * @var array<int, string>
+     */
+    private const HTTP_STATUS_MESSAGES = [
+        400 => '请求参数错误',
+        401 => '未授权访问',
+        403 => '禁止访问',
+        404 => '资源不存在',
+        405 => '请求方法不允许',
+        409 => '资源冲突',
+        422 => '请求参数验证失败',
+        429 => '请求过于频繁',
+        500 => '服务器内部错误',
+        502 => '网关错误',
+        503 => '服务不可用',
+    ];
+
+    /**
+     * @var array<int, class-string<Throwable>>
      */
     protected $dontReport = [
         AuthenticationException::class,
@@ -108,12 +120,12 @@ class ApiExceptionHandler extends ExceptionHandler
         ValidationException::class,
     ];
 
-    /**
-     * Laravel 12 渲染方法
-     */
-    public function render($request, Throwable $e): mixed
+    public function render($request, Throwable $e): Response
     {
-        // 只处理 API 请求
+        if (! $request instanceof Request) {
+            return parent::render($request, $e);
+        }
+
         if ($this->isApiRequest($request)) {
             return $this->handleApiException($e, $request);
         }
@@ -121,236 +133,206 @@ class ApiExceptionHandler extends ExceptionHandler
         return parent::render($request, $e);
     }
 
-    /**
-     * 处理API异常并返回JSON响应
-     */
     public function handleApiException(Throwable $exception, ?Request $request = null): JsonResponse
     {
-        $exceptionClass = get_class($exception);
+        $request ??= request();
+        $traceId = $this->resolveTraceId($request);
 
-        // 记录异常日志
-        $this->logException($exception, $request);
+        $this->logException($exception, $request, $traceId);
 
-        // 处理框架返回的现成响应
         if ($exception instanceof HttpResponseException) {
-            return $this->handleHttpResponseException($exception);
+            return $this->handleHttpResponseException($exception, $traceId);
         }
 
-        // 处理验证异常（特殊处理，包含详细错误信息）
         if ($exception instanceof ValidationException) {
-            return $this->handleValidationException($exception);
+            return $this->handleValidationException($exception, $traceId);
         }
 
-        // 处理HTTP异常
         if ($exception instanceof HttpException) {
-            return $this->handleHttpException($exception);
+            return $this->handleHttpException($exception, $traceId);
         }
 
-        // 处理已知异常类型
-        if (isset(self::EXCEPTION_CONFIG[$exceptionClass])) {
-            return $this->handleKnownException($exception, self::EXCEPTION_CONFIG[$exceptionClass]);
+        $config = $this->resolveExceptionConfig($exception);
+        if ($config !== null) {
+            return $this->handleKnownException($exception, $config, $traceId);
         }
 
-        // 处理未知异常
-        return $this->handleUnknownException($exception);
+        return $this->handleUnknownException($exception, $traceId);
     }
 
-    /**
-     * 处理验证异常
-     */
-    private function handleValidationException(ValidationException $exception): JsonResponse
+    public function handle(Throwable $exception): JsonResponse
+    {
+        return $this->handleApiException($exception, request());
+    }
+
+    private function handleValidationException(ValidationException $exception, string $traceId): JsonResponse
     {
         $config = self::EXCEPTION_CONFIG[ValidationException::class];
+        $message = $exception->getMessage() !== '' ? $exception->getMessage() : $config['message'];
 
         $response = $this->error(
-            $exception->getMessage() ?: $config['message'],
-            $config['status'],
-            $exception->errors()
+            message: $message,
+            code: $config['status'],
+            errors: $exception->errors(),
         );
 
-        // 在非生产环境添加调试信息
-        return $this->addDebugInfo($response, $exception);
+        return $this->finalizeResponse($response, $exception, $traceId);
     }
 
-    /**
-     * 处理HTTP异常
-     */
-    private function handleHttpException(HttpException $exception): JsonResponse
+    private function handleHttpException(HttpException $exception, string $traceId): JsonResponse
     {
-        $message = $exception->getMessage();
         $statusCode = $exception->getStatusCode();
+        $message = $exception->getMessage();
 
-        // 如果没有自定义消息，使用默认消息
-        if (empty($message)) {
-            $message = match ($statusCode) {
-                400 => '请求参数错误',
-                401 => '未授权访问',
-                403 => '禁止访问',
-                404 => '资源不存在',
-                405 => '请求方法不允许',
-                409 => '资源冲突',
-                429 => '请求过于频繁',
-                500 => '服务器内部错误',
-                502 => '网关错误',
-                503 => '服务不可用',
-                default => '请求处理失败'
-            };
+        if ($message === '') {
+            $message = self::HTTP_STATUS_MESSAGES[$statusCode] ?? '请求处理失败';
         }
 
-        $response = $this->error($message, $statusCode, []);
+        if ($this->isProduction() && $statusCode >= 500) {
+            $message = self::HTTP_STATUS_MESSAGES[500];
+        }
 
-        // 在非生产环境添加调试信息
-        return $this->addDebugInfo($response, $exception);
+        $response = $this->error(
+            message: $message,
+            code: $statusCode,
+            errors: [],
+            headers: $exception->getHeaders(),
+        );
+
+        return $this->finalizeResponse($response, $exception, $traceId);
     }
 
-    /**
-     * 处理已有响应的异常（如表单验证/中间件返回的响应）
-     */
-    private function handleHttpResponseException(HttpResponseException $exception): JsonResponse
+    private function handleHttpResponseException(HttpResponseException $exception, string $traceId): JsonResponse
     {
         $response = $exception->getResponse();
 
-        // 已经是 JsonResponse 直接返回
         if ($response instanceof JsonResponse) {
-            return $response;
+            return $this->finalizeResponse($response, $exception, $traceId);
         }
 
-        // 不是 JSON 时，统一包装为 JSON 错误响应
-        $status = method_exists($response, 'getStatusCode') ? $response->getStatusCode() : 500;
-        $content = method_exists($response, 'getContent') ? $response->getContent() : '';
+        $statusCode = method_exists($response, 'getStatusCode') ? $response->getStatusCode() : 500;
+        $errors = [];
 
-        $json = $this->error(
-            '请求处理失败',
-            $status,
-            [
-                'message' => $content,
-            ]
-        );
+        if (! $this->isProduction() && method_exists($response, 'getContent')) {
+            $content = (string) $response->getContent();
+            $errors['message'] = mb_substr(strip_tags($content), 0, 3000);
+        }
 
-        return $this->addDebugInfo($json, $exception);
+        $json = $this->error('请求处理失败', $statusCode, $errors);
+
+        return $this->finalizeResponse($json, $exception, $traceId);
     }
 
     /**
-     * 处理已知异常类型
+     * @param  array{message: string, status: int, level: string, hide_in_production?: bool}  $config
      */
-    private function handleKnownException(Throwable $exception, array $config): JsonResponse
+    private function handleKnownException(Throwable $exception, array $config, string $traceId): JsonResponse
     {
         $message = $config['message'];
 
-        // 在生产环境隐藏敏感信息
-        if (app()->environment('production') && isset($config['hide_in_production'])) {
+        if ($this->isProduction() && isset($config['hide_in_production'])) {
             $message = '服务器处理请求时出现错误';
         }
 
         $response = $this->error($message, $config['status'], []);
 
-        // 在非生产环境添加调试信息
-        return $this->addDebugInfo($response, $exception);
+        return $this->finalizeResponse($response, $exception, $traceId);
     }
 
-    /**
-     * 处理未知异常
-     */
-    private function handleUnknownException(Throwable $exception): JsonResponse
+    private function handleUnknownException(Throwable $exception, string $traceId): JsonResponse
     {
-        // 在生产环境隐藏具体错误信息
-        $message = app()->environment('production')
-            ? '服务器内部错误'
-            : $exception->getMessage();
-
+        $message = $this->isProduction() ? self::HTTP_STATUS_MESSAGES[500] : $exception->getMessage();
         $response = $this->error($message, 500, []);
 
-        // 在非生产环境添加调试信息
-        return $this->addDebugInfo($response, $exception);
+        return $this->finalizeResponse($response, $exception, $traceId);
     }
 
-    /**
-     * 记录异常日志
-     */
-    private function logException(Throwable $exception, ?Request $request = null): void
-    {
-        $exceptionClass = get_class($exception);
-        $config = self::EXCEPTION_CONFIG[$exceptionClass] ?? ['level' => 'error'];
-
-        $context = [
-            'exception_class' => $exceptionClass,
-            'file' => $exception->getFile(),
-            'line' => $exception->getLine(),
-            'trace_id' => $this->getTraceId(),
-        ];
-
-        if ($request) {
-            $context['request'] = [
-                'method' => $request->getMethod(),
-                'url' => $request->fullUrl(),
-                'ip' => $request->ip(),
-                'user_agent' => $request->userAgent(),
-                'user_id' => $request->user()?->id,
-            ];
-        }
-
-        Log::log(
-            $config['level'],
-            "API异常: {$exception->getMessage()}",
-            $context
-        );
-    }
-
-    /**
-     * 获取调试数据
-     */
-    private function getDebugData(Throwable $exception): ?array
-    {
-        if (app()->environment('production')) {
-            return null;
-        }
-
-        return [
-            'exception' => get_class($exception),
-            'file' => $exception->getFile(),
-            'line' => $exception->getLine(),
-            'trace_id' => $this->getTraceId(),
-            'previous' => $exception->getPrevious()?->getMessage(),
-        ];
-    }
-
-    /**
-     * 判断是否为API请求
-     */
     private function isApiRequest(Request $request): bool
     {
-        return $request->is('api/*') ||
-            $request->wantsJson() ||
-            $request->expectsJson();
+        return $request->is('api/*') || $request->expectsJson() || $request->wantsJson();
     }
 
-    /**
-     * 获取追踪ID
-     */
-    private function getTraceId(): string
+    private function isProduction(): bool
     {
-        return request()->header('X-Trace-ID') ?? uniqid('trace_', true);
+        return app()->isProduction();
     }
 
-    /**
-     * 为响应添加调试信息
-     */
-    private function addDebugInfo(JsonResponse $response, Throwable $exception): JsonResponse
+    private function finalizeResponse(JsonResponse $response, Throwable $exception, string $traceId): JsonResponse
     {
-        if (! app()->environment('production')) {
+        $response->headers->set('X-Trace-Id', $traceId);
+
+        if (! $this->isProduction()) {
             $responseData = $response->getData(true);
-            $responseData['debug'] = $this->getDebugData($exception);
+            $responseData['debug'] = $this->getDebugData($exception, $traceId);
             $response->setData($responseData);
         }
 
         return $response;
     }
 
-    /**
-     * Laravel 12 兼容的 handle 方法（向后兼容）
-     */
-    public function handle(Throwable $exception): JsonResponse
+    private function resolveTraceId(Request $request): string
     {
-        return $this->handleApiException($exception, request());
+        $traceId = trim((string) $request->header('X-Trace-ID', ''));
+
+        if ($traceId !== '') {
+            return $traceId;
+        }
+
+        return (string) Str::uuid();
+    }
+
+    private function logException(Throwable $exception, Request $request, string $traceId): void
+    {
+        $config = $this->resolveExceptionConfig($exception);
+        $level = $config['level'] ?? ($this->shouldReport($exception) ? 'error' : 'warning');
+
+        $context = [
+            'trace_id' => $traceId,
+            'exception_class' => $exception::class,
+            'file' => $exception->getFile(),
+            'line' => $exception->getLine(),
+            'request' => [
+                'method' => $request->getMethod(),
+                'url' => $request->fullUrl(),
+                'ip' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+                'user_id' => $request->user()?->id,
+            ],
+        ];
+
+        if ($this->shouldReport($exception)) {
+            $context['exception'] = $exception;
+        }
+
+        Log::log($level, 'API异常: '.($exception->getMessage() ?: class_basename($exception)), $context);
+    }
+
+    /**
+     * @return array{message: string, status: int, level: string, hide_in_production?: bool}|null
+     */
+    private function resolveExceptionConfig(Throwable $exception): ?array
+    {
+        foreach (self::EXCEPTION_CONFIG as $class => $config) {
+            if ($exception instanceof $class) {
+                return $config;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function getDebugData(Throwable $exception, string $traceId): array
+    {
+        return [
+            'trace_id' => $traceId,
+            'exception' => $exception::class,
+            'message' => $exception->getMessage(),
+            'file' => $exception->getFile(),
+            'line' => $exception->getLine(),
+            'previous' => $exception->getPrevious()?->getMessage(),
+        ];
     }
 }
