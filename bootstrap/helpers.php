@@ -30,7 +30,7 @@ function upload_images($uploadedFile, array $options = []): false|Media
             ->setAllowedAggregateTypes($allowedTypes); // 设置允许的文件类型
 
         // 保留原始文件名配置
-        if ($options['keep_original_name'] ?? false) {
+        if (($options['keep_original_name'] ?? false) === true) {
             $uploader->useFilename(pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME));
         } else {
             $uploader->useHashForFilename('sha1'); // 使用 SHA1 哈希命名文件
@@ -108,7 +108,7 @@ function addMaskMobile(string $mobile, string $maskingCharacter = '*'): string
  */
 function number_fixed(float $num, int $precision = 2): float|int
 {
-    return intval($num * pow(10, $precision)) / pow(10, $precision);
+    return (int) ($num * pow(10, $precision)) / pow(10, $precision);
 }
 
 /**
@@ -136,11 +136,16 @@ function get_array_ids(array $data, string $key = 'id'): array
  */
 function get_ip(): string
 {
-    $ip = 'members.3322.org/dyndns/getip';
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $ip);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $data = curl_exec($ch);
+    $requestUrl = 'members.3322.org/dyndns/getip';
+    $curlHandle = curl_init();
+    curl_setopt($curlHandle, CURLOPT_URL, $requestUrl);
+    curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
+    $data = curl_exec($curlHandle);
+    curl_close($curlHandle);
+
+    if ($data === false) {
+        return '';
+    }
 
     return trim($data);
 }
@@ -183,8 +188,8 @@ function createNO(string $model, string $field): bool|string
         $sn = $prefix.str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
         // 查询该模型是否已经存在对应订单号
         $modelName = '\\App\\Models\\'.$model;
-        $MODEL = new $modelName;
-        if (! $MODEL::query()->where($field, $sn)->exists()) {
+        $modelInstance = new $modelName;
+        if (! $modelInstance::query()->where($field, $sn)->exists()) {
             return $sn;
         }
     }
@@ -198,14 +203,9 @@ function createNO(string $model, string $field): bool|string
  *
  * @param  string  $str  待校验字符串
  */
-function isAllChinese(string $str): bool|int
+function isAllChinese(string $str): bool
 {
-    $len = preg_match('/^[\x{4e00}-\x{9fa5}]+$/u', $str);
-    if ($len) {
-        return true;
-    }
-
-    return false;
+    return preg_match('/^[\x{4e00}-\x{9fa5}]+$/u', $str) === 1;
 }
 
 /**
@@ -215,11 +215,7 @@ function isAllChinese(string $str): bool|int
  */
 function is_url(string $url): bool
 {
-    if (filter_var($url, FILTER_VALIDATE_URL)) {
-        return true;
-    } else {
-        return false;
-    }
+    return filter_var($url, FILTER_VALIDATE_URL) !== false;
 }
 
 /**
@@ -229,7 +225,7 @@ function is_url(string $url): bool
  */
 function float_number(int $number): int|string
 {
-    $length = strlen($number);  // 数字长度
+    $length = strlen((string) $number); // 数字长度
     if ($length > 8) { // 亿单位
         $str = substr_replace(floor($number * 0.0000001), '.', -1, 0).'亿';
     } elseif ($length > 4) { // 万单位
@@ -247,10 +243,10 @@ function float_number(int $number): int|string
  *
  * @param  array  $array  要排序的数组
  * @param  string  $keys  排序键字段
- * @param  string  $sort  排序类型 SORT_ASC / SORT_DESC
+ * @param  int  $sort  排序类型 SORT_ASC / SORT_DESC
  * @return array 排序后的数组
  */
-function arraySort(array $array, string $keys, string $sort = SORT_DESC): array
+function arraySort(array $array, string $keys, int $sort = SORT_DESC): array
 {
     $keysValue = [];
     foreach ($array as $k => $v) {
@@ -266,11 +262,11 @@ function arraySort(array $array, string $keys, string $sort = SORT_DESC): array
  *
  * @param  int  $num  数量
  * @param  array  $filter  对应集合
- * @return array
+ * @return array<int, mixed>
  */
-function priceSearch(int $num, array $filter)
+function priceSearch(int $num, array $filter): array
 {
-    if (count($filter) == 1) {
+    if (count($filter) === 1) {
         return $filter;
     }
     $half = floor(count($filter) / 2); // 取出中间数
@@ -313,19 +309,24 @@ function getFileSize(int $filesize): string
 /**
  * 替换图片域名
  *
+ * @param  string|array  $string  原始路径或路径数组
  * @return string|string[]
  */
-function replace_domain($string): array|string
+function replace_domain(array|string $string): array|string
 {
-    if (config('filesystems.default') == 'public') {
+    if (config('filesystems.default') === 'public') {
         $domain = config('app.url').'/storage/';
 
         return str_ireplace($domain, '', $string);
-    } elseif (config('filesystems.default') == 'oss') {
+    }
+
+    if (config('filesystems.default') === 'oss') {
         $domain = config('filesystems.disks.oss.url').'/';
 
         return str_ireplace($domain, '', $string);
     }
+
+    return $string;
 }
 
 /**
@@ -335,7 +336,7 @@ function replace_domain($string): array|string
  *
  * @throws GuzzleException
  */
-function express($express_sn, $express_code)
+function express(string $express_sn, string $express_code): mixed
 {
     $host = 'http://wdexpress.market.alicloudapi.com'; // API 访问链接
     $path = '/gxali'; // API 访问后缀
@@ -387,7 +388,7 @@ function eidCheck(string $name, string $number): bool|string
     curl_setopt($curl, CURLOPT_FAILONERROR, false);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HEADER, false);
-    if (strpos('$'.$host, 'https://') == 1) {
+    if (str_starts_with($host, 'https://')) {
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
     }
