@@ -77,10 +77,14 @@ class UserWalletLogsTable
                         TextInput::make('user_id')
                             ->label(trans('filament-model.general.user_id')),
                     ])
-                    ->query(function (Builder $query, array $data) {
-                        if ($data['user_id'] > 0) {
-                            return $query->where('user_id', '=', $data['user_id']);
+                    ->query(function (Builder $query, array $data): Builder {
+                        $userId = (int) ($data['user_id'] ?? 0);
+
+                        if ($userId > 0) {
+                            $query->where('user_id', '=', $userId);
                         }
+
+                        return $query;
                     }),
                 SelectFilter::make('wallet_type_id')
                     ->label(UserWalletLog::transAttribute('walletType'))
@@ -92,10 +96,14 @@ class UserWalletLogsTable
                             ->label(trans('filament-model.general.order_id')),
 
                     ])
-                    ->query(function (Builder $query, array $data) {
-                        if ($data['order_id'] > 0) {
-                            return $query->where('order_id', '=', $data['order_id']);
+                    ->query(function (Builder $query, array $data): Builder {
+                        $orderId = (int) ($data['order_id'] ?? 0);
+
+                        if ($orderId > 0) {
+                            $query->where('order_id', '=', $orderId);
                         }
+
+                        return $query;
                     }),
                 // 来源
                 SelectFilter::make('from')
@@ -109,13 +117,16 @@ class UserWalletLogsTable
                         DatePicker::make('created_until')->label('结束时间'),
                     ])
                     ->query(function (Builder $query, array $data): Builder {
+                        $createdFrom = $data['created_from'] ?? null;
+                        $createdUntil = $data['created_until'] ?? null;
+
                         return $query
                             ->when(
-                                $data['created_from'],
+                                $createdFrom,
                                 fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
                             )
                             ->when(
-                                $data['created_until'],
+                                $createdUntil,
                                 fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
                             );
                     }),
