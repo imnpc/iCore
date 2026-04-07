@@ -30,6 +30,7 @@ Thumbs.db
 /.junie
 /.agents
 /.codex
+/.sisyphus
 .mcp.json
 boost.json
 CLAUDE.md
