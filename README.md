@@ -171,6 +171,16 @@ composer require laravel/boost --dev
 php artisan boost:install
 php artisan boost:update --discover
 ```
+### 监控队列
+
+```bash
+php artisan queue:work
+```
+### 执行计划任务
+
+```bash
+php artisan schedule:work
+```
 
 ### 常见生成命令
 
