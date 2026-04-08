@@ -9864,16 +9864,16 @@
         },
         {
             "name": "spatie/laravel-passkeys",
-            "version": "1.6.5",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-passkeys.git",
-                "reference": "108bc6b163034b2a19e22fdcf7a0a4bac5090585"
+                "reference": "2d67943712243c23852c77d4c4679575bad5b9ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-passkeys/zipball/108bc6b163034b2a19e22fdcf7a0a4bac5090585",
-                "reference": "108bc6b163034b2a19e22fdcf7a0a4bac5090585",
+                "url": "https://api.github.com/repos/spatie/laravel-passkeys/zipball/2d67943712243c23852c77d4c4679575bad5b9ec",
+                "reference": "2d67943712243c23852c77d4c4679575bad5b9ec",
                 "shasum": ""
             },
             "require": {
@@ -9930,7 +9930,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-passkeys/issues",
-                "source": "https://github.com/spatie/laravel-passkeys/tree/1.6.5"
+                "source": "https://github.com/spatie/laravel-passkeys/tree/1.7.0"
             },
             "funding": [
                 {
@@ -9938,7 +9938,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-27T10:29:37+00:00"
+            "time": "2026-04-08T07:32:15+00:00"
         },
         {
             "name": "spatie/laravel-permission",
@@ -10029,16 +10029,16 @@
         },
         {
             "name": "spatie/laravel-query-builder",
-            "version": "7.1.0",
+            "version": "7.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-query-builder.git",
-                "reference": "e2d651dff2a1010aff315e82580a1dde998d104c"
+                "reference": "c9ff7db6508f3affb9625c0baabb5f047664fbae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-query-builder/zipball/e2d651dff2a1010aff315e82580a1dde998d104c",
-                "reference": "e2d651dff2a1010aff315e82580a1dde998d104c",
+                "url": "https://api.github.com/repos/spatie/laravel-query-builder/zipball/c9ff7db6508f3affb9625c0baabb5f047664fbae",
+                "reference": "c9ff7db6508f3affb9625c0baabb5f047664fbae",
                 "shasum": ""
             },
             "require": {
@@ -10099,7 +10099,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2026-03-29T21:38:07+00:00"
+            "time": "2026-04-08T12:52:11+00:00"
         },
         {
             "name": "spatie/laravel-route-attributes",
