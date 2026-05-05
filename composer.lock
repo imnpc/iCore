@@ -112,16 +112,16 @@
         },
         {
             "name": "anourvalar/eloquent-serialize",
-            "version": "1.3.7",
+            "version": "1.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AnourValar/eloquent-serialize.git",
-                "reference": "b6b16ab61316fb9885dff1ede29e72441c7098c0"
+                "reference": "6bf2d5b336e78c99cdb9e1252eb78d004451841b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AnourValar/eloquent-serialize/zipball/b6b16ab61316fb9885dff1ede29e72441c7098c0",
-                "reference": "b6b16ab61316fb9885dff1ede29e72441c7098c0",
+                "url": "https://api.github.com/repos/AnourValar/eloquent-serialize/zipball/6bf2d5b336e78c99cdb9e1252eb78d004451841b",
+                "reference": "6bf2d5b336e78c99cdb9e1252eb78d004451841b",
                 "shasum": ""
             },
             "require": {
@@ -171,9 +171,9 @@
             ],
             "support": {
                 "issues": "https://github.com/AnourValar/eloquent-serialize/issues",
-                "source": "https://github.com/AnourValar/eloquent-serialize/tree/1.3.7"
+                "source": "https://github.com/AnourValar/eloquent-serialize/tree/1.3.8"
             },
-            "time": "2026-03-27T16:21:06+00:00"
+            "time": "2026-05-04T09:18:12+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -14901,16 +14901,16 @@
         },
         {
             "name": "web-auth/cose-lib",
-            "version": "4.5.1",
+            "version": "4.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/web-auth/cose-lib.git",
-                "reference": "3185af4df10dc537b65c140c315b88d15ae15b80"
+                "reference": "5b38660f90070a8e45f3dbc9528ade3b608dd77d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/web-auth/cose-lib/zipball/3185af4df10dc537b65c140c315b88d15ae15b80",
-                "reference": "3185af4df10dc537b65c140c315b88d15ae15b80",
+                "url": "https://api.github.com/repos/web-auth/cose-lib/zipball/5b38660f90070a8e45f3dbc9528ade3b608dd77d",
+                "reference": "5b38660f90070a8e45f3dbc9528ade3b608dd77d",
                 "shasum": ""
             },
             "require": {
@@ -14956,7 +14956,7 @@
             ],
             "support": {
                 "issues": "https://github.com/web-auth/cose-lib/issues",
-                "source": "https://github.com/web-auth/cose-lib/tree/4.5.1"
+                "source": "https://github.com/web-auth/cose-lib/tree/4.5.2"
             },
             "funding": [
                 {
@@ -14968,11 +14968,11 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2026-04-01T12:47:39+00:00"
+            "time": "2026-05-03T09:49:50+00:00"
         },
         {
             "name": "web-auth/webauthn-lib",
-            "version": "5.3.1",
+            "version": "5.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/web-auth/webauthn-lib.git",
@@ -15042,7 +15042,7 @@
                 "webauthn"
             ],
             "support": {
-                "source": "https://github.com/web-auth/webauthn-lib/tree/5.3.1"
+                "source": "https://github.com/web-auth/webauthn-lib/tree/5.3.2"
             },
             "funding": [
                 {
@@ -16213,16 +16213,16 @@
         },
         {
             "name": "laravel-lang/lang",
-            "version": "15.29.3",
+            "version": "15.29.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/lang.git",
-                "reference": "c388b20ea78da7ad6234f9ec0681d326f31d35f6"
+                "reference": "c2e40b08fc7bccb8668fdff89b95f504f1ff393c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/c388b20ea78da7ad6234f9ec0681d326f31d35f6",
-                "reference": "c388b20ea78da7ad6234f9ec0681d326f31d35f6",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/c2e40b08fc7bccb8668fdff89b95f504f1ff393c",
+                "reference": "c2e40b08fc7bccb8668fdff89b95f504f1ff393c",
                 "shasum": ""
             },
             "require": {
@@ -16283,7 +16283,7 @@
                     "type": "yoomoney"
                 }
             ],
-            "time": "2026-04-26T14:40:40+00:00"
+            "time": "2026-05-03T18:05:18+00:00"
         },
         {
             "name": "laravel-lang/locale-list",
