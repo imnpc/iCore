@@ -4,11 +4,14 @@ namespace App\Filament\Clusters\Settings;
 
 use BackedEnum;
 use Filament\Clusters\Cluster;
+use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Contracts\Support\Htmlable;
 
 class SettingsCluster extends Cluster
 {
+    use HasPageShield;
+
     /**
      * 面包屑
      */
