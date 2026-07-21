@@ -32,7 +32,7 @@ return [
 
         // 云片
         'yunpian' => [
-            'api_key' => 'efabf**********************20fd3',
+            'api_key' => env('YUNPIAN_API_KEY', ''),
         ],
 
         // ...

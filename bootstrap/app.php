@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\AcceptHeaderJson;
+use App\Http\Middleware\ForbidBannedUser;
 use App\Exceptions\ApiExceptionHandler;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -25,6 +26,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->prependToGroup('api', [
             AcceptHeaderJson::class, // 设置请求头 Accept 为 application/json
         ]);
+        $middleware->prependToGroup('api', [ForbidBannedUser::class]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         // 使用专门的API异常处理器处理API路由的异常

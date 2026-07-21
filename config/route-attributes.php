@@ -18,7 +18,7 @@ return [
 //        app_path('Http/Controllers'),
         app_path('Http/Controllers/Api') => [
             'prefix' => 'api/v1',
-            'middleware' => ['api',AcceptHeaderJson::class]
+            'middleware' => ['api', AcceptHeaderJson::class, 'throttle:600,1']
         ],
         /*
         app_path('Http/Controllers/Api') => [
