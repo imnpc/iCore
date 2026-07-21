@@ -14,7 +14,7 @@ enum WithdrawStatus: int implements HasLabel
     case SUCCESS = 1;
     case FAILED = -1;
 
-    public function getlabel(): ?string
+    public function getLabel(): ?string
     {
         return match ($this) {
             self::PENDING => '待审核',

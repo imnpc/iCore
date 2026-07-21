@@ -17,7 +17,7 @@ enum Platform: int implements HasLabel
     case IOSAPP = 5;
     case MINIPROGRAM = 6;
 
-    public function getlabel(): ?string
+    public function getLabel(): ?string
     {
         return match ($this) {
             self::PC => 'PC',
