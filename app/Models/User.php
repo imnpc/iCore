@@ -21,6 +21,8 @@ use Plank\Mediable\MediableInterface;
 use Spatie\Activitylog\Models\Concerns\LogsActivity;
 use Spatie\Activitylog\Support\LogOptions;
 use Spatie\Tags\HasTags;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable implements BannableContract, MediableInterface, Wallet, WalletFloat
 {
@@ -63,7 +65,6 @@ class User extends Authenticatable implements BannableContract, MediableInterfac
         'parent_id',
         'avatar',
         'app_authentication_secret',
-        'app_authentication_recovery_codes',
     ];
 
     /**
@@ -90,9 +91,7 @@ class User extends Authenticatable implements BannableContract, MediableInterfac
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'last_login_at' => 'datetime',
             'app_authentication_secret' => 'encrypted',
-            'app_authentication_recovery_codes' => 'encrypted:array',
         ];
     }
 
@@ -119,7 +118,7 @@ class User extends Authenticatable implements BannableContract, MediableInterfac
     /**
      * 获取上级
      */
-    public function parent()
+    public function parent(): BelongsTo
     {
         return $this->belongsTo(User::class, 'parent_id');
     }
@@ -127,13 +126,13 @@ class User extends Authenticatable implements BannableContract, MediableInterfac
     /**
      * 获取下级
      */
-    public function children()
+    public function children(): HasMany
     {
         return $this->hasMany(User::class, 'parent_id');
     }
 
     // 关联 用户钱包日志
-    public function userWalletLog()
+    public function userWalletLog(): HasMany
     {
         return $this->hasMany(UserWalletLog::class);
     }

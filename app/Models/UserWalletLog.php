@@ -6,6 +6,7 @@ use App\Enums\FromType;
 use App\Traits\DateTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModel;
@@ -65,43 +66,31 @@ class UserWalletLog extends Model
     ];
 
     // 获取钱包类型的名称
-    public function getWalletSlugAttribute()
+    public function getWalletSlugAttribute(): string
     {
-        if ($this->wallet_type_id > 0) {
-            return WalletType::find($this->wallet_type_id)->slug;
-        } else {
-            return '';
-        }
+        return $this->walletType?->slug ?? '';
     }
 
     // 获取钱包类型的图片
-    public function getWalletIconUrlAttribute()
+    public function getWalletIconUrlAttribute(): string
     {
-        if ($this->wallet_type_id > 0) {
-            return WalletType::find($this->wallet_type_id)->icon_url;
-        } else {
-            return '';
-        }
+        return $this->walletType?->icon_url ?? '';
     }
 
     // 获取来源
-    public function getFromTextAttribute()
+    public function getFromTextAttribute(): string
     {
         return $this->from->getLabel();
     }
 
     // 获取钱包类型的名称
-    public function getWalletNameAttribute()
+    public function getWalletNameAttribute(): string
     {
-        if ($this->wallet_type_id > 0) {
-            return WalletType::find($this->wallet_type_id)->name;
-        } else {
-            return '';
-        }
+        return $this->walletType?->name ?? '';
     }
 
     // 获取交易类型 增加 / 扣除
-    public function getTypeTextAttribute()
+    public function getTypeTextAttribute(): string
     {
         $state = $this->add > 0 ? 'deposit' : 'withdraw';
 
@@ -127,12 +116,14 @@ class UserWalletLog extends Model
     }
 
     // 查询 大小 正负数
-    public function scopeNum($query, $num)
+    public function scopeNum(Builder $query, int $num): Builder
     {
         if ($num == 1) {
             return $query->where('add', '>', 0);
         } elseif ($num == -1) {
             return $query->where('add', '<', 0);
         }
+
+        return $query;
     }
 }
