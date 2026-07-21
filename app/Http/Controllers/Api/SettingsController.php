@@ -22,7 +22,7 @@ class SettingsController extends Controller
      * @return mixed
      */
     #[Get('allSettings')]
-    public function allSettings(Request $request)
+    public function allSettings(Request $request): JsonResponse
     {
         cache()->forget(config('settings.cache_key')); // 强制清除设置缓存
         $request->validate([

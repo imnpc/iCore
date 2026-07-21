@@ -25,7 +25,7 @@ class UtilsController extends Controller
      * @return JsonResponse
      */
     #[Post('upload', middleware: (['auth:sanctum']))]
-    public function upload(Request $request)
+    public function upload(Request $request): JsonResponse
     {
         // 验证请求参数
         $this->validate($request, [
@@ -99,11 +99,15 @@ class UtilsController extends Controller
      *
      * 测试接口，上线以后删除本接口
      *
-     * @return array|JsonResponse
+     * @return JsonResponse
      */
     #[Get('getUserToken')]
-    public function getUserToken(Request $request)
+    public function getUserToken(Request $request): JsonResponse
     {
+        if (! app()->hasDebugModeEnabled()) {
+            abort(404);
+        }
+
         $this->validate($request, [
             // 用户 ID
             'user_id' => 'required|numeric',

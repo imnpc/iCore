@@ -31,7 +31,7 @@ class UserController extends Controller
      * 使用谷歌验证器登录的必须输入生成的6位数字
      */
     #[Post('login')]
-    public function login(Request $request)
+    public function login(Request $request): JsonResponse
     {
         $request->validate([
             // 邮箱地址
@@ -97,7 +97,7 @@ class UserController extends Controller
      * @return User|mixed
      */
     #[Get('me', middleware: (['auth:sanctum']))]
-    public function me(Request $request)
+    public function me(Request $request): JsonResponse
     {
         // 获取用户钱包列表和余额
         $user = $request->user()->load('wallets');
@@ -112,7 +112,7 @@ class UserController extends Controller
      * @return JsonResponse
      */
     #[Post('getEmailVerifyCode')]
-    public function getEmailVerifyCode(Request $request)
+    public function getEmailVerifyCode(Request $request): JsonResponse
     {
         $request->validate([
             // 邮箱地址
@@ -146,7 +146,7 @@ class UserController extends Controller
      * @return JsonResponse
      */
     #[Post('emailRegister')]
-    public function emailRegister(Request $request)
+    public function emailRegister(Request $request): JsonResponse
     {
         $request->validate([
             // 邮箱地址 要求不存在unique:users,email
@@ -175,9 +175,7 @@ class UserController extends Controller
         if ($request->parent_id) {
             $decode_id = Hashids::decode($request->parent_id); // 解密传递的 ID
             if (empty($decode_id)) {
-                $data['message'] = '邀请码不正确！';
-
-                return response()->json($data, 403);
+                return $this->fail('邀请码不正确！', 403);
             }
             $parent_id = $decode_id[0]; // 解密后的 ID
         } else {
@@ -215,7 +213,7 @@ class UserController extends Controller
      * @return JsonResponse
      */
     #[Post('emailForgetPassword')]
-    public function emailForgetPassword(Request $request)
+    public function emailForgetPassword(Request $request): JsonResponse
     {
         $request->validate([
             // 邮箱地址
@@ -261,7 +259,7 @@ class UserController extends Controller
      * @return JsonResponse
      */
     #[Post('updateName', middleware: (['auth:sanctum']))]
-    public function updateName(Request $request)
+    public function updateName(Request $request): JsonResponse
     {
         $request->validate([
             // 姓名
@@ -284,7 +282,7 @@ class UserController extends Controller
      * @return JsonResponse
      */
     #[Post('updateAvatar', middleware: (['auth:sanctum']))]
-    public function updateAvatar(Request $request)
+    public function updateAvatar(Request $request): JsonResponse
     {
         $user = $request->user();
 
@@ -332,7 +330,7 @@ class UserController extends Controller
      * @return JsonResponse
      */
     #[Post('updatePassword', middleware: (['auth:sanctum']))]
-    public function updatePassword(Request $request)
+    public function updatePassword(Request $request): JsonResponse
     {
         $request->validate([
             // 旧密码
@@ -364,7 +362,7 @@ class UserController extends Controller
      * @return JsonResponse
      */
     #[Post('getGoogle2fa', middleware: (['auth:sanctum']))]
-    public function getGoogle2fa(Request $request)
+    public function getGoogle2fa(Request $request): JsonResponse
     {
         $user = $request->user();
         if ($user->app_authentication_secret) {
@@ -384,7 +382,7 @@ class UserController extends Controller
         // 二维码数据
         $qrCodeData = $google2fa->getQRCodeUrl(config('app.name'), $user->email, $secretKey);
         // 二维码图片名称
-        if (config('app.env') == 'local') {
+        if (app()->environment('local')) {
             $path = 'google2fa/dev/'.$secretKey.'.png'; // 二维码图片名称路径
         } else {
             $path = 'google2fa/'.$secretKey.'.png'; // 二维码图片名称路径
@@ -412,7 +410,7 @@ class UserController extends Controller
      * @return JsonResponse
      */
     #[Post('setGoogle2fa', middleware: (['auth:sanctum']))]
-    public function setGoogle2fa(Request $request)
+    public function setGoogle2fa(Request $request): JsonResponse
     {
         $request->validate([
             // 谷歌验证器密钥
@@ -439,7 +437,7 @@ class UserController extends Controller
             $key = 'two_fa_secret_'.$user->email;
             Cache::forget($key);
             // 二维码图片名称
-            if (config('app.env') == 'local') {
+            if (app()->environment('local')) {
                 $path = 'google2fa/dev/'.$app_authentication_secret.'.png'; // 二维码图片名称路径
             } else {
                 $path = 'google2fa/'.$app_authentication_secret.'.png'; // 二维码图片名称路径
@@ -457,7 +455,7 @@ class UserController extends Controller
      * @return JsonResponse
      */
     #[Post('deleteGoogle2fa', middleware: (['auth:sanctum']))]
-    public function deleteGoogle2fa(Request $request)
+    public function deleteGoogle2fa(Request $request): JsonResponse
     {
         $request->validate([
             // 谷歌验证器生成的6位数验证码
@@ -467,7 +465,7 @@ class UserController extends Controller
 
         // 验证谷歌验证器生成的6位数验证码
         $google2fa = new Google2FA; // 谷歌验证器
-        $valid = $google2fa->verifyKey(Auth::user()->app_authentication_secret, $request->two_fa_code);
+        $valid = $google2fa->verifyKey($user->app_authentication_secret, $request->two_fa_code);
         if (! $valid) {
             return $this->fail('验证错误,请输入谷歌验证器生成的验证码!', 401);
         }

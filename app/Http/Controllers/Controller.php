@@ -11,7 +11,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
  */
 abstract class Controller
 {
-    use AuthorizesRequests; // 表单验证
-    use MakesApiResponses; // policy 验证
-    use ValidatesRequests; // API 响应统一处理
+    use AuthorizesRequests; // 权限验证
+    use MakesApiResponses; // API 响应统一处理
+    use ValidatesRequests; // 表单验证
 }
