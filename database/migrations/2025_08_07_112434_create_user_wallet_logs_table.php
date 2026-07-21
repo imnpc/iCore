@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('user_wallet_logs', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->comment('用户 ID');
-            $table->integer('wallet_type_id')->comment('钱包类型 ID');
+            $table->integer('user_id')->index()->comment('用户 ID');
+            $table->integer('wallet_type_id')->index()->comment('钱包类型 ID');
             $table->date('day')->nullable()->comment('日期');
             $table->decimal('old', 13, 2)->comment('原数值');
             $table->decimal('add', 13, 2)->comment('新增');
