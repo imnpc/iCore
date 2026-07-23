@@ -2,10 +2,10 @@
 
 return [
     'version' => [
-        'tiny' => '8.4.0',
+        'tiny' => '8.8.1',
         'language' => [
             // https://cdn.jsdelivr.net/npm/tinymce-i18n@latest/
-            'version' => '26.3.30',
+            'version' => '26.7.13',
             'package' => 'langs8',
         ],
         'licence_key' => env('TINY_LICENSE_KEY', 'no-api-key'),
@@ -24,7 +24,7 @@ return [
         'ui' => 'oxide',
 
         // dark, default, document, tinymce-5, tinymce-5-dark, writer
-        'content' => 'default'
+        'content' => 'default',
     ],
 
     'profiles' => [
@@ -63,7 +63,7 @@ return [
      * ]
      */
     'languages' => [
-//       'zh_CN' => 'https://cdn.jsdelivr.net/npm/tinymce-i18n@25.2.16/langs8/zh-CN.js'
+        //       'zh_CN' => 'https://cdn.jsdelivr.net/npm/tinymce-i18n@26.7.13/langs8/zh-CN.js'
     ],
 
     'extra' => [
@@ -71,6 +71,6 @@ return [
             // 'fontsize' => '10px 12px 13px 14px 16px 18px 20px',
             // 'fontfamily' => 'Tahoma=tahoma,arial,helvetica,sans-serif;',
             // 'content_style' => 'body { font-family: "Tahoma", sans-serif; }',
-        ]
-    ]
+        ],
+    ],
 ];
