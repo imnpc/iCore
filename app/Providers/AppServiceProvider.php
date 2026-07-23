@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Admin;
 use BezhanSalleh\FilamentShield\Facades\FilamentShield;
 use BezhanSalleh\LanguageSwitch\LanguageSwitch;
 use Dedoc\Scramble\Scramble;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Laravel\Passkeys\Passkeys;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -109,6 +111,9 @@ class AppServiceProvider extends ServiceProvider
                 ])
                 ->circular();
         });
+
+        // passkey 关联模型指向 Admin
+        Passkeys::useUserModel(Admin::class);
     }
 
     // 事件列表

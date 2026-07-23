@@ -32,6 +32,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Maggomann\FilamentModelTranslator\FilamentModelTranslatorServicePlugin;
+use MarcelWeidum\Passkeys\PasskeysPlugin;
 use Outerweb\FilamentSettings\SettingsPlugin;
 use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
 use Relaticle\CustomFields\CustomFieldsPlugin;
@@ -163,6 +164,7 @@ class AdminPanelProvider extends PanelProvider
                     ->withLoadTime('Processed in '), // 页脚
                 FilamentWalletPlugin::make()->hideResources(), // 钱包
                 //                CustomFieldsPlugin::make(), // 自定义字段
+                PasskeysPlugin::make(), // Passkeys
             ])
             ->profile()
             ->multiFactorAuthentication([

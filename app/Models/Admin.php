@@ -13,18 +13,20 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Passkeys\Contracts\PasskeyUser;
+use Laravel\Passkeys\PasskeyAuthenticatable;
+use Laravel\Passkeys\Passkeys;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModel;
 use Spatie\Activitylog\Models\Concerns\LogsActivity;
 use Spatie\Activitylog\Support\LogOptions;
-use Spatie\LaravelPasskeys\Models\Concerns\HasPasskeys;
-use Spatie\LaravelPasskeys\Models\Concerns\InteractsWithPasskeys;
 use Spatie\Permission\Traits\HasRoles;
 
-class Admin extends Authenticatable implements BannableContract, FilamentUser, HasAppAuthentication, HasAppAuthenticationRecovery, HasAvatar, HasPasskeys
+class Admin extends Authenticatable implements BannableContract, FilamentUser, HasAppAuthentication, HasAppAuthenticationRecovery, HasAvatar, PasskeyUser
 {
     use Bannable; // 封禁
     use DateTrait; // 日期重写
@@ -33,8 +35,8 @@ class Admin extends Authenticatable implements BannableContract, FilamentUser, H
     use HasTranslateableModel; // 翻译
     use InteractsWithAppAuthentication; // 双因素认证
     use InteractsWithAppAuthenticationRecovery; // 双因素认证恢复
-    use InteractsWithPasskeys; // 密钥
     use LogsActivity; // 记录日志
+    use PasskeyAuthenticatable;
     use SoftDeletes;
 
     protected static ?string $translateablePackageKey = ''; // 翻译
@@ -92,6 +94,14 @@ class Admin extends Authenticatable implements BannableContract, FilamentUser, H
             'app_authentication_secret' => 'encrypted',
             'app_authentication_recovery_codes' => 'encrypted:array',
         ];
+    }
+
+    /**
+     * 获取关联的 passkeys
+     */
+    public function passkeys(): HasMany
+    {
+        return $this->hasMany(Passkeys::passkeyModel(), 'user_id');
     }
 
     public function getFilamentAvatarUrl(): ?string
