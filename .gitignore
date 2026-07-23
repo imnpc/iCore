@@ -38,3 +38,4 @@ AGENTS.md
 opencode.json
 /.ai/mcp/mcp.json
 .omo
+.playwright-mcp/
