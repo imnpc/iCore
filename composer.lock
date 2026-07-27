@@ -3115,16 +3115,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "7.15.1",
+            "version": "7.15.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "61443dfb33c62f308ee8add20f45b4d6e4bf8d2f"
+                "reference": "744101956d78b7c1384d0cbf379db13e859167bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/61443dfb33c62f308ee8add20f45b4d6e4bf8d2f",
-                "reference": "61443dfb33c62f308ee8add20f45b4d6e4bf8d2f",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/744101956d78b7c1384d0cbf379db13e859167bf",
+                "reference": "744101956d78b7c1384d0cbf379db13e859167bf",
                 "shasum": ""
             },
             "require": {
@@ -3223,7 +3223,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/guzzle/issues",
-                "source": "https://github.com/guzzle/guzzle/tree/7.15.1"
+                "source": "https://github.com/guzzle/guzzle/tree/7.15.2"
             },
             "funding": [
                 {
@@ -3239,7 +3239,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-07-18T11:23:11+00:00"
+            "time": "2026-07-26T23:23:20+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -6040,16 +6040,16 @@
         },
         {
             "name": "marcelweidum/filament-passkeys",
-            "version": "v4.0.5",
+            "version": "v4.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MarcelWeidum/filament-passkeys.git",
-                "reference": "22420a158ebf3b7c8257e7345bb7c1e9e5b5da71"
+                "reference": "dd2377e0bdad3e3c835c8bed428ddbeb7fc595e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MarcelWeidum/filament-passkeys/zipball/22420a158ebf3b7c8257e7345bb7c1e9e5b5da71",
-                "reference": "22420a158ebf3b7c8257e7345bb7c1e9e5b5da71",
+                "url": "https://api.github.com/repos/MarcelWeidum/filament-passkeys/zipball/dd2377e0bdad3e3c835c8bed428ddbeb7fc595e1",
+                "reference": "dd2377e0bdad3e3c835c8bed428ddbeb7fc595e1",
                 "shasum": ""
             },
             "require": {
@@ -6108,7 +6108,7 @@
                     "type": "buy_me_a_coffee"
                 }
             ],
-            "time": "2026-07-09T16:45:39+00:00"
+            "time": "2026-07-26T15:44:53+00:00"
         },
         {
             "name": "markbaker/complex",
@@ -16342,16 +16342,16 @@
         },
         {
             "name": "laravel-lang/lang",
-            "version": "15.33.1",
+            "version": "15.33.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/lang.git",
-                "reference": "3f1092ac3772189ec03187c66f3f4efd0002523e"
+                "reference": "680e35886d8c536a21c9c1bbbbb6089c98c47c92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/3f1092ac3772189ec03187c66f3f4efd0002523e",
-                "reference": "3f1092ac3772189ec03187c66f3f4efd0002523e",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/680e35886d8c536a21c9c1bbbbb6089c98c47c92",
+                "reference": "680e35886d8c536a21c9c1bbbbb6089c98c47c92",
                 "shasum": ""
             },
             "require": {
@@ -16412,7 +16412,7 @@
                     "type": "yoomoney"
                 }
             ],
-            "time": "2026-07-25T15:37:45+00:00"
+            "time": "2026-07-26T17:08:40+00:00"
         },
         {
             "name": "laravel-lang/locale-list",
