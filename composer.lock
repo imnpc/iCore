@@ -1557,16 +1557,16 @@
         },
         {
             "name": "dedoc/scramble",
-            "version": "v0.13.35",
+            "version": "v0.13.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dedoc/scramble.git",
-                "reference": "c072f731e060972134b6916ca6899609bacc0dd2"
+                "reference": "9acdb5e54f808c5bd506369f8e84322d322cc6c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dedoc/scramble/zipball/c072f731e060972134b6916ca6899609bacc0dd2",
-                "reference": "c072f731e060972134b6916ca6899609bacc0dd2",
+                "url": "https://api.github.com/repos/dedoc/scramble/zipball/9acdb5e54f808c5bd506369f8e84322d322cc6c9",
+                "reference": "9acdb5e54f808c5bd506369f8e84322d322cc6c9",
                 "shasum": ""
             },
             "require": {
@@ -1626,7 +1626,7 @@
             ],
             "support": {
                 "issues": "https://github.com/dedoc/scramble/issues",
-                "source": "https://github.com/dedoc/scramble/tree/v0.13.35"
+                "source": "https://github.com/dedoc/scramble/tree/v0.13.36"
             },
             "funding": [
                 {
@@ -1634,7 +1634,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-15T13:21:15+00:00"
+            "time": "2026-07-27T09:42:22+00:00"
         },
         {
             "name": "devonab/filament-easy-footer",
@@ -4148,16 +4148,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v13.22.0",
+            "version": "v13.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d354afa45334cdac523fbc015f203a78d7e2f5c6"
+                "reference": "92a707229148e57f08a249211c8a5a194159c619"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d354afa45334cdac523fbc015f203a78d7e2f5c6",
-                "reference": "d354afa45334cdac523fbc015f203a78d7e2f5c6",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/92a707229148e57f08a249211c8a5a194159c619",
+                "reference": "92a707229148e57f08a249211c8a5a194159c619",
                 "shasum": ""
             },
             "require": {
@@ -4183,7 +4183,7 @@
                 "league/flysystem": "^3.25.1",
                 "league/flysystem-local": "^3.25.1",
                 "league/uri": "^7.5.1",
-                "monolog/monolog": "^3.0",
+                "monolog/monolog": "^3.10",
                 "nesbot/carbon": "^3.8.4",
                 "nunomaduro/termwind": "^2.0",
                 "php": "^8.3",
@@ -4371,7 +4371,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2026-07-24T20:38:48+00:00"
+            "time": "2026-07-27T14:48:58+00:00"
         },
         {
             "name": "laravel/horizon",
@@ -9320,16 +9320,16 @@
         },
         {
             "name": "resend/resend-php",
-            "version": "v1.6.0",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/resend/resend-php.git",
-                "reference": "9f80a745899cca15faf2b08e47f1b0e9b4a4c813"
+                "reference": "9516207c4f6ff210c64b193e31074e925dd6193a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/resend/resend-php/zipball/9f80a745899cca15faf2b08e47f1b0e9b4a4c813",
-                "reference": "9f80a745899cca15faf2b08e47f1b0e9b4a4c813",
+                "url": "https://api.github.com/repos/resend/resend-php/zipball/9516207c4f6ff210c64b193e31074e925dd6193a",
+                "reference": "9516207c4f6ff210c64b193e31074e925dd6193a",
                 "shasum": ""
             },
             "require": {
@@ -9373,9 +9373,9 @@
             ],
             "support": {
                 "issues": "https://github.com/resend/resend-php/issues",
-                "source": "https://github.com/resend/resend-php/tree/v1.6.0"
+                "source": "https://github.com/resend/resend-php/tree/v1.7.0"
             },
-            "time": "2026-07-21T04:41:42+00:00"
+            "time": "2026-07-27T21:14:02+00:00"
         },
         {
             "name": "ryangjchandler/blade-capture-directive",
@@ -14536,16 +14536,16 @@
         },
         {
             "name": "tinymce/tinymce",
-            "version": "8.8.1",
+            "version": "8.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tinymce/tinymce-dist.git",
-                "reference": "b3c1a7aea981be2520e54e121d807261783acc27"
+                "reference": "e985cd41c60ecda5b7f92cec73fe8f234a6f32ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/b3c1a7aea981be2520e54e121d807261783acc27",
-                "reference": "b3c1a7aea981be2520e54e121d807261783acc27",
+                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/e985cd41c60ecda5b7f92cec73fe8f234a6f32ff",
+                "reference": "e985cd41c60ecda5b7f92cec73fe8f234a6f32ff",
                 "shasum": ""
             },
             "type": "component",
@@ -14589,9 +14589,9 @@
                 "wysiwyg"
             ],
             "support": {
-                "source": "https://github.com/tinymce/tinymce-dist/tree/8.8.1"
+                "source": "https://github.com/tinymce/tinymce-dist/tree/8.8.2"
             },
-            "time": "2026-07-22T03:48:29+00:00"
+            "time": "2026-07-27T04:10:15+00:00"
         },
         {
             "name": "tomatophp/console-helpers",
