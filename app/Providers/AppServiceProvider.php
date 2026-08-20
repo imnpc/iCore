@@ -3,11 +3,15 @@
 namespace App\Providers;
 
 use App\Models\Admin;
+use App\Services\ApiDocsTagGrouper;
 use BezhanSalleh\FilamentShield\Facades\FilamentShield;
 use BezhanSalleh\LanguageSwitch\LanguageSwitch;
+use Dedoc\Scramble\Attributes\Group;
 use Dedoc\Scramble\Scramble;
-use Dedoc\Scramble\Support\Generator\OpenApi;
 use Dedoc\Scramble\Support\Generator\Operation;
+use Dedoc\Scramble\Support\Generator\Parameter;
+use Dedoc\Scramble\Support\Generator\Schema;
+use Dedoc\Scramble\Support\Generator\Types\StringType;
 use Dedoc\Scramble\Support\RouteInfo;
 use Filament\Support\Assets\Css;
 use Filament\Support\Facades\FilamentAsset;
@@ -16,7 +20,9 @@ use Filament\Tables\Table;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 use Laravel\Passkeys\Passkeys;
+use ReflectionMethod;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -75,13 +81,26 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // 自动配置 swagger 文档
+        $apiDocsTagGrouper = app(ApiDocsTagGrouper::class);
+
         Scramble::configure()
-            ->withDocumentTransformers(function (OpenApi $openApi) {
+            ->withOperationTransformers(
+                fn (Operation $operation, RouteInfo $routeInfo) => $this->addAcceptLanguageParameter($operation)
+            );
 
-            })
-            ->withOperationTransformers(function (Operation $operation, RouteInfo $routeInfo) {
-
-            });
+        Scramble::resolveTagsUsing(
+            function (
+                RouteInfo $routeInfo,
+                Operation $operation
+            ) use ($apiDocsTagGrouper): array {
+                return [
+                    $apiDocsTagGrouper->makeHierarchicalTag(
+                        $this->resolveScrambleChildTag($routeInfo),
+                        $routeInfo->route->uri(),
+                    ),
+                ];
+            }
+        );
 
         // filament 多语言切换
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
@@ -114,4 +133,54 @@ class AppServiceProvider extends ServiceProvider
         //            'App\Listeners\PruneOldTokens',
         //        ],
     ];
+
+    private function resolveScrambleChildTag(RouteInfo $routeInfo): string
+    {
+        $reflection = $routeInfo->reflectionAction();
+
+        $methodClassGroupAttributes = $reflection instanceof ReflectionMethod
+            ? $reflection->getDeclaringClass()->getAttributes(Group::class)
+            : [];
+
+        $groupAttributes = [
+            ...($reflection?->getAttributes(Group::class) ?? []),
+            ...$methodClassGroupAttributes,
+        ];
+
+        foreach ($groupAttributes as $groupAttribute) {
+            $name = trim((string) $groupAttribute->newInstance()->name);
+
+            if ($name !== '') {
+                return $name;
+            }
+        }
+
+        $fallbackName = trim((string) Str::of(class_basename($routeInfo->className()))->replace('Controller', ''));
+
+        return $fallbackName !== '' ? $fallbackName : '其他';
+    }
+
+    protected function addAcceptLanguageParameter(Operation $operation): void
+    {
+        $exists = collect($operation->parameters)
+            ->contains(
+                fn (Parameter $parameter) => strtolower($parameter->name) === 'accept-language'
+                    && $parameter->in === 'header'
+            );
+
+        if ($exists) {
+            return;
+        }
+
+        $operation->parameters[] = Parameter::make(
+            'Accept-Language',
+            'header'
+        )
+            ->description('请求语言，例如：zh_CN、en')
+            ->required(false)
+            ->setSchema(
+                Schema::fromType(new StringType)
+            )
+            ->example('zh_CN');
+    }
 }
