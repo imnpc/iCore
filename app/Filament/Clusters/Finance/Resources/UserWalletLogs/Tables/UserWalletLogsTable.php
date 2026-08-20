@@ -107,14 +107,14 @@ class UserWalletLogsTable
                     }),
                 // 来源
                 SelectFilter::make('from')
-                    ->label('来源')
+                    ->label(__('filament-model.ui.labels.source'))
                     ->options(FromType::class),
                 // 日期筛选
                 Filter::make('created_at')
-                    ->label('创建时间')
+                    ->label(__('filament-model.ui.labels.created_at_filter'))
                     ->schema([
-                        DatePicker::make('created_from')->label('开始时间'),
-                        DatePicker::make('created_until')->label('结束时间'),
+                        DatePicker::make('created_from')->label(__('filament-model.ui.labels.start_date')),
+                        DatePicker::make('created_until')->label(__('filament-model.ui.labels.end_date')),
                     ])
                     ->query(function (Builder $query, array $data): Builder {
                         $createdFrom = $data['created_from'] ?? null;

@@ -36,7 +36,7 @@ class WalletAction extends Action
             foreach ($list as $key => $value) {
                 $name = strtolower($value->slug);
                 $balance = $wallets[$name.'_balance'] ?? 0;
-                $options[$value->id] = $value->name.' [ 当前: '.$balance.' ]';
+                $options[$value->id] = $value->name.' ['.trans('filament-model.ui.labels.current_balance', ['balance' => $balance]).']';
             }
 
             return [
@@ -45,7 +45,7 @@ class WalletAction extends Action
                     ->default((string) ($list->first()?->id ?? ''))
                     ->options($options)
                     ->label(__('filament-model.attributes.user.wallet_type'))
-                    ->helperText('请选择要充值的钱包类型')
+                    ->helperText(__('filament-model.ui.labels.choose_wallet_type'))
                     ->required()
                     ->live()
                     ->inline()
@@ -66,7 +66,7 @@ class WalletAction extends Action
                 // 数量
                 TextInput::make('money')
                     ->label(__('filament-model.attributes.user.money'))
-                    ->helperText('请输入数量,最低值为 1')
+                    ->helperText(__('filament-model.ui.labels.enter_amount_minimum'))
                     ->numeric()
                     ->minValue(1)
                     ->maxWidth('xs')
@@ -75,7 +75,7 @@ class WalletAction extends Action
                 // 备注
                 TextInput::make('remark')
                     ->label(__('filament-model.attributes.user.remark'))
-                    ->helperText('请输入备注'),
+                    ->helperText(__('filament-model.ui.labels.enter_remark')),
             ];
         });
         $this->action(function ($record, array $data) {
@@ -85,8 +85,8 @@ class WalletAction extends Action
             $walletType = WalletType::query()->find($data['wallet_type']);
             if (! $walletType) {
                 Notification::make()
-                    ->title('操作失败')
-                    ->body('钱包类型不存在')
+                    ->title(__('filament-model.ui.labels.operation_failed'))
+                    ->body(__('filament-model.ui.labels.wallet_type_not_found'))
                     ->danger()
                     ->send();
 
@@ -108,8 +108,8 @@ class WalletAction extends Action
                 $balance = $userWalletService->checkBalance($record->id, $data['wallet_type']);
                 if (abs($data['money']) > $balance) {
                     Notification::make()
-                        ->title('操作失败')
-                        ->body('扣除数量不能超过账户余额数量')
+                        ->title(__('filament-model.ui.labels.operation_failed'))
+                        ->body(__('filament-model.ui.labels.debit_exceeds_balance'))
                         ->danger()
                         ->send();
 
@@ -121,8 +121,8 @@ class WalletAction extends Action
             $executed = $logService->userWalletLog($record->id, $data['wallet_type'], $money, 0, '', FromType::ADMIN->value, $remark);
             if (! $executed) {
                 Notification::make()
-                    ->title('操作失败')
-                    ->body('钱包操作执行失败，请重试')
+                    ->title(__('filament-model.ui.labels.operation_failed'))
+                    ->body(__('filament-model.ui.labels.wallet_operation_failed'))
                     ->danger()
                     ->send();
 
@@ -131,14 +131,14 @@ class WalletAction extends Action
 
             if ($data['type'] === 'credit') {
                 Notification::make()
-                    ->title('操作成功')
-                    ->body('已经成功充值了 '.$walletName.' ,数量: '.$data['money'])
+                    ->title(__('filament-model.ui.labels.operation_succeeded'))
+                    ->body(__('filament-model.ui.labels.recharge_completed', ['wallet' => $walletName, 'amount' => $data['money']]))
                     ->success()
                     ->send();
             } elseif ($data['type'] === 'debit') {
                 Notification::make()
-                    ->title('操作成功')
-                    ->body('已经成功扣除了 '.$walletName.' ,数量: '.$data['money'])
+                    ->title(__('filament-model.ui.labels.operation_succeeded'))
+                    ->body(__('filament-model.ui.labels.debit_completed', ['wallet' => $walletName, 'amount' => $data['money']]))
                     ->warning()
                     ->send();
             }

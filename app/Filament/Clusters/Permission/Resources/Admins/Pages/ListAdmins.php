@@ -33,13 +33,13 @@ class ListAdmins extends ListRecords
                 ->label(trans('filament-model.general.all'))
                 ->icon('heroicon-o-shield-check')
                 ->badge($modelClass::query()->count()),
-            'active' => Tab::make('Active')
+            'active' => Tab::make('active')
                 ->label(trans('filament-model.general.active'))
                 ->icon('heroicon-o-shield-check')
                 ->badgeColor('success')
                 ->modifyQueryUsing(fn (Builder $query) => $query->where('status', true))
                 ->badge($modelClass::query()->where('status', true)->count()),
-            'inactive' => Tab::make('Inactive')
+            'inactive' => Tab::make('inactive')
                 ->label(trans('filament-model.general.inactive'))
                 ->icon('heroicon-o-x-circle')
                 ->badgeColor('danger')

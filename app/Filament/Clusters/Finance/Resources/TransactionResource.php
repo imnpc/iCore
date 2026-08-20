@@ -45,7 +45,11 @@ class TransactionResource extends Resource implements Translateable
                     ->numeric(),
                 TextColumn::make('type')
                     ->label(trans('filament-model.general.type'))
-                    ->formatStateUsing(fn (string $state): string => __("filament-wallet::messages.transactions.columns.{$state}"))
+                    ->formatStateUsing(function (mixed $state): string {
+                        $value = $state instanceof BackedEnum ? $state->value : $state;
+
+                        return __("filament-wallet::messages.transactions.columns.{$value}");
+                    })
                     ->badge()
                     ->color(fn (Transaction $transaction) => $transaction->type === 'deposit' ? 'success' : 'danger'),
                 TextColumn::make('amount')

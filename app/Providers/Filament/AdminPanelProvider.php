@@ -15,6 +15,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -161,7 +162,7 @@ class AdminPanelProvider extends PanelProvider
                         default => Color::Blue,
                     }), // 运行环境
                 EasyFooterPlugin::make()
-                    ->withLoadTime('Processed in '), // 页脚
+                    ->withLoadTime('filament-model.ui.labels.processed_in'), // 页脚
                 FilamentWalletPlugin::make()->hideResources(), // 钱包
                 //                CustomFieldsPlugin::make(), // 自定义字段
                 PasskeysPlugin::make(), // Passkeys
@@ -180,9 +181,9 @@ class AdminPanelProvider extends PanelProvider
             ])
             // 菜单分组排序
             ->navigationGroups([
-                __('filament-model.navigation_group.role.name'),
-                __('filament-model.navigation_group.wallet.name'),
-                __('filament-model.navigation_group.setting.name'),
+                NavigationGroup::make(fn (): string => __('filament-model.navigation_group.role.name')),
+                NavigationGroup::make(fn (): string => __('filament-model.navigation_group.wallet.name')),
+                NavigationGroup::make(fn (): string => __('filament-model.navigation_group.setting.name')),
             ])
 //            ->topNavigation() // 顶部导航
 //            ->topbar(false)

@@ -54,7 +54,7 @@ class RoleResource extends Resource
                                     ->unique(ignoreRecord: true)
                                     ->required()
                                     ->maxLength(255)
-                                    ->helperText('中文名称'),
+                                    ->helperText(__('filament-model.ui.labels.role_title_help')),
 
                                 TextInput::make('name')
                                     ->label(__('filament-shield::filament-shield.field.name'))
@@ -67,7 +67,7 @@ class RoleResource extends Resource
                                     ->maxLength(255)
                                     ->disabled(fn ($operation) => $operation === 'edit') // 新增禁用逻辑
                                     ->dehydrated(true) // 保持数据持久化
-                                    ->helperText('英文名,使用下划线区分,例如 super_admin, 请勿使用中文,编辑无法修改'),
+                                    ->helperText(__('filament-model.ui.labels.role_name_help')),
 
                                 TextInput::make('guard_name')
                                     ->label(__('filament-shield::filament-shield.field.guard_name'))
@@ -118,7 +118,7 @@ class RoleResource extends Resource
                     ->color('warning')
                     ->label(__('filament-shield::filament-shield.column.guard_name')),
                 TextColumn::make('team.name')
-                    ->default('Global')
+                    ->default(__('filament-model.ui.labels.global'))
                     ->badge()
                     ->color(fn (mixed $state): string => str($state)->contains('Global') ? 'gray' : 'primary')
                     ->label(__('filament-shield::filament-shield.column.team'))

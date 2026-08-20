@@ -26,7 +26,7 @@ class Login extends BaseAuth
     protected function getLoginFormComponent(): Component
     {
         return TextInput::make('login')
-            ->label('用户名')
+            ->label(__('filament-model.ui.labels.username'))
             ->required()
             ->autocomplete()
             ->autofocus()
