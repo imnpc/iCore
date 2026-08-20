@@ -21,8 +21,6 @@ class UtilsController extends Controller
      * 文件上传
      *
      * 通用文件上传接口
-     *
-     * @return JsonResponse
      */
     #[Post('upload', middleware: (['auth:sanctum']))]
     public function upload(Request $request): JsonResponse
@@ -62,11 +60,11 @@ class UtilsController extends Controller
                 'file_path' => $media->getDiskPath(),
                 // 文件网址
                 'file_url' => $media->getUrl(),
-            ], '上传成功', 200);
+            ], __('api.messages.file_upload_success'), 200);
         } catch (MediaUploadException $e) {
             // 捕获异常并返回错误响应 $e->getMessage()
             //            Log::error('upload文件上传失败: ' . $e->getMessage());
-            return $this->fail('文件上传失败,请确认文件格式正确!', 500);
+            return $this->fail(__('api.errors.file_upload_failed'), 500);
         }
     }
 
@@ -91,15 +89,13 @@ class UtilsController extends Controller
             'captcha_key' => $captcha['key'],
             // 验证码图片 (base64 编码，需要处理)
             'captcha_img' => $captcha['img'],
-        ], '验证码获取成功!');
+        ], __('api.messages.captcha_retrieved'));
     }
 
     /**
      * 获取指定用户 token
      *
      * 测试接口，上线以后删除本接口
-     *
-     * @return JsonResponse
      */
     #[Get('getUserToken')]
     public function getUserToken(Request $request): JsonResponse
@@ -123,6 +119,6 @@ class UtilsController extends Controller
             'access_token' => $user->createToken('api')->plainTextToken,
             // 用户 ID
             'user_id' => $request->user_id,
-        ], '注册成功', 200);
+        ], __('api.messages.registration_success'), 200);
     }
 }

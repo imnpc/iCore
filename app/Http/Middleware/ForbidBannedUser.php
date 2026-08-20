@@ -24,7 +24,7 @@ class ForbidBannedUser
         $user = $this->auth->user();
 
         if ($user && $user instanceof BannableContract && $user->isBanned()) {
-            abort(403, '您的账号已被禁用，请联系管理员!');
+            abort(403, __('api.errors.account_banned'));
         }
 
         return $next($request);

@@ -48,7 +48,7 @@ class UserController extends Controller
 
         // 图片验证码验证是否有效
         if (! captcha_api_check($request->captcha, $request->captcha_key, 'flat')) {
-            return $this->fail('图片验证码错误或者已使用!', 422);
+            return $this->fail(__('api.errors.captcha_invalid'), 422);
         }
         // 验证用户信息
         $credentials = [
@@ -57,13 +57,13 @@ class UserController extends Controller
         ];
 
         if (! Auth::guard('web')->attempt($credentials)) {
-            return $this->fail('帐号或者密码错误!', 401);
+            return $this->fail(__('api.errors.credentials_invalid'), 401);
         }
 
         // 获取已认证的用户（使用同一 guard）
         $user = Auth::guard('web')->user();
         if (! $user) {
-            return $this->fail('登录状态初始化失败，请重试!', 500);
+            return $this->fail(__('api.errors.login_initialization_failed'), 500);
         }
 
         // 谷歌验证器
@@ -71,7 +71,7 @@ class UserController extends Controller
             $google2fa = new Google2FA; // 谷歌验证器
             $valid = $google2fa->verifyKey($user->app_authentication_secret, $request->two_fa_code ?? '');
             if (! $valid) {
-                return $this->fail('验证错误,请输入谷歌验证器生成的验证码!', 401);
+                return $this->fail(__('api.errors.two_factor_invalid'), 401);
             }
         }
 
@@ -86,7 +86,7 @@ class UserController extends Controller
             'token_type' => 'Bearer',
             //  用户 access_token
             'access_token' => $token,
-        ], '登录成功', 200);
+        ], __('api.messages.login_success'), 200);
     }
 
     /**
@@ -108,8 +108,6 @@ class UserController extends Controller
 
     /**
      * 获取邮箱验证码
-     *
-     * @return JsonResponse
      */
     #[Post('getEmailVerifyCode')]
     public function getEmailVerifyCode(Request $request): JsonResponse
@@ -125,7 +123,7 @@ class UserController extends Controller
 
         // 验证码验证是否有效
         if (! captcha_api_check($request->captcha, $request->captcha_key, 'flat')) {
-            return $this->fail('图形验证码错误或者已使用!', 422);
+            return $this->fail(__('api.errors.captcha_invalid'), 422);
         }
 
         $email = $request->email; // 邮箱地址
@@ -137,13 +135,11 @@ class UserController extends Controller
         Notification::route('mail', $email)->notify(new VerifyCodeEmail($code)); // 发送邮件验证码
         Cache::put($key, ['email' => $email, 'code' => $code], $expiredAt); // 缓存验证码 30 分钟过期。
 
-        return $this->success('', '邮箱验证码发送成功!', 200);
+        return $this->success('', __('api.messages.email_verification_sent'), 200);
     }
 
     /**
      * 邮箱注册
-     *
-     * @return JsonResponse
      */
     #[Post('emailRegister')]
     public function emailRegister(Request $request): JsonResponse
@@ -166,16 +162,16 @@ class UserController extends Controller
 
         $verifyData = Cache::get($key);
         if (! $verifyData) {
-            return $this->fail('邮箱验证码已失效！', 403);
+            return $this->fail(__('api.errors.verification_code_expired'), 403);
         }
         if (! hash_equals($verifyData['code'], $request->email_verify_code)) {
-            return $this->fail('邮箱验证码不正确！', 403);
+            return $this->fail(__('api.errors.verification_code_invalid'), 403);
         }
 
         if ($request->parent_id) {
             $decode_id = Hashids::decode($request->parent_id); // 解密传递的 ID
             if (empty($decode_id)) {
-                return $this->fail('邀请码不正确！', 403);
+                return $this->fail(__('api.errors.invite_code_invalid'), 403);
             }
             $parent_id = $decode_id[0]; // 解密后的 ID
         } else {
@@ -204,13 +200,11 @@ class UserController extends Controller
             'token_type' => 'Bearer',
             // token
             'access_token' => $user->createToken('api')->plainTextToken,
-        ], '登录成功', 200);
+        ], __('api.messages.login_success'), 200);
     }
 
     /**
      * 邮箱重置密码
-     *
-     * @return JsonResponse
      */
     #[Post('emailForgetPassword')]
     public function emailForgetPassword(Request $request): JsonResponse
@@ -232,10 +226,10 @@ class UserController extends Controller
         // 验证码验证是否有效
         $verifyData = Cache::get($key);
         if (! $verifyData) {
-            return $this->fail('邮箱验证码已失效！', 403);
+            return $this->fail(__('api.errors.verification_code_expired'), 403);
         }
         if (! hash_equals($verifyData['code'], $request->email_verify_code)) {
-            return $this->fail('邮箱验证码不正确！', 403);
+            return $this->fail(__('api.errors.verification_code_invalid'), 403);
         }
 
         // 查询该邮箱用户 重设密码
@@ -247,16 +241,14 @@ class UserController extends Controller
             ]);
             $user->tokens()->delete(); // 删除用户所有 token，需要重新登录
 
-            return $this->success('', '密码重设成功,清使用新密码登录!', 200);
+            return $this->success('', __('api.messages.password_reset_success'), 200);
         } else {
-            return $this->fail('用户不存在', 403);
+            return $this->fail(__('api.errors.user_not_found'), 403);
         }
     }
 
     /**
      * 修改姓名
-     *
-     * @return JsonResponse
      */
     #[Post('updateName', middleware: (['auth:sanctum']))]
     public function updateName(Request $request): JsonResponse
@@ -271,15 +263,13 @@ class UserController extends Controller
         ]);
 
         // 返回成功响应
-        return $this->success([], '修改用户信息成功!');
+        return $this->success([], __('api.messages.profile_updated'));
     }
 
     /**
      * 更新头像
      *
      * 上传和修改头像
-     *
-     * @return JsonResponse
      */
     #[Post('updateAvatar', middleware: (['auth:sanctum']))]
     public function updateAvatar(Request $request): JsonResponse
@@ -298,7 +288,7 @@ class UserController extends Controller
             $media = upload_images($request->file('avatar'), $options); // 上传头像
 
             if (! $media) {
-                return $this->fail('头像上传失败', 500);
+                return $this->fail(__('api.errors.avatar_upload_failed'), 500);
             }
 
             $user->attachMedia($media, $options['tag']); // 关联模型和媒体文件
@@ -319,15 +309,13 @@ class UserController extends Controller
         return $this->success([
             // 头像地址
             'avatar' => $media->getUrl(),
-        ], '头像上传成功', 200);
+        ], __('api.messages.avatar_upload_success'), 200);
     }
 
     /**
      * 修改密码
      *
      * 修改密码以后需要重新登录
-     *
-     * @return JsonResponse
      */
     #[Post('updatePassword', middleware: (['auth:sanctum']))]
     public function updatePassword(Request $request): JsonResponse
@@ -343,7 +331,7 @@ class UserController extends Controller
         $user = $request->user();
         // 验证旧密码
         if (! Hash::check($request->old_password, $user->password)) {
-            return $this->fail('旧密码错误!', 403);
+            return $this->fail(__('api.errors.old_password_invalid'), 403);
         }
         $user->update([
             'password' => bcrypt($request->password), // 更新新密码
@@ -351,22 +339,20 @@ class UserController extends Controller
         $user->tokens()->delete(); // 删除用户所有 token，需要重新登录
 
         // 返回成功响应
-        return $this->success([], '密码修改成功!');
+        return $this->success([], __('api.messages.password_updated'));
     }
 
     /**
      * 开始设置谷歌验证器
      *
      * 获取谷歌验证器密钥和对应二维码图片,每个用户缓存 1 小时，验证过以后才会注销缓存
-     *
-     * @return JsonResponse
      */
     #[Post('getGoogle2fa', middleware: (['auth:sanctum']))]
     public function getGoogle2fa(Request $request): JsonResponse
     {
         $user = $request->user();
         if ($user->app_authentication_secret) {
-            return $this->fail('已经设置过谷歌验证器了!', 403);
+            return $this->fail(__('api.errors.two_factor_already_set'), 403);
         }
 
         $google2fa = new Google2FA; // 谷歌验证器
@@ -399,15 +385,13 @@ class UserController extends Controller
             'app_authentication_secret' => $secretKey,
             // 二维码图片
             'qrcode_image' => Storage::disk(config('filesystems.default'))->url($path),
-        ], '获取成功,请使用谷歌验证器扫描二维码', 200);
+        ], __('api.messages.two_factor_qr_success'), 200);
     }
 
     /**
      * 验证和绑定谷歌验证器
      *
      * 用户扫码以后验证谷歌验证器和生成的验证码是否匹配
-     *
-     * @return JsonResponse
      */
     #[Post('setGoogle2fa', middleware: (['auth:sanctum']))]
     public function setGoogle2fa(Request $request): JsonResponse
@@ -421,14 +405,14 @@ class UserController extends Controller
 
         $user = $request->user();
         if ($user->app_authentication_secret) {
-            return $this->fail('已经设置过谷歌验证器了!', 403);
+            return $this->fail(__('api.errors.two_factor_already_set'), 403);
         }
         $app_authentication_secret = $request->app_authentication_secret;
         $two_fa_code = $request->two_fa_code;
         $google2fa = new Google2FA;
         $valid = $google2fa->verifyKey($app_authentication_secret, $two_fa_code);
         if (! $valid) {
-            return $this->fail('验证错误,请输入谷歌验证器生成的验证码!', 401);
+            return $this->fail(__('api.errors.two_factor_invalid'), 401);
         } else {
             $user->update([
                 'app_authentication_secret' => $app_authentication_secret,
@@ -445,14 +429,12 @@ class UserController extends Controller
             // 设置成功以后删除图片
             Storage::disk(config('filesystems.default'))->delete($path);
 
-            return $this->success([], '谷歌验证器绑定成功!');
+            return $this->success([], __('api.messages.two_factor_bound'));
         }
     }
 
     /**
      * 删除谷歌验证器
-     *
-     * @return JsonResponse
      */
     #[Post('deleteGoogle2fa', middleware: (['auth:sanctum']))]
     public function deleteGoogle2fa(Request $request): JsonResponse
@@ -467,7 +449,7 @@ class UserController extends Controller
         $google2fa = new Google2FA; // 谷歌验证器
         $valid = $google2fa->verifyKey($user->app_authentication_secret, $request->two_fa_code);
         if (! $valid) {
-            return $this->fail('验证错误,请输入谷歌验证器生成的验证码!', 401);
+            return $this->fail(__('api.errors.two_factor_invalid'), 401);
         }
 
         $user->update([
@@ -475,6 +457,6 @@ class UserController extends Controller
         ]);
 
         // 返回成功响应
-        return $this->success([], '谷歌验证器删除成功!');
+        return $this->success([], __('api.messages.two_factor_removed'));
     }
 }

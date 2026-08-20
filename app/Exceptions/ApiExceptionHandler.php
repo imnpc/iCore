@@ -33,56 +33,56 @@ class ApiExceptionHandler extends ExceptionHandler
     use MakesApiResponses;
 
     /**
-     * @var array<class-string<Throwable>, array{message: string, status: int, level: string, hide_in_production?: bool}>
+     * @var array<class-string<Throwable>, array{message_key: string, status: int, level: string, hide_in_production?: bool}>
      */
     private const EXCEPTION_CONFIG = [
         ValidationException::class => [
-            'message' => '请求参数验证失败',
+            'message_key' => 'api.errors.validation_failed',
             'status' => 422,
             'level' => 'warning',
         ],
         AuthenticationException::class => [
-            'message' => '认证失败，请重新登录',
+            'message_key' => 'api.errors.authentication_failed',
             'status' => 401,
             'level' => 'warning',
         ],
         AuthorizationException::class => [
-            'message' => '权限不足，拒绝访问',
+            'message_key' => 'api.errors.authorization_failed',
             'status' => 403,
             'level' => 'warning',
         ],
         ModelNotFoundException::class => [
-            'message' => '请求的资源不存在',
+            'message_key' => 'api.errors.resource_not_found',
             'status' => 404,
             'level' => 'notice',
         ],
         NotFoundHttpException::class => [
-            'message' => '请求的路由不存在',
+            'message_key' => 'api.errors.route_not_found',
             'status' => 404,
             'level' => 'notice',
         ],
         MethodNotAllowedHttpException::class => [
-            'message' => '请求方法不允许',
+            'message_key' => 'api.errors.method_not_allowed',
             'status' => 405,
             'level' => 'warning',
         ],
         TooManyRequestsHttpException::class => [
-            'message' => '请求过于频繁，请稍后再试',
+            'message_key' => 'api.errors.too_many_requests',
             'status' => 429,
             'level' => 'warning',
         ],
         ThrottleRequestsException::class => [
-            'message' => '请求过于频繁，请稍后再试',
+            'message_key' => 'api.errors.too_many_requests',
             'status' => 429,
             'level' => 'warning',
         ],
         UnprocessableEntityHttpException::class => [
-            'message' => '无法处理的请求实体',
+            'message_key' => 'api.errors.unprocessable_entity',
             'status' => 422,
             'level' => 'warning',
         ],
         QueryException::class => [
-            'message' => '数据库查询错误',
+            'message_key' => 'api.errors.database_error',
             'status' => 500,
             'level' => 'error',
             'hide_in_production' => true,
@@ -93,17 +93,17 @@ class ApiExceptionHandler extends ExceptionHandler
      * @var array<int, string>
      */
     private const HTTP_STATUS_MESSAGES = [
-        400 => '请求参数错误',
-        401 => '未授权访问',
-        403 => '禁止访问',
-        404 => '资源不存在',
-        405 => '请求方法不允许',
-        409 => '资源冲突',
-        422 => '请求参数验证失败',
-        429 => '请求过于频繁',
-        500 => '服务器内部错误',
-        502 => '网关错误',
-        503 => '服务不可用',
+        400 => 'api.errors.request_failed',
+        401 => 'api.errors.authentication_failed',
+        403 => 'api.errors.authorization_failed',
+        404 => 'api.errors.resource_not_found',
+        405 => 'api.errors.method_not_allowed',
+        409 => 'api.errors.request_failed',
+        422 => 'api.errors.validation_failed',
+        429 => 'api.errors.too_many_requests',
+        500 => 'api.errors.server_error',
+        502 => 'api.errors.gateway_error',
+        503 => 'api.errors.service_unavailable',
     ];
 
     /**
@@ -168,7 +168,7 @@ class ApiExceptionHandler extends ExceptionHandler
     private function handleValidationException(ValidationException $exception, string $traceId): JsonResponse
     {
         $config = self::EXCEPTION_CONFIG[ValidationException::class];
-        $message = $exception->getMessage() !== '' ? $exception->getMessage() : $config['message'];
+        $message = $exception->getMessage() !== '' ? __($exception->getMessage()) : __($config['message_key']);
 
         $response = $this->error(
             message: $message,
@@ -185,11 +185,11 @@ class ApiExceptionHandler extends ExceptionHandler
         $message = $exception->getMessage();
 
         if ($message === '') {
-            $message = self::HTTP_STATUS_MESSAGES[$statusCode] ?? '请求处理失败';
+            $message = __(self::HTTP_STATUS_MESSAGES[$statusCode] ?? 'api.errors.request_failed');
         }
 
         if ($this->isProduction() && $statusCode >= 500) {
-            $message = self::HTTP_STATUS_MESSAGES[500];
+            $message = __(self::HTTP_STATUS_MESSAGES[500]);
         }
 
         $response = $this->error(
@@ -218,20 +218,20 @@ class ApiExceptionHandler extends ExceptionHandler
             $errors['message'] = mb_substr(strip_tags($content), 0, 3000);
         }
 
-        $json = $this->error('请求处理失败', $statusCode, $errors);
+        $json = $this->error(__('api.errors.request_failed'), $statusCode, $errors);
 
         return $this->finalizeResponse($json, $exception, $traceId);
     }
 
     /**
-     * @param  array{message: string, status: int, level: string, hide_in_production?: bool}  $config
+     * @param  array{message_key: string, status: int, level: string, hide_in_production?: bool}  $config
      */
     private function handleKnownException(Throwable $exception, array $config, string $traceId): JsonResponse
     {
-        $message = $config['message'];
+        $message = __($config['message_key']);
 
         if ($this->isProduction() && isset($config['hide_in_production'])) {
-            $message = '服务器处理请求时出现错误';
+            $message = __('api.errors.unknown_error');
         }
 
         $response = $this->error($message, $config['status'], []);
@@ -241,7 +241,7 @@ class ApiExceptionHandler extends ExceptionHandler
 
     private function handleUnknownException(Throwable $exception, string $traceId): JsonResponse
     {
-        $message = $this->isProduction() ? self::HTTP_STATUS_MESSAGES[500] : $exception->getMessage();
+        $message = $this->isProduction() ? __(self::HTTP_STATUS_MESSAGES[500]) : $exception->getMessage();
         $response = $this->error($message, 500, []);
 
         return $this->finalizeResponse($response, $exception, $traceId);
@@ -308,7 +308,7 @@ class ApiExceptionHandler extends ExceptionHandler
     }
 
     /**
-     * @return array{message: string, status: int, level: string, hide_in_production?: bool}|null
+     * @return array{message_key: string, status: int, level: string, hide_in_production?: bool}|null
      */
     private function resolveExceptionConfig(Throwable $exception): ?array
     {
