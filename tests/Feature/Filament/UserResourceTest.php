@@ -42,4 +42,15 @@ class UserResourceTest extends TestCase
             ->get(UserResource::getUrl())
             ->assertOk();
     }
+
+    public function test_filament_login_page_uses_the_requested_supported_locale(): void
+    {
+        $this->get('/admin/login?locale=en')
+            ->assertOk()
+            ->assertSee('Username');
+
+        $this->get('/admin/login?locale=zh_CN')
+            ->assertOk()
+            ->assertSee('用户名');
+    }
 }
