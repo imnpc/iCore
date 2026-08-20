@@ -18,10 +18,10 @@ enum PaymentType: int implements HasLabel
     public function getLabel(): ?string
     {
         return match ($this) {
-            self::ALIPAY => '支付宝',
-            self::WECHAT => '微信',
-            self::BALANCE => '余额',
-            self::ADMIN => '管理员',
+            self::ALIPAY => __('filament-model.enums.labels.payment_type.alipay'),
+            self::WECHAT => __('filament-model.enums.labels.payment_type.wechat'),
+            self::BALANCE => __('filament-model.enums.labels.payment_type.balance'),
+            self::ADMIN => __('filament-model.enums.labels.payment_type.admin'),
         };
     }
 }

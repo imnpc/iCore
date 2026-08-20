@@ -25,15 +25,15 @@ enum FromType: int implements HasLabel
     public function getLabel(): ?string
     {
         return match ($this) {
-            self::ADMIN => '后台',
-            self::ORDER => '订单',
-            self::RECHARGE => '充值',
-            self::WITHDRAW => '提现',
-            self::INVITE => '邀请',
-            self::REGISTER => '注册',
-            self::SIGN => '签到',
-            self::OTHER => '其他',
-            default => '默认',
+            self::ADMIN => __('filament-model.enums.labels.from_type.admin'),
+            self::DEFAULT => __('filament-model.enums.labels.from_type.default'),
+            self::ORDER => __('filament-model.enums.labels.from_type.order'),
+            self::RECHARGE => __('filament-model.enums.labels.from_type.recharge'),
+            self::WITHDRAW => __('filament-model.enums.labels.from_type.withdraw'),
+            self::INVITE => __('filament-model.enums.labels.from_type.invite'),
+            self::REGISTER => __('filament-model.enums.labels.from_type.register'),
+            self::SIGN => __('filament-model.enums.labels.from_type.sign'),
+            self::OTHER => __('filament-model.enums.labels.from_type.other'),
         };
     }
 }

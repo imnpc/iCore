@@ -17,9 +17,9 @@ enum PayStatus: int implements HasLabel
     public function getLabel(): ?string
     {
         return match ($this) {
-            self::UNPAID => '未支付',
-            self::PAYING => '待审核',
-            self::PAID => '已支付',
+            self::UNPAID => __('filament-model.enums.labels.pay_status.unpaid'),
+            self::PAYING => __('filament-model.enums.labels.pay_status.paying'),
+            self::PAID => __('filament-model.enums.labels.pay_status.paid'),
         };
     }
 }

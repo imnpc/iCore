@@ -16,9 +16,8 @@ enum PayType: int implements HasLabel
     public function getLabel(): ?string
     {
         return match ($this) {
-            self::ORDER => '订单',
-            self::RECHARGE => '充值',
-            default => null,
+            self::ORDER => __('filament-model.enums.labels.pay_type.order'),
+            self::RECHARGE => __('filament-model.enums.labels.pay_type.recharge'),
         };
     }
 }

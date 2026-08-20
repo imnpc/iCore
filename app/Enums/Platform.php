@@ -20,12 +20,12 @@ enum Platform: int implements HasLabel
     public function getLabel(): ?string
     {
         return match ($this) {
-            self::PC => 'PC',
-            self::H5 => 'H5',
-            self::MP => '公众号',
-            self::ANDROIDAPP => '安卓APP',
-            self::IOSAPP => '苹果APP',
-            self::MINIPROGRAM => '小程序',
+            self::PC => __('filament-model.enums.labels.platform.pc'),
+            self::H5 => __('filament-model.enums.labels.platform.h5'),
+            self::MP => __('filament-model.enums.labels.platform.mp'),
+            self::ANDROIDAPP => __('filament-model.enums.labels.platform.androidapp'),
+            self::IOSAPP => __('filament-model.enums.labels.platform.iosapp'),
+            self::MINIPROGRAM => __('filament-model.enums.labels.platform.miniprogram'),
         };
     }
 }

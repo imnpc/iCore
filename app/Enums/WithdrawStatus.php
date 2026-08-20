@@ -17,9 +17,9 @@ enum WithdrawStatus: int implements HasLabel
     public function getLabel(): ?string
     {
         return match ($this) {
-            self::PENDING => '待审核',
-            self::SUCCESS => '已转账',
-            self::FAILED => '驳回',
+            self::PENDING => __('filament-model.enums.labels.withdraw_status.pending'),
+            self::SUCCESS => __('filament-model.enums.labels.withdraw_status.success'),
+            self::FAILED => __('filament-model.enums.labels.withdraw_status.failed'),
         };
     }
 }
