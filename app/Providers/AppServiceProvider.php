@@ -8,7 +8,6 @@ use BezhanSalleh\LanguageSwitch\LanguageSwitch;
 use Dedoc\Scramble\Scramble;
 use Dedoc\Scramble\Support\Generator\OpenApi;
 use Dedoc\Scramble\Support\Generator\Operation;
-use Dedoc\Scramble\Support\Generator\SecurityScheme;
 use Dedoc\Scramble\Support\RouteInfo;
 use Filament\Support\Assets\Css;
 use Filament\Support\Facades\FilamentAsset;
@@ -17,7 +16,6 @@ use Filament\Tables\Table;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
 use Laravel\Passkeys\Passkeys;
 
 class AppServiceProvider extends ServiceProvider
@@ -79,35 +77,23 @@ class AppServiceProvider extends ServiceProvider
         // 自动配置 swagger 文档
         Scramble::configure()
             ->withDocumentTransformers(function (OpenApi $openApi) {
-                $openApi->secure(
-                    SecurityScheme::http('bearer')
-                );
+
             })
             ->withOperationTransformers(function (Operation $operation, RouteInfo $routeInfo) {
-                $routeMiddleware = $routeInfo->route->gatherMiddleware();
 
-                $hasAuthMiddleware = collect($routeMiddleware)->contains(
-                    fn ($m) => Str::startsWith($m, 'auth:')
-                );
-
-                if (! $hasAuthMiddleware) {
-                    $operation->security = [];
-                }
             });
 
         // filament 多语言切换
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
             $switch
-                ->locales(['en', 'zh_CN', 'zh_TW'])
+                ->locales(['en', 'zh_CN'])
                 ->labels([
                     'en' => 'English',
                     'zh_CN' => '简体中文',
-                    'zh_TW' => '繁體中文',
                 ])
                 ->flags([
                     'en' => asset('vendor/blade-country-flags/1x1-us.svg'),
                     'zh_CN' => asset('vendor/blade-country-flags/1x1-cn.svg'),
-                    'zh_TW' => asset('vendor/blade-country-flags/1x1-hk.svg'),
                 ])
                 ->circular();
         });
