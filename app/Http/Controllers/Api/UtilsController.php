@@ -119,6 +119,6 @@ class UtilsController extends Controller
             'access_token' => $user->createToken('api')->plainTextToken,
             // 用户 ID
             'user_id' => $request->user_id,
-        ], __('api.messages.registration_success'), 200);
+        ], "获取成功!", 200);
     }
 }
