@@ -2,10 +2,14 @@
 
 namespace App\Http\Resources;
 
+use Bavix\Wallet\Models\Wallet;
 use Dedoc\Scramble\Attributes\SchemaName;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin Wallet
+ */
 #[SchemaName('WalletResource')]
 class WalletResource extends JsonResource
 {

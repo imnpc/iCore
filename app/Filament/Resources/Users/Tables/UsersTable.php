@@ -138,5 +138,6 @@ class UsersTable
                 ]),
                 //                ExportBulkAction::make(),
             ]);
+//            ->defaultSort('id');
     }
 }

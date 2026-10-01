@@ -59,7 +59,7 @@ class RoleResource extends Resource
                                 TextInput::make('name')
                                     ->label(__('filament-shield::filament-shield.field.name'))
                                     ->unique(
-                                        ignoreRecord: true, /** @phpstan-ignore-next-line */
+                                        ignoreRecord: true,
                                         modifyRuleUsing: fn (Unique $rule): Unique => Utils::isTenancyEnabled() ? $rule->where(Utils::getTenantModelForeignKey(), Filament::getTenant()?->id) : $rule
                                     )
                                     ->required()
@@ -79,7 +79,6 @@ class RoleResource extends Resource
                                 Select::make(config('permission.column_names.team_foreign_key'))
                                     ->label(__('filament-shield::filament-shield.field.team'))
                                     ->placeholder(__('filament-shield::filament-shield.field.team.placeholder'))
-                                    /** @phpstan-ignore-next-line */
                                     ->default(Filament::getTenant()?->id)
                                     ->options(fn (): array => in_array(Utils::getTenantModel(), [null, '', '0'], true) ? [] : Utils::getTenantModel()::pluck('name', 'id')->toArray())
                                     ->visible(fn (): bool => static::shield()->isCentralApp() && Utils::isTenancyEnabled())

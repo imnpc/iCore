@@ -22,7 +22,7 @@ class ApiDocsTagGrouper
      *
      * @var array<string, string>
      */
-    private array $childToParent;
+    private array $childToParent = [];
 
     /**
      * URI 关键字到父分组映射。

@@ -3,9 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Hasnayeen\Themes\ThemesPlugin;
 use Illuminate\Http\Request;
-use Jeffgreco13\FilamentBreezy\BreezyCore;
 use Symfony\Component\HttpFoundation\Response;
 
 class AccessFilamentPlugins
@@ -23,9 +21,10 @@ class AccessFilamentPlugins
         }
 
         // 主题选择
-        if (auth()->user()->can('page_Themes')) {
+        $themesPluginClass = 'Hasnayeen\\Themes\\ThemesPlugin';
+        if (auth()->user()->can('page_Themes') && class_exists($themesPluginClass)) {
             filament()->getCurrentPanel()->plugins([
-                ThemesPlugin::make()
+                $themesPluginClass::make()
                     ->canViewThemesPage(function () {
                         return true;
                     }),
@@ -33,9 +32,10 @@ class AccessFilamentPlugins
         }
 
         // 个人信息页
-        if (auth() && auth()->user()->cant('page_MyProfilePage')) {
+        $breezyPluginClass = 'Jeffgreco13\\FilamentBreezy\\BreezyCore';
+        if (auth()->user()->can('page_MyProfilePage') && class_exists($breezyPluginClass)) {
             filament()->getCurrentPanel()->plugins([
-                BreezyCore::make()
+                $breezyPluginClass::make()
                     ->myProfile()
                     ->withoutMyProfileComponents([])
                     ->enableTwoFactorAuthentication(), // 个人信息页
