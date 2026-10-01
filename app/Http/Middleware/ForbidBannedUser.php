@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Cog\Contracts\Ban\Bannable as BannableContract;
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 
 /**
@@ -12,8 +11,6 @@ use Illuminate\Http\Request;
  */
 class ForbidBannedUser
 {
-    public function __construct(protected Guard $auth) {}
-
     /**
      * Handle an incoming request.
      *
@@ -21,7 +18,9 @@ class ForbidBannedUser
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        $user = $this->auth->user();
+        $user = auth('sanctum')->user()
+            ?? auth('admin')->user()
+            ?? auth()->user();
 
         if ($user && $user instanceof BannableContract && $user->isBanned()) {
             abort(403, __('api.errors.account_banned'));

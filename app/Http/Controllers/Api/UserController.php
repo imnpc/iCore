@@ -30,12 +30,12 @@ class UserController extends Controller
      *
      * 使用谷歌验证器登录的必须输入生成的6位数字
      */
-    #[Post('login')]
+    #[Post('login', middleware: (['throttle:5,1']))]
     public function login(Request $request): JsonResponse
     {
         $request->validate([
             // 邮箱地址
-            'email' => 'required|email|exists:users,email',
+            'email' => 'required|email',
             // 密码
             'password' => 'required',
             // 图形验证码 key(从工具->获取图形验证码获取)
@@ -66,11 +66,19 @@ class UserController extends Controller
             return $this->fail(__('api.errors.login_initialization_failed'), 500);
         }
 
+        if ($user->isBanned()) {
+            Auth::guard('web')->logout();
+
+            return $this->fail(__('api.errors.account_banned'), 403);
+        }
+
         // 谷歌验证器
         if ($user->app_authentication_secret) {
             $google2fa = new Google2FA; // 谷歌验证器
             $valid = $google2fa->verifyKey($user->app_authentication_secret, $request->two_fa_code ?? '');
             if (! $valid) {
+                Auth::guard('web')->logout();
+
                 return $this->fail(__('api.errors.two_factor_invalid'), 401);
             }
         }
@@ -109,7 +117,7 @@ class UserController extends Controller
     /**
      * 获取邮箱验证码
      */
-    #[Post('getEmailVerifyCode')]
+    #[Post('getEmailVerifyCode', middleware: (['throttle:5,1']))]
     public function getEmailVerifyCode(Request $request): JsonResponse
     {
         $request->validate([
@@ -141,7 +149,7 @@ class UserController extends Controller
     /**
      * 邮箱注册
      */
-    #[Post('emailRegister')]
+    #[Post('emailRegister', middleware: (['throttle:5,1']))]
     public function emailRegister(Request $request): JsonResponse
     {
         $request->validate([
@@ -206,12 +214,12 @@ class UserController extends Controller
     /**
      * 邮箱重置密码
      */
-    #[Post('emailForgetPassword')]
+    #[Post('emailForgetPassword', middleware: (['throttle:5,1']))]
     public function emailForgetPassword(Request $request): JsonResponse
     {
         $request->validate([
             // 邮箱地址
-            'email' => 'required|email|exists:users,email',
+            'email' => 'required|email',
             // 邮箱验证码(从用户->获取邮箱验证码获取)
             'email_verify_code' => 'required|string',
             // 密码
@@ -234,17 +242,16 @@ class UserController extends Controller
 
         // 查询该邮箱用户 重设密码
         $user = User::where('email', '=', $request->email)->first();
+        Cache::forget($key);
+
         if ($user) {
-            Cache::forget($key);
             $user->update([
                 'password' => bcrypt($request->password), // 更新新密码
             ]);
             $user->tokens()->delete(); // 删除用户所有 token，需要重新登录
-
-            return $this->success('', __('api.messages.password_reset_success'), 200);
-        } else {
-            return $this->fail(__('api.errors.user_not_found'), 403);
         }
+
+        return $this->success('', __('api.messages.password_reset_success'), 200);
     }
 
     /**
@@ -278,7 +285,7 @@ class UserController extends Controller
 
         $request->validate([
             // 头像图片文件
-            'avatar' => 'required|file', // 头像
+            'avatar' => 'required|image|max:5120', // 头像，限制为 5MB 图片
         ]);
 
         if ($request->file('avatar')) {

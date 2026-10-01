@@ -111,7 +111,7 @@ class Admin extends Authenticatable implements BannableContract, FilamentUser, H
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        return (int) $this->status === 1 && ! $this->isBanned();
     }
 
     public function isAdmin(): bool
