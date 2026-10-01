@@ -40,3 +40,8 @@ opencode.json
 /.ai/mcp/mcp.json
 .omo
 .playwright-mcp/
+.vscode
+.reasonix
+reasonix.toml
+.kiro
+/.ai/rules
