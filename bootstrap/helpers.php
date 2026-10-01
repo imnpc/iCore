@@ -20,12 +20,16 @@ function upload_images($uploadedFile, array $options = []): false|Media
     try {
         // 获取上传类型和允许的媒体类型
         $type = $options['type'] ?? 'images';
-        $allowedTypes = getAllowedAggregateTypes($type);
+        $allowedTypes = $type === 'images'
+            ? [Media::TYPE_IMAGE]
+            : getAllowedAggregateTypes($type);
         $directory = $options['directory'] ?? 'uploads';
         // $tag = $options['tag'] ?? 'images';
 
         // 基础配置
+        $disk = (string) (config('mediable.default_disk') ?: config('filesystems.default', 'public'));
         $uploader = MediaUploader::fromSource($uploadedFile)
+            ->toDisk($disk)
             ->toDirectory("{$directory}/".date('Y/m/d')) // 按类型和日期存储
             ->setAllowedAggregateTypes($allowedTypes); // 设置允许的文件类型
 
@@ -136,10 +140,12 @@ function get_array_ids(array $data, string $key = 'id'): array
  */
 function get_ip(): string
 {
-    $requestUrl = 'members.3322.org/dyndns/getip';
+    $requestUrl = 'https://members.3322.org/dyndns/getip';
     $curlHandle = curl_init();
     curl_setopt($curlHandle, CURLOPT_URL, $requestUrl);
     curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curlHandle, CURLOPT_CONNECTTIMEOUT, 5);
+    curl_setopt($curlHandle, CURLOPT_TIMEOUT, 10);
     $data = curl_exec($curlHandle);
     curl_close($curlHandle);
 
@@ -338,7 +344,7 @@ function replace_domain(array|string $string): array|string
  */
 function express(string $express_sn, string $express_code): mixed
 {
-    $host = 'http://wdexpress.market.alicloudapi.com'; // API 访问链接
+    $host = 'https://wdexpress.market.alicloudapi.com'; // API 访问链接
     $path = '/gxali'; // API 访问后缀
     $appcode = config('app.aliyun_appcode');
     $querys = "n={$express_sn}&t={$express_code}"; // 参数写在这里
@@ -346,7 +352,7 @@ function express(string $express_sn, string $express_code): mixed
 
     $client = new Client;
     $response = $client->request('GET', $url, [
-        'verify' => false,
+        'verify' => true,
         'headers' => [
             'Authorization' => 'APPCODE '.$appcode,
         ],
@@ -389,8 +395,8 @@ function eidCheck(string $name, string $number): bool|string
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HEADER, false);
     if (str_starts_with($host, 'https://')) {
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
     }
     $result = curl_exec($curl);
 

@@ -168,7 +168,7 @@ class ApiExceptionHandler extends ExceptionHandler
     private function handleValidationException(ValidationException $exception, string $traceId): JsonResponse
     {
         $config = self::EXCEPTION_CONFIG[ValidationException::class];
-        $message = $exception->getMessage() !== '' ? __($exception->getMessage()) : __($config['message_key']);
+        $message = __($config['message_key']);
 
         $response = $this->error(
             message: $message,
@@ -184,11 +184,13 @@ class ApiExceptionHandler extends ExceptionHandler
         $statusCode = $exception->getStatusCode();
         $message = $exception->getMessage();
 
-        if ($message === '') {
+        if (! $this->isDebug()) {
+            $message = __(self::HTTP_STATUS_MESSAGES[$statusCode] ?? 'api.errors.request_failed');
+        } elseif ($message === '') {
             $message = __(self::HTTP_STATUS_MESSAGES[$statusCode] ?? 'api.errors.request_failed');
         }
 
-        if ($this->isProduction() && $statusCode >= 500) {
+        if (! $this->isDebug() && $statusCode >= 500) {
             $message = __(self::HTTP_STATUS_MESSAGES[500]);
         }
 
@@ -213,7 +215,7 @@ class ApiExceptionHandler extends ExceptionHandler
         $statusCode = method_exists($response, 'getStatusCode') ? $response->getStatusCode() : 500;
         $errors = [];
 
-        if (! $this->isProduction() && method_exists($response, 'getContent')) {
+        if ($this->isDebug() && method_exists($response, 'getContent')) {
             $content = (string) $response->getContent();
             $errors['message'] = mb_substr(strip_tags($content), 0, 3000);
         }
@@ -230,7 +232,7 @@ class ApiExceptionHandler extends ExceptionHandler
     {
         $message = __($config['message_key']);
 
-        if ($this->isProduction() && isset($config['hide_in_production'])) {
+        if (! $this->isDebug() && isset($config['hide_in_production'])) {
             $message = __('api.errors.unknown_error');
         }
 
@@ -241,7 +243,7 @@ class ApiExceptionHandler extends ExceptionHandler
 
     private function handleUnknownException(Throwable $exception, string $traceId): JsonResponse
     {
-        $message = $this->isProduction() ? __(self::HTTP_STATUS_MESSAGES[500]) : $exception->getMessage();
+        $message = $this->isDebug() ? $exception->getMessage() : __(self::HTTP_STATUS_MESSAGES[500]);
         $response = $this->error($message, 500, []);
 
         return $this->finalizeResponse($response, $exception, $traceId);
@@ -252,16 +254,16 @@ class ApiExceptionHandler extends ExceptionHandler
         return $request->is('api/*') || $request->expectsJson() || $request->wantsJson();
     }
 
-    private function isProduction(): bool
+    private function isDebug(): bool
     {
-        return app()->isProduction();
+        return (bool) config('app.debug', false);
     }
 
     private function finalizeResponse(JsonResponse $response, Throwable $exception, string $traceId): JsonResponse
     {
         $response->headers->set('X-Trace-Id', $traceId);
 
-        if (! $this->isProduction()) {
+        if ($this->isDebug()) {
             $responseData = $response->getData(true);
             $responseData['debug'] = $this->getDebugData($exception, $traceId);
             $response->setData($responseData);
@@ -293,7 +295,7 @@ class ApiExceptionHandler extends ExceptionHandler
             'line' => $exception->getLine(),
             'request' => [
                 'method' => $request->getMethod(),
-                'url' => $request->fullUrl(),
+                'path' => $request->getPathInfo(),
                 'ip' => $request->ip(),
                 'user_agent' => $request->userAgent(),
                 'user_id' => $request->user()?->id,

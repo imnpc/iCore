@@ -9,4 +9,11 @@ return [
     'database' => [
         'table' => 'settings',
     ],
+    'api' => [
+        'public_keys' => [
+            'app',
+            'alipay.is_enabled',
+            'wechat.is_enabled',
+        ],
+    ],
 ];
