@@ -116,6 +116,14 @@ class LocalizationTest extends TestCase
         }
     }
 
+    public function test_filament_login_failure_message_key_resolves_in_supported_locales(): void
+    {
+        $key = 'filament-panels::auth/pages/login.messages.failed';
+
+        $this->assertNotSame($key, trans($key, [], 'zh_CN'));
+        $this->assertNotSame($key, trans($key, [], 'en'));
+    }
+
     /**
      * @param  array<string, mixed>  $translations
      * @return array<int, string>
