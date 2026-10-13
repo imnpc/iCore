@@ -11,7 +11,6 @@ use Illuminate\Foundation\Auth\User as AuthUser;
 class RolePolicy
 {
     use HandlesAuthorization;
-
     public function viewAny(AuthUser $authUser): bool
     {
         return $authUser->can('viewAny_Role');
@@ -36,4 +35,5 @@ class RolePolicy
     {
         return $authUser->can('delete_Role');
     }
+
 }
