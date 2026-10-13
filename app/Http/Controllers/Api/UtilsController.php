@@ -7,6 +7,7 @@ use Dedoc\Scramble\Attributes\Group;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 use Plank\Mediable\Exceptions\MediaUploadException;
 use Plank\Mediable\Facades\MediaUploader;
 use Plank\Mediable\Media;
@@ -24,7 +25,7 @@ class UtilsController extends Controller
      *
      * 通用文件上传接口
      */
-    #[Post('upload', middleware: (['auth:sanctum']))]
+    #[Post('upload', middleware: (['auth:sanctum', 'forbid.banned']))]
     public function upload(Request $request): JsonResponse
     {
         // 验证请求参数
@@ -32,9 +33,10 @@ class UtilsController extends Controller
             // 必须是文件
             'file' => 'required|file|max:51200',
             // 类型：0-图片, 1-文件, 2-音视频
-            'type' => 'numeric|in:0,1,2',
-            // 标签 例如 'avatar','thumbnail','featured','gallery' or 'download'
-            'tag' => 'string|min:1|max:48',
+            'type' => 'nullable|numeric|in:0,1,2',
+            // 标签仅允许已知白名单，避免任意写入 avatar 等敏感标签污染数据。
+            // 测试需求接口使用 tag=avatar，必须保留在白名单内。
+            'tag' => ['nullable', 'string', Rule::in(['images', 'avatar', 'thumbnail', 'featured', 'gallery', 'download'])],
         ]);
 
         // 获取上传文件和用户信息
@@ -97,7 +99,7 @@ class UtilsController extends Controller
      *
      * @throws \Exception
      */
-    #[Get('getCaptcha')]
+    #[Get('getCaptcha', middleware: (['throttle:60,1']))]
     public function getCaptcha(Request $request)
     {
         // 创建验证码

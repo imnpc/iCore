@@ -42,13 +42,14 @@ class Admin extends Authenticatable implements BannableContract, FilamentUser, H
     protected static ?string $translateablePackageKey = ''; // 翻译
 
     /**
-     * 日志
+     * 日志（排除密码哈希与二次验证密钥，避免敏感数据落盘）。
      */
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logAll()
+            ->logFillable()
             ->logOnlyDirty()
+            ->dontLogIfAttributesChangedOnly(['updated_at'])
             ->dontLogEmptyChanges();
     }
 

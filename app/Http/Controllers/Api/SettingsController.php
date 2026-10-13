@@ -13,7 +13,7 @@ use Spatie\RouteAttributes\Attributes\Prefix;
 
 #[Group('设置', description: '系统设置项', weight: 99)]
 #[Prefix('settings')]
-#[Middleware(['auth:sanctum'])]
+#[Middleware(['auth:sanctum', 'forbid.banned'])]
 class SettingsController extends Controller
 {
     /**

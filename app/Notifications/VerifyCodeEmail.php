@@ -16,19 +16,27 @@ class VerifyCodeEmail extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    protected $code;
+    /** @var int 队列重试次数，避免单次 SMTP 抖动丢失验证码 */
+    public int $tries = 3;
 
-    protected $minutes;
+    /** @var array<int, int> 失败退避秒数 */
+    public array $backoff = [10, 30, 60];
+
+    /** @var int 任务超时秒数 */
+    public int $timeout = 30;
+
+    protected string $code;
+
+    protected int $minutes;
 
     /**
      * Create a new notification instance.
-     *
-     * @return void
      */
-    public function __construct($code, $minutes = 30)
+    public function __construct(string $code, int $minutes = 30)
     {
         $this->code = $code;
         $this->minutes = $minutes;
+        $this->afterCommit = true;
     }
 
     /**
@@ -52,8 +60,9 @@ class VerifyCodeEmail extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
+        // 主题不放验证码，避免邮件网关日志留存敏感码。
         return (new MailMessage)
-            ->subject($this->code.' 是您的验证码')
+            ->subject('您的邮箱验证码')
             ->line('您好，您的验证码是:')
             ->line($this->code)
             ->line('本验证码在'.$this->minutes.'分钟内有效.');

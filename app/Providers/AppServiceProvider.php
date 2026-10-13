@@ -102,17 +102,19 @@ class AppServiceProvider extends ServiceProvider
             }
         );
 
-        // filament 多语言切换
+        // filament 多语言切换，与 config/app.supported_locales 保持一致
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
             $switch
-                ->locales(['en', 'zh_CN'])
+                ->locales(['zh_CN', 'zh_TW', 'en'])
                 ->labels([
-                    'en' => 'English',
                     'zh_CN' => '简体中文',
+                    'zh_TW' => '繁體中文',
+                    'en' => 'English',
                 ])
                 ->flags([
-                    'en' => asset('vendor/blade-country-flags/1x1-us.svg'),
                     'zh_CN' => asset('vendor/blade-country-flags/1x1-cn.svg'),
+                    'zh_TW' => asset('vendor/blade-country-flags/1x1-tw.svg'),
+                    'en' => asset('vendor/blade-country-flags/1x1-us.svg'),
                 ])
                 ->circular();
         });
@@ -176,7 +178,7 @@ class AppServiceProvider extends ServiceProvider
             'Accept-Language',
             'header'
         )
-            ->description('请求语言，例如：zh_CN、en')
+            ->description('请求语言，例如：zh_CN、zh_TW、en')
             ->required(false)
             ->setSchema(
                 Schema::fromType(new StringType)

@@ -11,6 +11,8 @@ use Bavix\Wallet\Traits\HasWallets;
 use Cog\Contracts\Ban\Bannable as BannableContract;
 use Cog\Laravel\Ban\Traits\Bannable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,8 +23,6 @@ use Plank\Mediable\MediableInterface;
 use Spatie\Activitylog\Models\Concerns\LogsActivity;
 use Spatie\Activitylog\Support\LogOptions;
 use Spatie\Tags\HasTags;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable implements BannableContract, MediableInterface, Wallet, WalletFloat
 {
@@ -41,13 +41,14 @@ class User extends Authenticatable implements BannableContract, MediableInterfac
     protected static ?string $translateablePackageKey = ''; // 翻译
 
     /**
-     * 日志
+     * 日志（仅记录非敏感字段，避免密码哈希与二次验证密钥落盘）。
      */
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logAll()
+            ->logFillable()
             ->logOnlyDirty()
+            ->dontLogIfAttributesChangedOnly(['updated_at'])
             ->dontLogEmptyChanges();
     }
 
@@ -64,6 +65,7 @@ class User extends Authenticatable implements BannableContract, MediableInterfac
         'status',
         'parent_id',
         'avatar',
+        'invite_code',
         'app_authentication_secret',
     ];
 

@@ -263,6 +263,14 @@ class ApiExceptionHandler extends ExceptionHandler
     {
         $response->headers->set('X-Trace-Id', $traceId);
 
+        // 异常响应同样声明语言，保证中间件抛异常时 API 调用方可感知
+        $response->headers->set('Content-Language', app()->getLocale());
+
+        $vary = $response->headers->get('Vary');
+        if ($vary === null || ! str_contains($vary, 'Accept-Language')) {
+            $response->headers->set('Vary', $vary ? $vary.', Accept-Language' : 'Accept-Language');
+        }
+
         if ($this->isDebug()) {
             $responseData = $response->getData(true);
             $responseData['debug'] = $this->getDebugData($exception, $traceId);

@@ -26,7 +26,15 @@ return Application::configure(basePath: dirname(__DIR__))
             '*/alipay/notify',
             '*/wechat/notify',
         ]);
+        // 别名供已认证路由在 auth:sanctum 之后二次校验封禁态。
+        // 全局分组中间件运行在路由级 auth 之前，无法看到 Sanctum 令牌用户，
+        // 因此已认证接口必须显式追加 ForbidBannedUser 到 auth:sanctum 之后。
+        $middleware->alias([
+            'forbid.banned' => ForbidBannedUser::class,
+        ]);
         // API 需要在语言解析前启动会话，以支持会话语言偏好。
+        // 保留全局封禁检查以兼容会话守卫（admin/web）与测试中的 actingAs，
+        // 真实令牌用户的封禁拦截由各受保护路由的 forbid.banned 承担。
         $middleware->prependToGroup('api', [
             StartSession::class,
             SetLocale::class,

@@ -27,7 +27,7 @@ class WalletType extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logAll()
+            ->logFillable()
             ->logOnlyDirty()
             ->dontLogEmptyChanges();
     }

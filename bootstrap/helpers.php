@@ -2,6 +2,7 @@
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Support\Facades\Log;
 use Overtrue\EasySms\EasySms;
 use Overtrue\EasySms\Exceptions\InvalidArgumentException;
 use Overtrue\EasySms\Exceptions\NoGatewayAvailableException;
@@ -169,11 +170,13 @@ function send_sms(string $mobile, int $code): array
 {
     $sign = config('easysms.sms_sign_name');
     $easySms = new EasySms(config('easysms'));
-    // 注册
-    $easySms->extend('qxt', function ($gatewayConfig) {
-        // $gatewayConfig 来自配置文件里的 `gateways.mygateway`
-        return new QxtGateway($gatewayConfig);
-    });
+    // 仅在自定义网关类存在时注册，避免 Class not found 直接致命。
+    if (class_exists('QxtGateway')) {
+        $easySms->extend('qxt', function ($gatewayConfig) {
+            // $gatewayConfig 来自配置文件里的 `gateways.mygateway`
+            return new QxtGateway($gatewayConfig);
+        });
+    }
     $text = '【'.$sign.'】您的验证码是：'.$code.'。请不要把验证码泄露给其他人。';
 
     return $easySms->send($mobile, $text);
@@ -187,19 +190,30 @@ function send_sms(string $mobile, int $code): array
  */
 function createNO(string $model, string $field): bool|string
 {
+    // 仅允许白名单模型，避免任意类实例化。
+    if (! preg_match('/^[A-Za-z][A-Za-z0-9]*$/', $model)) {
+        Log::warning('生成单号失败-非法模型名-'.$model);
+
+        return false;
+    }
     // 订单流水号前缀
     $prefix = date('YmdHis');
     for ($i = 0; $i < 10; $i++) {
         // 随机生成 6 位的数字
-        $sn = $prefix.str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+        $sn = $prefix.str_pad((string) random_int(0, 999999), 6, '0', STR_PAD_LEFT);
         // 查询该模型是否已经存在对应订单号
         $modelName = '\\App\\Models\\'.$model;
+        if (! class_exists($modelName)) {
+            Log::warning('生成单号失败-模型不存在-'.$modelName);
+
+            return false;
+        }
         $modelInstance = new $modelName;
         if (! $modelInstance::query()->where($field, $sn)->exists()) {
             return $sn;
         }
     }
-    Log::warning('生成单号失败-'.$modelName);
+    Log::warning('生成单号失败-'.$model.'-'.$field);
 
     return false;
 }

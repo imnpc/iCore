@@ -24,7 +24,7 @@ class Role extends SpatieRole
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logAll()
+            ->logFillable()
             ->logOnlyDirty()
             ->dontLogEmptyChanges();
     }

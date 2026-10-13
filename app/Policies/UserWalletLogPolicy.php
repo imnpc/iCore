@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Policies;
 
-use App\Models\User;
 use App\Models\UserWalletLog;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Foundation\Auth\User as AuthUser;
@@ -71,8 +70,8 @@ class UserWalletLogPolicy
     /**
      * 验证是否属于本人
      */
-    public function own(User $user, UserWalletLog $userWalletLog): bool
+    public function own(AuthUser $authUser, UserWalletLog $userWalletLog): bool
     {
-        return $user->id === $userWalletLog->user_id;
+        return (int) $authUser->getAuthIdentifier() === (int) $userWalletLog->user_id;
     }
 }

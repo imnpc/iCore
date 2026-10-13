@@ -4,9 +4,9 @@ namespace App\Models;
 
 use App\Enums\FromType;
 use App\Traits\DateTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Maggomann\FilamentModelTranslator\Traits\HasTranslateableModel;
@@ -29,7 +29,7 @@ class UserWalletLog extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logAll()
+            ->logFillable()
             ->logOnlyDirty()
             ->dontLogEmptyChanges();
     }
@@ -80,7 +80,7 @@ class UserWalletLog extends Model
     // 获取来源
     public function getFromTextAttribute(): string
     {
-        return $this->from->getLabel();
+        return $this->from?->getLabel() ?? '';
     }
 
     // 获取钱包类型的名称

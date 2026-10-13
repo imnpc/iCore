@@ -72,11 +72,9 @@ class UserPolicy
 
     /**
      * 是否本人
-     *
-     * @return bool
      */
-    public function own(User $user)
+    public function own(AuthUser $authUser, User $model): bool
     {
-        return $user->id === auth()->id();
+        return (int) $authUser->getAuthIdentifier() === (int) $model->getKey();
     }
 }
