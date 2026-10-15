@@ -2,7 +2,7 @@
 
 return [
     'version' => [
-        'tiny' => '8.9.3',
+        'tiny' => '8.10.0',
         'language' => [
             // https://cdn.jsdelivr.net/npm/tinymce-i18n@latest/
             'version' => '26.9.28',
