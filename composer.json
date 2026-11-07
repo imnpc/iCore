@@ -60,7 +60,7 @@
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "overtrue/laravel-query-logger": "^5.0",
+        "overtrue/laravel-query-logger": "^6.0",
         "phpunit/phpunit": "^12.0",
         "spatie/guidelines-skills": "^1.1"
     },
