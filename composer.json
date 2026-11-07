@@ -21,7 +21,7 @@
         "imnpc/filament-bandel": "^6.0",
         "imnpc/filament-wallet": "^5.0",
         "imnpc/laravel-flysystem-oss": "^3.0",
-        "interaction-design-foundation/laravel-geoip": "^4.2",
+        "interaction-design-foundation/laravel-geoip": "^5.0",
         "laravel/framework": "^13.0",
         "laravel/horizon": "^5.33",
         "laravel/sanctum": "^4.0",

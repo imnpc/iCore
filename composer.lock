@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "afca0fc69e004ceae148f9380df47eaa",
+    "content-hash": "f880c617ec7c11888d8961dc55298bba",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -3925,16 +3925,16 @@
         },
         {
             "name": "interaction-design-foundation/laravel-geoip",
-            "version": "4.3.0",
+            "version": "5.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/InteractionDesignFoundation/laravel-geoip.git",
-                "reference": "e64c668d2305528424fdb1a4f672942135c667be"
+                "reference": "4e5430c4009abdd2f9a0f77786c48f1a8d6be0c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/InteractionDesignFoundation/laravel-geoip/zipball/e64c668d2305528424fdb1a4f672942135c667be",
-                "reference": "e64c668d2305528424fdb1a4f672942135c667be",
+                "url": "https://api.github.com/repos/InteractionDesignFoundation/laravel-geoip/zipball/4e5430c4009abdd2f9a0f77786c48f1a8d6be0c5",
+                "reference": "4e5430c4009abdd2f9a0f77786c48f1a8d6be0c5",
                 "shasum": ""
             },
             "require": {
@@ -3943,19 +3943,20 @@
                 "illuminate/console": "^12.0 || ^13.0",
                 "illuminate/support": "^12.0 || ^13.0",
                 "league/iso3166": "^4.0",
-                "php": "^8.3"
+                "php": "^8.4"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.50",
                 "geoip2/geoip2": "^3.0",
-                "interaction-design-foundation/coding-standard": "^0.7.0",
-                "laravel/facade-documenter": "dev-main",
+                "interaction-design-foundation/coding-standard": "^1.0",
                 "orchestra/testbench": "^10.0 || ^11.0",
                 "phpstan/phpstan": "^2.1",
                 "phpunit/phpunit": "^11.0 || ^12.0",
+                "psalm/plugin-laravel": "^4.17",
+                "psalm/plugin-phpunit": "^0.21.1",
                 "rector/rector": "^2.0",
                 "squizlabs/php_codesniffer": "^3.9 || ^4.0",
-                "vimeo/psalm": "^6.0"
+                "vimeo/psalm": "^7.0@RC"
             },
             "suggest": {
                 "geoip2/geoip2": "Required to use the MaxMind database or web service with GeoIP (~2.1)."
@@ -3995,9 +3996,9 @@
             ],
             "support": {
                 "issues": "https://github.com/InteractionDesignFoundation/laravel-geoip/issues",
-                "source": "https://github.com/InteractionDesignFoundation/laravel-geoip/tree/4.3.0"
+                "source": "https://github.com/InteractionDesignFoundation/laravel-geoip/tree/5.1.1"
             },
-            "time": "2026-04-03T11:23:50+00:00"
+            "time": "2026-11-05T18:28:22+00:00"
         },
         {
             "name": "intervention/gif",
