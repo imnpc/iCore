@@ -1,6 +1,13 @@
 <?php
 
 declare(strict_types=1);
+use InteractionDesignFoundation\GeoIP\Services\IP2Location;
+use InteractionDesignFoundation\GeoIP\Services\IPApi;
+use InteractionDesignFoundation\GeoIP\Services\IPData;
+use InteractionDesignFoundation\GeoIP\Services\IPFinder;
+use InteractionDesignFoundation\GeoIP\Services\IPGeoLocation;
+use InteractionDesignFoundation\GeoIP\Services\MaxMindDatabase;
+use InteractionDesignFoundation\GeoIP\Services\MaxMindWebService;
 
 return [
 
@@ -17,6 +24,21 @@ return [
     */
 
     'log_failures' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | HTTP Timeouts
+    |--------------------------------------------------------------------------
+    |
+    | Seconds (floats allowed) that HTTP-based services wait for a connection
+    | and for the whole response. Keep them short: a lookup runs inside the
+    | web request. Any service below may override either key.
+    |
+    */
+
+    'connect_timeout' => 2,
+
+    'timeout' => 5,
 
     /*
     |--------------------------------------------------------------------------
@@ -56,21 +78,25 @@ return [
     'services' => [
 
         'maxmind_database' => [
-            'class' => \InteractionDesignFoundation\GeoIP\Services\MaxMindDatabase::class,
+            'class' => MaxMindDatabase::class,
             'database_path' => storage_path('app/geoip.mmdb'),
-            'update_url' => sprintf('https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=%s&suffix=tar.gz', env('MAXMIND_LICENSE_KEY')),
+            // 凭据通过 HTTP Basic auth 发送到 MaxMind 永久链接端点（不再出现在 URL 中）。
+            // 未配置 account_id 时将回退到 license_key 在查询字符串中的旧端点。
+            'account_id' => env('MAXMIND_ACCOUNT_ID'),
+            'license_key' => env('MAXMIND_LICENSE_KEY'),
+            'edition_id' => 'GeoLite2-City',
             'locales' => ['en'],
         ],
 
         'maxmind_api' => [
-            'class' => \InteractionDesignFoundation\GeoIP\Services\MaxMindWebService::class,
+            'class' => MaxMindWebService::class,
             'user_id' => env('MAXMIND_USER_ID'),
             'license_key' => env('MAXMIND_LICENSE_KEY'),
             'locales' => ['en'],
         ],
 
         'ipapi' => [
-            'class' => \InteractionDesignFoundation\GeoIP\Services\IPApi::class,
+            'class' => IPApi::class,
             'secure' => true,
             'key' => env('IPAPI_KEY'),
             'continent_path' => storage_path('app/continents.json'),
@@ -78,7 +104,7 @@ return [
         ],
 
         'ipgeolocation' => [
-            'class' => \InteractionDesignFoundation\GeoIP\Services\IPGeoLocation::class,
+            'class' => IPGeoLocation::class,
             'secure' => true,
             'key' => env('IPGEOLOCATION_KEY'),
             'continent_path' => storage_path('app/continents.json'),
@@ -86,20 +112,20 @@ return [
         ],
 
         'ipdata' => [
-            'class' => \InteractionDesignFoundation\GeoIP\Services\IPData::class,
+            'class' => IPData::class,
             'key' => env('IPDATA_API_KEY'),
             'secure' => true,
         ],
 
         'ipfinder' => [
-            'class' => \InteractionDesignFoundation\GeoIP\Services\IPFinder::class,
+            'class' => IPFinder::class,
             'key' => env('IPFINDER_API_KEY'),
             'secure' => true,
             'locales' => ['en'],
         ],
 
         'ip2location' => [
-            'class' => \InteractionDesignFoundation\GeoIP\Services\IP2Location::class,
+            'class' => IP2Location::class,
             'key' => env('IP2LOCATION_API_KEY'),
         ],
 
@@ -145,6 +171,19 @@ return [
     */
 
     'cache_expires' => 30,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Not-Found Cache Expiration
+    |--------------------------------------------------------------------------
+    |
+    | Cache's time to live in seconds for addresses the service reports as
+    | not found (the default location is cached for them). Transient errors
+    | are never cached. Null uses `cache_expires`.
+    |
+    */
+
+    'cache_not_found_expires' => null,
 
     /*
     |--------------------------------------------------------------------------
