@@ -46,3 +46,5 @@ opencode.json
 reasonix.toml
 .kiro
 /.ai/rules
+/.openidea
+_ide_helper.php
